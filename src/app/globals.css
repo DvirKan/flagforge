@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+/*
+ * FLAGFORGE — "Modern Atlas" design tokens.
+ * Contrast notes (WCAG 2.2): all text tokens are ≥ 4.5:1 on parchment and paper.
+ *   ink        12.1:1 on parchment
+ *   muted       4.95:1 on parchment  (refined from #68737A, which was 4.09:1)
+ *   rust-ink    5.10:1 on parchment  (text/buttons; #C96D43 is decorative only, 3.07:1)
+ *   control     3.51:1 on parchment  (form control borders, ≥ 3:1 non-text)
+ */
+@theme {
+  --color-parchment: #f1ebdd;
+  --color-parchment-deep: #e8e0ce;
+  --color-paper: #faf8f2;
+  --color-ink: #172c3b;
+  --color-ink-soft: #2b4253;
+  --color-rust: #c96d43;
+  --color-rust-ink: #9e4a26;
+  --color-muted: #5b666d;
+  --color-rule: #d8d1c3;
+  --color-rule-strong: #b9af9c;
+  --color-control: #857b6a;
+  --color-success: #2f6b4f;
+  --color-success-wash: #dfe9df;
+  --color-danger: #a23b2a;
+  --color-danger-wash: #f3dfd7;
+
+  --font-display: "Frank Ruhl Libre Variable", "Frank Ruhl Libre", "Times New Roman", serif;
+  --font-sans: "IBM Plex Sans", "IBM Plex Sans Hebrew", system-ui, "Segoe UI", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  --text-eyebrow: 0.6875rem;
+  --text-eyebrow--letter-spacing: 0.14em;
+
+  --radius-xs: 2px;
+  --radius-sm: 3px;
+
+  --ease-atlas: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--color-parchment);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "kern", "liga";
+    min-height: 100dvh;
+  }
+
+  /* Hebrew: Plex Sans Hebrew first so Latin digits/punctuation stay consistent within RTL text runs. */
+  html[lang="he"] body {
+    font-family: "IBM Plex Sans Hebrew", "IBM Plex Sans", system-ui, Arial, sans-serif;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-rust) 30%, transparent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-rust-ink);
+    outline-offset: 3px;
+    border-radius: var(--radius-xs);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Small-caps editorial label, e.g. "PLATE II · DAILY" */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-eyebrow);
+    letter-spacing: var(--text-eyebrow--letter-spacing);
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  /* Plex Mono has no Hebrew glyphs; Hebrew labels use the Hebrew sans instead of a fallback monospace. */
+  html[lang="he"] .eyebrow {
+    font-family: "IBM Plex Sans Hebrew", "IBM Plex Mono", system-ui, sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+  }
+
+  .display {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.02;
+  }
+
+  /* Hairline rules with a tick at the start — cartographic scale-bar feel. */
+  .rule-tick {
+    position: relative;
+    border-top: 1px solid var(--color-ink);
+  }
+  .rule-tick::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    top: -4px;
+    width: 1px;
+    height: 7px;
+    background: var(--color-ink);
+  }
+
+  /* Faint graticule (latitude/longitude grid) used behind hero areas. */
+  .graticule {
+    background-image:
+      linear-gradient(to right, color-mix(in srgb, var(--color-ink) 7%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in srgb, var(--color-ink) 7%, transparent) 1px, transparent 1px);
+    background-size: 48px 48px;
+    background-position: -1px -1px;
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Buttons — flat, bordered, editorial. */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    padding-inline: 1.25rem;
+    border: 1px solid var(--color-ink);
+    border-radius: var(--radius-xs);
+    font-weight: 500;
+    font-size: 0.9375rem;
+    transition:
+      background-color 160ms var(--ease-atlas),
+      color 160ms var(--ease-atlas),
+      transform 160ms var(--ease-atlas);
+  }
+  .btn:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+  .btn:disabled,
+  .btn[aria-disabled="true"] {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+  .btn-primary {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+  .btn-primary:hover:not(:disabled) {
+    background: var(--color-ink-soft);
+  }
+  .btn-accent {
+    background: var(--color-rust-ink);
+    border-color: var(--color-rust-ink);
+    color: var(--color-paper);
+  }
+  .btn-accent:hover:not(:disabled) {
+    background: #8a3f1f;
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--color-ink);
+  }
+  .btn-ghost:hover:not(:disabled) {
+    background: var(--color-paper);
+  }
+
+  .field-label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    margin-block-end: 0.375rem;
+  }
+  .field-input {
+    width: 100%;
+    min-height: 44px;
+    padding-inline: 0.875rem;
+    background: var(--color-paper);
+    border: 1px solid var(--color-control);
+    border-radius: var(--radius-xs);
+    color: var(--color-ink);
+  }
+  .field-input:focus-visible {
+    outline-offset: 1px;
+  }
+  .field-input:disabled {
+    background: var(--color-parchment-deep);
+    cursor: not-allowed;
+  }
+
+  .link-underline {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--color-rule-strong);
+  }
+  .link-underline:hover {
+    text-decoration-color: currentColor;
+  }
+}
