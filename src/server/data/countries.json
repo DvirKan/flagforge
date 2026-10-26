@@ -1,0 +1,3426 @@
+{
+ "countries": [
+  {
+   "iso2": "DZ",
+   "continent": "africa",
+   "difficulty": "medium",
+   "name": {
+    "en": "Algeria",
+    "he": "אלג׳יריה"
+   },
+   "capital": {
+    "en": "Algiers",
+    "he": "אלג׳יר"
+   },
+   "fact": {
+    "en": "Algeria is the largest country in Africa by area.",
+    "he": "אלג׳יריה היא המדינה הגדולה ביותר באפריקה בשטחה."
+   }
+  },
+  {
+   "iso2": "AO",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Angola",
+    "he": "אנגולה"
+   },
+   "capital": {
+    "en": "Luanda",
+    "he": "לואנדה"
+   },
+   "fact": {
+    "en": "The flag shows half a cogwheel and a machete, symbols of industrial workers and peasants.",
+    "he": "בדגל מופיעים חצי גלגל שיניים ומצ׳טה — סמלים של פועלי התעשייה והאיכרים."
+   }
+  },
+  {
+   "iso2": "BJ",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Benin",
+    "he": "בנין"
+   },
+   "capital": {
+    "en": "Porto-Novo",
+    "he": "פורטו נובו"
+   },
+   "fact": {
+    "en": "Benin's official capital is Porto-Novo, but the seat of government is Cotonou.",
+    "he": "הבירה הרשמית של בנין היא פורטו נובו, אך מושב הממשלה נמצא בקוטונו."
+   }
+  },
+  {
+   "iso2": "BW",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Botswana",
+    "he": "בוטסואנה"
+   },
+   "capital": {
+    "en": "Gaborone",
+    "he": "גבורונה"
+   },
+   "fact": {
+    "en": "The light blue on the flag represents water — rain is so valued that the currency is called pula, meaning 'rain'.",
+    "he": "התכלת בדגל מסמלת מים — הגשם יקר כל כך עד שהמטבע נקרא 'פולה', כלומר 'גשם'."
+   }
+  },
+  {
+   "iso2": "BF",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Burkina Faso",
+    "he": "בורקינה פאסו"
+   },
+   "capital": {
+    "en": "Ouagadougou",
+    "he": "ואגאדוגו"
+   },
+   "fact": {
+    "en": "The name Burkina Faso is usually translated as 'land of upright people'.",
+    "he": "השם בורקינה פאסו מתורגם בדרך כלל כ'ארץ האנשים הישרים'."
+   }
+  },
+  {
+   "iso2": "BI",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Burundi",
+    "he": "בורונדי"
+   },
+   "capital": {
+    "en": "Gitega",
+    "he": "גיטגה"
+   },
+   "fact": {
+    "en": "Burundi moved its political capital from Bujumbura to Gitega in 2019.",
+    "he": "בורונדי העבירה את בירתה הפוליטית מבוז׳ומבורה לגיטגה ב-2019."
+   }
+  },
+  {
+   "iso2": "CV",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Cape Verde",
+    "he": "כף ורדה"
+   },
+   "capital": {
+    "en": "Praia",
+    "he": "פראיה"
+   },
+   "fact": {
+    "en": "The ten stars on the flag stand for the archipelago's ten main islands.",
+    "he": "עשרת הכוכבים בדגל מייצגים את עשרת האיים העיקריים של הארכיפלג."
+   }
+  },
+  {
+   "iso2": "CM",
+   "continent": "africa",
+   "difficulty": "medium",
+   "name": {
+    "en": "Cameroon",
+    "he": "קמרון"
+   },
+   "capital": {
+    "en": "Yaoundé",
+    "he": "יאונדה"
+   },
+   "fact": {
+    "en": "Cameroon is often called 'Africa in miniature' for its varied landscapes.",
+    "he": "קמרון מכונה לעתים 'אפריקה בזעיר אנפין' בשל מגוון הנופים שלה."
+   }
+  },
+  {
+   "iso2": "CF",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Central African Republic",
+    "he": "הרפובליקה המרכז־אפריקאית"
+   },
+   "capital": {
+    "en": "Bangui",
+    "he": "בנגי"
+   },
+   "fact": {
+    "en": "The flag combines the colours of the French tricolour with the pan-African colours, joined by a red vertical stripe.",
+    "he": "הדגל משלב את צבעי הדגל הצרפתי עם הצבעים הפאן־אפריקאיים, ופס אדום אנכי מחבר ביניהם."
+   }
+  },
+  {
+   "iso2": "TD",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Chad",
+    "he": "צ׳אד"
+   },
+   "capital": {
+    "en": "N'Djamena",
+    "he": "אנג׳מנה"
+   },
+   "fact": {
+    "en": "Chad's flag is nearly identical to Romania's — only the shade of blue differs.",
+    "he": "דגל צ׳אד כמעט זהה לדגל רומניה — רק גוון הכחול שונה."
+   }
+  },
+  {
+   "iso2": "KM",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Comoros",
+    "he": "קומורו"
+   },
+   "capital": {
+    "en": "Moroni",
+    "he": "מורוני"
+   },
+   "fact": {
+    "en": "The four stripes and four stars represent the four main islands, including Mayotte, which France administers.",
+    "he": "ארבעת הפסים וארבעת הכוכבים מייצגים את ארבעת האיים העיקריים, כולל מאיוט שבשליטת צרפת."
+   }
+  },
+  {
+   "iso2": "CG",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Republic of the Congo",
+    "he": "הרפובליקה של קונגו"
+   },
+   "capital": {
+    "en": "Brazzaville",
+    "he": "ברזוויל"
+   },
+   "fact": {
+    "en": "Brazzaville and Kinshasa face each other across the Congo River — the closest pair of capitals in the world after Rome and Vatican City.",
+    "he": "ברזוויל וקינשאסה ניצבות זו מול זו משני צדי נהר קונגו — צמד הבירות הקרובות ביותר בעולם אחרי רומא והוותיקן."
+   }
+  },
+  {
+   "iso2": "CD",
+   "continent": "africa",
+   "difficulty": "medium",
+   "name": {
+    "en": "DR Congo",
+    "he": "הרפובליקה הדמוקרטית של קונגו"
+   },
+   "capital": {
+    "en": "Kinshasa",
+    "he": "קינשאסה"
+   },
+   "fact": {
+    "en": "DR Congo is the largest country in sub-Saharan Africa by area.",
+    "he": "הרפובליקה הדמוקרטית של קונגו היא המדינה הגדולה ביותר באפריקה שמדרום לסהרה."
+   }
+  },
+  {
+   "iso2": "CI",
+   "continent": "africa",
+   "difficulty": "medium",
+   "name": {
+    "en": "Côte d'Ivoire",
+    "he": "חוף השנהב"
+   },
+   "capital": {
+    "en": "Yamoussoukro",
+    "he": "יאמוסוקרו"
+   },
+   "fact": {
+    "en": "Its flag is a mirror image of Ireland's, with orange at the hoist.",
+    "he": "הדגל הוא תמונת ראי של דגל אירלנד — הכתום נמצא בצד התורן."
+   }
+  },
+  {
+   "iso2": "DJ",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Djibouti",
+    "he": "ג׳יבוטי"
+   },
+   "capital": {
+    "en": "Djibouti",
+    "he": "ג׳יבוטי"
+   },
+   "fact": {
+    "en": "Lake Assal in Djibouti is the lowest point in Africa.",
+    "he": "אגם אסאל בג׳יבוטי הוא הנקודה הנמוכה ביותר ביבשת אפריקה."
+   }
+  },
+  {
+   "iso2": "EG",
+   "continent": "africa",
+   "difficulty": "easy",
+   "name": {
+    "en": "Egypt",
+    "he": "מצרים"
+   },
+   "capital": {
+    "en": "Cairo",
+    "he": "קהיר"
+   },
+   "fact": {
+    "en": "The golden eagle in the centre of the flag is the Eagle of Saladin.",
+    "he": "הנשר הזהוב במרכז הדגל הוא 'נשר צלאח א־דין'."
+   }
+  },
+  {
+   "iso2": "GQ",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Equatorial Guinea",
+    "he": "גינאה המשוונית"
+   },
+   "capital": {
+    "en": "Malabo",
+    "he": "מלבו"
+   },
+   "fact": {
+    "en": "It is the only African country where Spanish is an official language.",
+    "he": "זו המדינה היחידה באפריקה שספרדית היא שפה רשמית בה."
+   }
+  },
+  {
+   "iso2": "ER",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Eritrea",
+    "he": "אריתריאה"
+   },
+   "capital": {
+    "en": "Asmara",
+    "he": "אסמרה"
+   },
+   "fact": {
+    "en": "Eritrea gained independence from Ethiopia in 1993.",
+    "he": "אריתריאה קיבלה עצמאות מאתיופיה ב-1993."
+   }
+  },
+  {
+   "iso2": "SZ",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Eswatini",
+    "he": "אסוואטיני"
+   },
+   "capital": {
+    "en": "Mbabane",
+    "he": "מבבנה"
+   },
+   "fact": {
+    "en": "Formerly known as Swaziland, the country changed its name to Eswatini in 2018.",
+    "he": "המדינה, שנודעה בעבר בשם סווזילנד, שינתה את שמה לאסוואטיני ב-2018."
+   }
+  },
+  {
+   "iso2": "ET",
+   "continent": "africa",
+   "difficulty": "medium",
+   "name": {
+    "en": "Ethiopia",
+    "he": "אתיופיה"
+   },
+   "capital": {
+    "en": "Addis Ababa",
+    "he": "אדיס אבבה"
+   },
+   "fact": {
+    "en": "Ethiopia's green, yellow and red inspired the colours of many African flags.",
+    "he": "הירוק, הצהוב והאדום של אתיופיה השפיעו על צבעי דגלים רבים באפריקה."
+   }
+  },
+  {
+   "iso2": "GA",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Gabon",
+    "he": "גבון"
+   },
+   "capital": {
+    "en": "Libreville",
+    "he": "ליברוויל"
+   },
+   "fact": {
+    "en": "The equator runs through Gabon, and dense rainforest covers most of the country.",
+    "he": "קו המשווה עובר בגבון, ויער גשם צפוף מכסה את רוב שטחה."
+   }
+  },
+  {
+   "iso2": "GM",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Gambia",
+    "he": "גמביה"
+   },
+   "capital": {
+    "en": "Banjul",
+    "he": "בנג׳ול"
+   },
+   "fact": {
+    "en": "The Gambia is the smallest country on mainland Africa and is almost surrounded by Senegal.",
+    "he": "גמביה היא המדינה הקטנה ביותר ביבשת אפריקה, וכמעט כולה מוקפת בסנגל."
+   }
+  },
+  {
+   "iso2": "GH",
+   "continent": "africa",
+   "difficulty": "medium",
+   "name": {
+    "en": "Ghana",
+    "he": "גאנה"
+   },
+   "capital": {
+    "en": "Accra",
+    "he": "אקרה"
+   },
+   "fact": {
+    "en": "The black star on Ghana's flag gave its national football team its nickname, the Black Stars.",
+    "he": "הכוכב השחור בדגל העניק לנבחרת הכדורגל את כינויה — 'הכוכבים השחורים'."
+   }
+  },
+  {
+   "iso2": "GN",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Guinea",
+    "he": "גינאה"
+   },
+   "capital": {
+    "en": "Conakry",
+    "he": "קונקרי"
+   },
+   "fact": {
+    "en": "Guinea's flag uses the same colours as Mali's, in reverse order.",
+    "he": "דגל גינאה משתמש באותם צבעים כמו דגל מאלי, בסדר הפוך."
+   }
+  },
+  {
+   "iso2": "GW",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Guinea-Bissau",
+    "he": "גינאה ביסאו"
+   },
+   "capital": {
+    "en": "Bissau",
+    "he": "ביסאו"
+   },
+   "fact": {
+    "en": "The black star on the red band is a symbol of African unity.",
+    "he": "הכוכב השחור על הפס האדום הוא סמל לאחדות אפריקה."
+   }
+  },
+  {
+   "iso2": "KE",
+   "continent": "africa",
+   "difficulty": "medium",
+   "name": {
+    "en": "Kenya",
+    "he": "קניה"
+   },
+   "capital": {
+    "en": "Nairobi",
+    "he": "ניירובי"
+   },
+   "fact": {
+    "en": "A Maasai shield and two crossed spears sit at the centre of the flag.",
+    "he": "במרכז הדגל מגן מסאי ושתי חניתות מוצלבות."
+   }
+  },
+  {
+   "iso2": "LS",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Lesotho",
+    "he": "לסוטו"
+   },
+   "capital": {
+    "en": "Maseru",
+    "he": "מסרו"
+   },
+   "fact": {
+    "en": "Lesotho is entirely surrounded by South Africa, and all of its land lies above 1,000 metres.",
+    "he": "לסוטו מוקפת כולה בדרום אפריקה, וכל שטחה נמצא בגובה של יותר מ-1,000 מטר."
+   }
+  },
+  {
+   "iso2": "LR",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Liberia",
+    "he": "ליבריה"
+   },
+   "capital": {
+    "en": "Monrovia",
+    "he": "מונרוביה"
+   },
+   "fact": {
+    "en": "Liberia's flag is modelled on the US flag; its eleven stripes represent the signatories of its declaration of independence.",
+    "he": "דגל ליבריה מבוסס על דגל ארצות הברית; 11 הפסים מייצגים את החותמים על הכרזת העצמאות."
+   }
+  },
+  {
+   "iso2": "LY",
+   "continent": "africa",
+   "difficulty": "medium",
+   "name": {
+    "en": "Libya",
+    "he": "לוב"
+   },
+   "capital": {
+    "en": "Tripoli",
+    "he": "טריפולי"
+   },
+   "fact": {
+    "en": "From 1977 to 2011 Libya's flag was plain green — the only national flag of a single colour.",
+    "he": "בין 1977 ל-2011 דגל לוב היה ירוק לחלוטין — הדגל הלאומי היחיד בצבע אחד."
+   }
+  },
+  {
+   "iso2": "MG",
+   "continent": "africa",
+   "difficulty": "medium",
+   "name": {
+    "en": "Madagascar",
+    "he": "מדגסקר"
+   },
+   "capital": {
+    "en": "Antananarivo",
+    "he": "אנטננריבו"
+   },
+   "fact": {
+    "en": "Madagascar is the fourth-largest island in the world.",
+    "he": "מדגסקר היא האי הרביעי בגודלו בעולם."
+   }
+  },
+  {
+   "iso2": "MW",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Malawi",
+    "he": "מלאווי"
+   },
+   "capital": {
+    "en": "Lilongwe",
+    "he": "לילונגווה"
+   },
+   "fact": {
+    "en": "The rising sun on the flag represents the dawn of hope and freedom for Africa.",
+    "he": "השמש העולה בדגל מסמלת את שחר התקווה והחירות לאפריקה."
+   }
+  },
+  {
+   "iso2": "ML",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Mali",
+    "he": "מאלי"
+   },
+   "capital": {
+    "en": "Bamako",
+    "he": "במקו"
+   },
+   "fact": {
+    "en": "Timbuktu, once a great centre of Islamic learning, is in Mali.",
+    "he": "טימבוקטו, שהייתה מרכז חשוב של לימוד אסלאמי, נמצאת במאלי."
+   }
+  },
+  {
+   "iso2": "MR",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Mauritania",
+    "he": "מאוריטניה"
+   },
+   "capital": {
+    "en": "Nouakchott",
+    "he": "נואקשוט"
+   },
+   "fact": {
+    "en": "In 2017 Mauritania added red stripes to its flag to honour those who fought for independence.",
+    "he": "ב-2017 נוספו לדגל מאוריטניה פסים אדומים לזכר הלוחמים לעצמאות."
+   }
+  },
+  {
+   "iso2": "MU",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Mauritius",
+    "he": "מאוריציוס"
+   },
+   "capital": {
+    "en": "Port Louis",
+    "he": "פורט לואי"
+   },
+   "fact": {
+    "en": "Mauritius was the only known home of the dodo, extinct since the 17th century.",
+    "he": "מאוריציוס הייתה בית הגידול היחיד של הדודו, שנכחד במאה ה-17."
+   }
+  },
+  {
+   "iso2": "MA",
+   "continent": "africa",
+   "difficulty": "medium",
+   "name": {
+    "en": "Morocco",
+    "he": "מרוקו"
+   },
+   "capital": {
+    "en": "Rabat",
+    "he": "רבאט"
+   },
+   "fact": {
+    "en": "The green five-pointed star on Morocco's flag is known as the Seal of Solomon.",
+    "he": "הכוכב הירוק בעל חמשת הקצוות בדגל מרוקו מכונה 'חותם שלמה'."
+   }
+  },
+  {
+   "iso2": "MZ",
+   "continent": "africa",
+   "difficulty": "medium",
+   "name": {
+    "en": "Mozambique",
+    "he": "מוזמביק"
+   },
+   "capital": {
+    "en": "Maputo",
+    "he": "מפוטו"
+   },
+   "fact": {
+    "en": "Mozambique's flag features an AK-47 rifle.",
+    "he": "בדגל מוזמביק מופיע רובה קלצ׳ניקוב (AK-47)."
+   }
+  },
+  {
+   "iso2": "NA",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Namibia",
+    "he": "נמיביה"
+   },
+   "capital": {
+    "en": "Windhoek",
+    "he": "וינדהוק"
+   },
+   "fact": {
+    "en": "The Namib Desert, along Namibia's coast, is considered one of the oldest deserts in the world.",
+    "he": "מדבר נמיב שלאורך החוף נחשב לאחד המדבריות העתיקים בעולם."
+   }
+  },
+  {
+   "iso2": "NE",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Niger",
+    "he": "ניז׳ר"
+   },
+   "capital": {
+    "en": "Niamey",
+    "he": "ניאמיי"
+   },
+   "fact": {
+    "en": "Niger's flag resembles India's, but its orange disc has no spokes.",
+    "he": "דגל ניז׳ר דומה לדגל הודו, אך בעיגול הכתום שבמרכזו אין חישורים."
+   }
+  },
+  {
+   "iso2": "NG",
+   "continent": "africa",
+   "difficulty": "medium",
+   "name": {
+    "en": "Nigeria",
+    "he": "ניגריה"
+   },
+   "capital": {
+    "en": "Abuja",
+    "he": "אבוג׳ה"
+   },
+   "fact": {
+    "en": "Nigeria is the most populous country in Africa.",
+    "he": "ניגריה היא המדינה המאוכלסת ביותר באפריקה."
+   }
+  },
+  {
+   "iso2": "RW",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Rwanda",
+    "he": "רואנדה"
+   },
+   "capital": {
+    "en": "Kigali",
+    "he": "קיגלי"
+   },
+   "fact": {
+    "en": "Rwanda is known as the 'land of a thousand hills'.",
+    "he": "רואנדה מכונה 'ארץ אלף הגבעות'."
+   }
+  },
+  {
+   "iso2": "ST",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "São Tomé and Príncipe",
+    "he": "סאו טומה ופרינסיפה"
+   },
+   "capital": {
+    "en": "São Tomé",
+    "he": "סאו טומה"
+   },
+   "fact": {
+    "en": "It is the second-smallest country in Africa by area, after the Seychelles.",
+    "he": "זו המדינה השנייה הקטנה ביותר באפריקה בשטחה, אחרי סיישל."
+   }
+  },
+  {
+   "iso2": "SN",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Senegal",
+    "he": "סנגל"
+   },
+   "capital": {
+    "en": "Dakar",
+    "he": "דקאר"
+   },
+   "fact": {
+    "en": "Dakar sits on the westernmost point of mainland Africa.",
+    "he": "דקאר שוכנת בנקודה המערבית ביותר של יבשת אפריקה."
+   }
+  },
+  {
+   "iso2": "SC",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Seychelles",
+    "he": "סיישל"
+   },
+   "capital": {
+    "en": "Victoria",
+    "he": "ויקטוריה"
+   },
+   "fact": {
+    "en": "Five diagonal bands fan out from the lower hoist corner of the flag.",
+    "he": "חמישה פסים אלכסוניים נפרשים בדגל מהפינה התחתונה שליד התורן."
+   }
+  },
+  {
+   "iso2": "SL",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Sierra Leone",
+    "he": "סיירה לאונה"
+   },
+   "capital": {
+    "en": "Freetown",
+    "he": "פריטאון"
+   },
+   "fact": {
+    "en": "Sierra Leone's name comes from the Portuguese for 'lion mountains'.",
+    "he": "השם סיירה לאונה מגיע מפורטוגזית ופירושו 'הרי האריה'."
+   }
+  },
+  {
+   "iso2": "SO",
+   "continent": "africa",
+   "difficulty": "medium",
+   "name": {
+    "en": "Somalia",
+    "he": "סומליה"
+   },
+   "capital": {
+    "en": "Mogadishu",
+    "he": "מוגדישו"
+   },
+   "fact": {
+    "en": "The five points of the white star represent the five regions where Somali people live.",
+    "he": "חמשת קצות הכוכב הלבן מייצגים את חמשת האזורים שבהם חיים סומלים."
+   }
+  },
+  {
+   "iso2": "ZA",
+   "continent": "africa",
+   "difficulty": "easy",
+   "name": {
+    "en": "South Africa",
+    "he": "דרום אפריקה"
+   },
+   "capital": {
+    "en": "Pretoria",
+    "he": "פרטוריה"
+   },
+   "fact": {
+    "en": "South Africa has three capitals: Pretoria (executive), Cape Town (legislative) and Bloemfontein (judicial).",
+    "he": "לדרום אפריקה שלוש בירות: פרטוריה (מבצעת), קייפטאון (מחוקקת) ובלומפונטיין (שופטת)."
+   }
+  },
+  {
+   "iso2": "SS",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "South Sudan",
+    "he": "דרום סודן"
+   },
+   "capital": {
+    "en": "Juba",
+    "he": "ג׳ובה"
+   },
+   "fact": {
+    "en": "South Sudan became independent in 2011, making it the newest UN member state.",
+    "he": "דרום סודן קיבלה עצמאות ב-2011, והיא המדינה החדשה ביותר החברה באו״ם."
+   }
+  },
+  {
+   "iso2": "SD",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Sudan",
+    "he": "סודן"
+   },
+   "capital": {
+    "en": "Khartoum",
+    "he": "חרטום"
+   },
+   "fact": {
+    "en": "In Khartoum the Blue Nile and the White Nile meet to form the Nile.",
+    "he": "בחרטום נפגשים הנילוס הכחול והנילוס הלבן ויוצרים את הנילוס."
+   }
+  },
+  {
+   "iso2": "TZ",
+   "continent": "africa",
+   "difficulty": "medium",
+   "name": {
+    "en": "Tanzania",
+    "he": "טנזניה"
+   },
+   "capital": {
+    "en": "Dodoma",
+    "he": "דודומה"
+   },
+   "fact": {
+    "en": "Mount Kilimanjaro, Africa's highest peak, is in Tanzania.",
+    "he": "הר קילימנג׳רו, הפסגה הגבוהה ביותר באפריקה, נמצא בטנזניה."
+   }
+  },
+  {
+   "iso2": "TG",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Togo",
+    "he": "טוגו"
+   },
+   "capital": {
+    "en": "Lomé",
+    "he": "לומה"
+   },
+   "fact": {
+    "en": "Togo's flag has five horizontal stripes and a white star on a red square.",
+    "he": "בדגל טוגו חמישה פסים אופקיים וכוכב לבן על ריבוע אדום."
+   }
+  },
+  {
+   "iso2": "TN",
+   "continent": "africa",
+   "difficulty": "medium",
+   "name": {
+    "en": "Tunisia",
+    "he": "תוניסיה"
+   },
+   "capital": {
+    "en": "Tunis",
+    "he": "תוניס"
+   },
+   "fact": {
+    "en": "The ruins of ancient Carthage lie on the outskirts of Tunis.",
+    "he": "חורבות קרתגו העתיקה שוכנות בפאתי תוניס."
+   }
+  },
+  {
+   "iso2": "UG",
+   "continent": "africa",
+   "difficulty": "medium",
+   "name": {
+    "en": "Uganda",
+    "he": "אוגנדה"
+   },
+   "capital": {
+    "en": "Kampala",
+    "he": "קמפלה"
+   },
+   "fact": {
+    "en": "The bird on Uganda's flag is a grey crowned crane.",
+    "he": "הציפור בדגל אוגנדה היא עגור מוכתר אפור."
+   }
+  },
+  {
+   "iso2": "ZM",
+   "continent": "africa",
+   "difficulty": "hard",
+   "name": {
+    "en": "Zambia",
+    "he": "זמביה"
+   },
+   "capital": {
+    "en": "Lusaka",
+    "he": "לוסקה"
+   },
+   "fact": {
+    "en": "Unusually, the emblem on Zambia's flag — an orange eagle — sits on the fly side, away from the hoist.",
+    "he": "באופן חריג, הסמל בדגל זמביה — עיט כתום — ממוקם בצד הרחוק מהתורן."
+   }
+  },
+  {
+   "iso2": "ZW",
+   "continent": "africa",
+   "difficulty": "medium",
+   "name": {
+    "en": "Zimbabwe",
+    "he": "זימבבואה"
+   },
+   "capital": {
+    "en": "Harare",
+    "he": "הרארה"
+   },
+   "fact": {
+    "en": "The bird on the flag is the Zimbabwe Bird, a soapstone carving found at Great Zimbabwe.",
+    "he": "הציפור בדגל היא 'ציפור זימבבואה', פסל אבן סבון שנמצא באתר זימבבואה הגדולה."
+   }
+  },
+  {
+   "iso2": "AF",
+   "continent": "asia",
+   "difficulty": "medium",
+   "name": {
+    "en": "Afghanistan",
+    "he": "אפגניסטן"
+   },
+   "capital": {
+    "en": "Kabul",
+    "he": "קאבול"
+   },
+   "fact": {
+    "en": "Afghanistan has no coastline; the narrow Wakhan Corridor gives it a short border with China.",
+    "he": "לאפגניסטן אין מוצא לים; פרוזדור ואחאן הצר מעניק לה גבול קצר עם סין."
+   }
+  },
+  {
+   "iso2": "AM",
+   "continent": "asia",
+   "difficulty": "medium",
+   "name": {
+    "en": "Armenia",
+    "he": "ארמניה"
+   },
+   "capital": {
+    "en": "Yerevan",
+    "he": "ירוואן"
+   },
+   "fact": {
+    "en": "Mount Ararat, a national symbol of Armenia, lies across the border in Türkiye.",
+    "he": "הר אררט, סמל לאומי של ארמניה, נמצא בפועל מעבר לגבול, בטורקיה."
+   }
+  },
+  {
+   "iso2": "AZ",
+   "continent": "asia",
+   "difficulty": "medium",
+   "name": {
+    "en": "Azerbaijan",
+    "he": "אזרבייג׳ן"
+   },
+   "capital": {
+    "en": "Baku",
+    "he": "באקו"
+   },
+   "fact": {
+    "en": "Baku lies about 28 metres below sea level, making it the lowest-lying national capital.",
+    "he": "באקו נמצאת כ-28 מטר מתחת לפני הים — הבירה הנמוכה בעולם."
+   }
+  },
+  {
+   "iso2": "BH",
+   "continent": "asia",
+   "difficulty": "hard",
+   "name": {
+    "en": "Bahrain",
+    "he": "בחריין"
+   },
+   "capital": {
+    "en": "Manama",
+    "he": "מנאמה"
+   },
+   "fact": {
+    "en": "The five white points on Bahrain's flag represent the Five Pillars of Islam.",
+    "he": "חמשת המשולשים הלבנים בדגל בחריין מייצגים את חמשת עמודי האסלאם."
+   }
+  },
+  {
+   "iso2": "BD",
+   "continent": "asia",
+   "difficulty": "medium",
+   "name": {
+    "en": "Bangladesh",
+    "he": "בנגלדש"
+   },
+   "capital": {
+    "en": "Dhaka",
+    "he": "דאקה"
+   },
+   "fact": {
+    "en": "The red disc is set slightly towards the hoist so it appears centred when the flag flies.",
+    "he": "העיגול האדום מוזז מעט לכיוון התורן כדי שייראה ממורכז כשהדגל מתנופף."
+   }
+  },
+  {
+   "iso2": "BT",
+   "continent": "asia",
+   "difficulty": "medium",
+   "name": {
+    "en": "Bhutan",
+    "he": "בהוטן"
+   },
+   "capital": {
+    "en": "Thimphu",
+    "he": "טימפו"
+   },
+   "fact": {
+    "en": "The white dragon on the flag is Druk, the Thunder Dragon — Bhutan's own name for itself is Druk Yul.",
+    "he": "הדרקון הלבן בדגל הוא 'דרוק', דרקון הרעם — ובשפה המקומית בהוטן נקראת 'דרוק יול'."
+   }
+  },
+  {
+   "iso2": "BN",
+   "continent": "asia",
+   "difficulty": "hard",
+   "name": {
+    "en": "Brunei",
+    "he": "ברוניי"
+   },
+   "capital": {
+    "en": "Bandar Seri Begawan",
+    "he": "בנדר סרי בגוואן"
+   },
+   "fact": {
+    "en": "Brunei shares the island of Borneo with Malaysia and Indonesia.",
+    "he": "ברוניי חולקת את האי בורנאו עם מלזיה ואינדונזיה."
+   }
+  },
+  {
+   "iso2": "KH",
+   "continent": "asia",
+   "difficulty": "medium",
+   "name": {
+    "en": "Cambodia",
+    "he": "קמבודיה"
+   },
+   "capital": {
+    "en": "Phnom Penh",
+    "he": "פנום פן"
+   },
+   "fact": {
+    "en": "Cambodia's flag shows Angkor Wat — one of very few national flags to depict a building.",
+    "he": "בדגל קמבודיה מופיע מקדש אנגקור וואט — אחד הדגלים הלאומיים הבודדים שמופיע בהם מבנה."
+   }
+  },
+  {
+   "iso2": "CN",
+   "continent": "asia",
+   "difficulty": "easy",
+   "name": {
+    "en": "China",
+    "he": "סין"
+   },
+   "capital": {
+    "en": "Beijing",
+    "he": "בייג׳ינג"
+   },
+   "fact": {
+    "en": "China spans five geographical time zones but uses a single official one.",
+    "he": "סין משתרעת על פני חמישה אזורי זמן גאוגרפיים, אך משתמשת באזור זמן רשמי אחד."
+   }
+  },
+  {
+   "iso2": "GE",
+   "continent": "asia",
+   "difficulty": "medium",
+   "name": {
+    "en": "Georgia",
+    "he": "גאורגיה"
+   },
+   "capital": {
+    "en": "Tbilisi",
+    "he": "טביליסי"
+   },
+   "fact": {
+    "en": "Georgia's flag has five red crosses: one large St George's cross and four smaller ones.",
+    "he": "בדגל גאורגיה חמישה צלבים אדומים: צלב גדול וארבעה קטנים."
+   }
+  },
+  {
+   "iso2": "IN",
+   "continent": "asia",
+   "difficulty": "easy",
+   "name": {
+    "en": "India",
+    "he": "הודו"
+   },
+   "capital": {
+    "en": "New Delhi",
+    "he": "ניו דלהי"
+   },
+   "fact": {
+    "en": "The wheel at the centre of the flag, the Ashoka Chakra, has 24 spokes.",
+    "he": "לגלגל שבמרכז הדגל, 'אשוקה צ׳אקרה', יש 24 חישורים."
+   }
+  },
+  {
+   "iso2": "ID",
+   "continent": "asia",
+   "difficulty": "medium",
+   "name": {
+    "en": "Indonesia",
+    "he": "אינדונזיה"
+   },
+   "capital": {
+    "en": "Jakarta",
+    "he": "ג׳קרטה"
+   },
+   "fact": {
+    "en": "Indonesia's flag is identical to Monaco's except for its proportions.",
+    "he": "דגל אינדונזיה זהה לדגל מונקו, למעט היחס בין האורך לרוחב."
+   }
+  },
+  {
+   "iso2": "IR",
+   "continent": "asia",
+   "difficulty": "medium",
+   "name": {
+    "en": "Iran",
+    "he": "איראן"
+   },
+   "capital": {
+    "en": "Tehran",
+    "he": "טהרן"
+   },
+   "fact": {
+    "en": "The phrase 'God is great' is written 22 times along the edges of the green and red stripes.",
+    "he": "הביטוי 'אללה הוא הגדול' כתוב 22 פעמים לאורך שולי הפסים הירוק והאדום."
+   }
+  },
+  {
+   "iso2": "IQ",
+   "continent": "asia",
+   "difficulty": "medium",
+   "name": {
+    "en": "Iraq",
+    "he": "עיראק"
+   },
+   "capital": {
+    "en": "Baghdad",
+    "he": "בגדד"
+   },
+   "fact": {
+    "en": "Ancient Mesopotamia, between the Tigris and the Euphrates, lies largely within modern Iraq.",
+    "he": "מסופוטמיה העתיקה, שבין החידקל לפרת, שוכנת ברובה בשטח עיראק של ימינו."
+   }
+  },
+  {
+   "iso2": "IL",
+   "continent": "asia",
+   "difficulty": "easy",
+   "name": {
+    "en": "Israel",
+    "he": "ישראל"
+   },
+   "capital": {
+    "en": "Jerusalem",
+    "he": "ירושלים"
+   },
+   "fact": {
+    "en": "Israel's flag was inspired by the design of the tallit, the Jewish prayer shawl.",
+    "he": "דגל ישראל קיבל השראה מעיצוב הטלית."
+   }
+  },
+  {
+   "iso2": "JP",
+   "continent": "asia",
+   "difficulty": "easy",
+   "name": {
+    "en": "Japan",
+    "he": "יפן"
+   },
+   "capital": {
+    "en": "Tokyo",
+    "he": "טוקיו"
+   },
+   "fact": {
+    "en": "Japan's flag is called Hinomaru, meaning 'circle of the sun'.",
+    "he": "הדגל היפני נקרא 'הינומארו', כלומר 'עיגול השמש'."
+   }
+  },
+  {
+   "iso2": "JO",
+   "continent": "asia",
+   "difficulty": "medium",
+   "name": {
+    "en": "Jordan",
+    "he": "ירדן"
+   },
+   "capital": {
+    "en": "Amman",
+    "he": "עמאן"
+   },
+   "fact": {
+    "en": "The seven points of the star represent the seven verses of the Quran's opening chapter.",
+    "he": "שבעת קצות הכוכב מייצגים את שבעת הפסוקים של הסורה הפותחת בקוראן."
+   }
+  },
+  {
+   "iso2": "KZ",
+   "continent": "asia",
+   "difficulty": "medium",
+   "name": {
+    "en": "Kazakhstan",
+    "he": "קזחסטן"
+   },
+   "capital": {
+    "en": "Astana",
+    "he": "אסטנה"
+   },
+   "fact": {
+    "en": "Kazakhstan is the largest landlocked country in the world.",
+    "he": "קזחסטן היא המדינה הגדולה בעולם שאין לה מוצא לים."
+   }
+  },
+  {
+   "iso2": "KW",
+   "continent": "asia",
+   "difficulty": "hard",
+   "name": {
+    "en": "Kuwait",
+    "he": "כווית"
+   },
+   "capital": {
+    "en": "Kuwait City",
+    "he": "כווית סיטי"
+   },
+   "fact": {
+    "en": "Kuwait's flag uses the four pan-Arab colours, with a black trapezoid at the hoist.",
+    "he": "דגל כווית משתמש בארבעת הצבעים הפאן־ערביים, עם טרפז שחור בצד התורן."
+   }
+  },
+  {
+   "iso2": "KG",
+   "continent": "asia",
+   "difficulty": "hard",
+   "name": {
+    "en": "Kyrgyzstan",
+    "he": "קירגיזסטן"
+   },
+   "capital": {
+    "en": "Bishkek",
+    "he": "בישקק"
+   },
+   "fact": {
+    "en": "The symbol inside the sun is the crown of a yurt, the traditional nomadic tent.",
+    "he": "הסמל שבתוך השמש הוא כיפת יורט — האוהל הנוודי המסורתי."
+   }
+  },
+  {
+   "iso2": "LA",
+   "continent": "asia",
+   "difficulty": "hard",
+   "name": {
+    "en": "Laos",
+    "he": "לאוס"
+   },
+   "capital": {
+    "en": "Vientiane",
+    "he": "וינטיאן"
+   },
+   "fact": {
+    "en": "Laos is the only landlocked country in Southeast Asia.",
+    "he": "לאוס היא המדינה היחידה בדרום־מזרח אסיה ללא מוצא לים."
+   }
+  },
+  {
+   "iso2": "LB",
+   "continent": "asia",
+   "difficulty": "easy",
+   "name": {
+    "en": "Lebanon",
+    "he": "לבנון"
+   },
+   "capital": {
+    "en": "Beirut",
+    "he": "ביירות"
+   },
+   "fact": {
+    "en": "The green tree on the flag is a cedar, a symbol of the land for thousands of years.",
+    "he": "העץ הירוק בדגל הוא ארז, סמל הארץ זה אלפי שנים."
+   }
+  },
+  {
+   "iso2": "MY",
+   "continent": "asia",
+   "difficulty": "medium",
+   "name": {
+    "en": "Malaysia",
+    "he": "מלזיה"
+   },
+   "capital": {
+    "en": "Kuala Lumpur",
+    "he": "קואלה לומפור"
+   },
+   "fact": {
+    "en": "The 14 stripes represent Malaysia's 13 states and the federal government.",
+    "he": "14 הפסים מייצגים את 13 המדינות של מלזיה ואת הממשל הפדרלי."
+   }
+  },
+  {
+   "iso2": "MV",
+   "continent": "asia",
+   "difficulty": "hard",
+   "name": {
+    "en": "Maldives",
+    "he": "האיים המלדיביים"
+   },
+   "capital": {
+    "en": "Malé",
+    "he": "מאלה"
+   },
+   "fact": {
+    "en": "The Maldives is the lowest-lying country in the world, with an average elevation of about 1.5 metres.",
+    "he": "האיים המלדיביים הם המדינה הנמוכה בעולם, עם גובה ממוצע של כ-1.5 מטר."
+   }
+  },
+  {
+   "iso2": "MN",
+   "continent": "asia",
+   "difficulty": "medium",
+   "name": {
+    "en": "Mongolia",
+    "he": "מונגוליה"
+   },
+   "capital": {
+    "en": "Ulaanbaatar",
+    "he": "אולן בטור"
+   },
+   "fact": {
+    "en": "Ulaanbaatar is often described as the coldest national capital in the world.",
+    "he": "אולן בטור מתוארת לעתים קרובות כבירה הקרה ביותר בעולם."
+   }
+  },
+  {
+   "iso2": "MM",
+   "continent": "asia",
+   "difficulty": "hard",
+   "name": {
+    "en": "Myanmar",
+    "he": "מיאנמר"
+   },
+   "capital": {
+    "en": "Naypyidaw",
+    "he": "נייפידאו"
+   },
+   "fact": {
+    "en": "Myanmar moved its capital from Yangon to the purpose-built city of Naypyidaw in 2005–2006.",
+    "he": "מיאנמר העבירה את בירתה מיאנגון לעיר החדשה נייפידאו בשנים 2005–2006."
+   }
+  },
+  {
+   "iso2": "NP",
+   "continent": "asia",
+   "difficulty": "easy",
+   "name": {
+    "en": "Nepal",
+    "he": "נפאל"
+   },
+   "capital": {
+    "en": "Kathmandu",
+    "he": "קטמנדו"
+   },
+   "fact": {
+    "en": "Nepal's flag is the only national flag that is not rectangular.",
+    "he": "דגל נפאל הוא הדגל הלאומי היחיד שאינו מלבני."
+   }
+  },
+  {
+   "iso2": "KP",
+   "continent": "asia",
+   "difficulty": "medium",
+   "name": {
+    "en": "North Korea",
+    "he": "קוריאה הצפונית"
+   },
+   "capital": {
+    "en": "Pyongyang",
+    "he": "פיונגיאנג"
+   },
+   "fact": {
+    "en": "The Korean Peninsula has been divided since 1945, roughly along the 38th parallel.",
+    "he": "חצי האי הקוריאני מחולק מאז 1945, בקירוב לאורך קו הרוחב ה-38."
+   }
+  },
+  {
+   "iso2": "OM",
+   "continent": "asia",
+   "difficulty": "hard",
+   "name": {
+    "en": "Oman",
+    "he": "עומאן"
+   },
+   "capital": {
+    "en": "Muscat",
+    "he": "מוסקט"
+   },
+   "fact": {
+    "en": "The emblem on Oman's flag shows a khanjar dagger over two crossed swords.",
+    "he": "הסמל בדגל עומאן מציג פגיון ח׳נג׳ר מעל שתי חרבות מוצלבות."
+   }
+  },
+  {
+   "iso2": "PK",
+   "continent": "asia",
+   "difficulty": "easy",
+   "name": {
+    "en": "Pakistan",
+    "he": "פקיסטן"
+   },
+   "capital": {
+    "en": "Islamabad",
+    "he": "איסלאמאבאד"
+   },
+   "fact": {
+    "en": "The white stripe at the hoist represents Pakistan's religious minorities.",
+    "he": "הפס הלבן בצד התורן מייצג את המיעוטים הדתיים בפקיסטן."
+   }
+  },
+  {
+   "iso2": "PH",
+   "continent": "asia",
+   "difficulty": "medium",
+   "name": {
+    "en": "Philippines",
+    "he": "הפיליפינים"
+   },
+   "capital": {
+    "en": "Manila",
+    "he": "מנילה"
+   },
+   "fact": {
+    "en": "The Philippines flies its flag upside down — red on top — in times of war.",
+    "he": "בעת מלחמה מניפים בפיליפינים את הדגל הפוך — האדום למעלה."
+   }
+  },
+  {
+   "iso2": "QA",
+   "continent": "asia",
+   "difficulty": "medium",
+   "name": {
+    "en": "Qatar",
+    "he": "קטאר"
+   },
+   "capital": {
+    "en": "Doha",
+    "he": "דוחה"
+   },
+   "fact": {
+    "en": "Qatar's flag is the only national flag more than twice as wide as it is tall (11:28).",
+    "he": "דגל קטאר הוא הדגל הלאומי היחיד שרוחבו גדול מפי שניים מגובהו (11:28)."
+   }
+  },
+  {
+   "iso2": "SA",
+   "continent": "asia",
+   "difficulty": "easy",
+   "name": {
+    "en": "Saudi Arabia",
+    "he": "ערב הסעודית"
+   },
+   "capital": {
+    "en": "Riyadh",
+    "he": "ריאד"
+   },
+   "fact": {
+    "en": "Because it bears the Shahada, Saudi Arabia's flag is never flown at half-mast.",
+    "he": "מכיוון שמופיעה בו השהאדה, דגל ערב הסעודית לעולם אינו מורד לחצי התורן."
+   }
+  },
+  {
+   "iso2": "SG",
+   "continent": "asia",
+   "difficulty": "medium",
+   "name": {
+    "en": "Singapore",
+    "he": "סינגפור"
+   },
+   "capital": {
+    "en": "Singapore",
+    "he": "סינגפור"
+   },
+   "fact": {
+    "en": "Singapore is a city-state: the country and its capital share the same name and territory.",
+    "he": "סינגפור היא עיר־מדינה: למדינה ולבירתה אותו שם ואותו שטח."
+   }
+  },
+  {
+   "iso2": "KR",
+   "continent": "asia",
+   "difficulty": "easy",
+   "name": {
+    "en": "South Korea",
+    "he": "קוריאה הדרומית"
+   },
+   "capital": {
+    "en": "Seoul",
+    "he": "סיאול"
+   },
+   "fact": {
+    "en": "The four black trigrams around the taegeuk symbol come from the I Ching.",
+    "he": "ארבע הטריגרמות השחורות סביב סמל הטאגוק לקוחות מספר התמורות (אי צ׳ינג)."
+   }
+  },
+  {
+   "iso2": "LK",
+   "continent": "asia",
+   "difficulty": "hard",
+   "name": {
+    "en": "Sri Lanka",
+    "he": "סרי לנקה"
+   },
+   "capital": {
+    "en": "Sri Jayawardenepura Kotte",
+    "he": "סרי ג׳איוורדנפורה קוטה"
+   },
+   "fact": {
+    "en": "Sri Lanka's official capital is Sri Jayawardenepura Kotte, while Colombo is its largest city.",
+    "he": "הבירה הרשמית של סרי לנקה היא סרי ג׳איוורדנפורה קוטה, ואילו קולומבו היא העיר הגדולה בה."
+   }
+  },
+  {
+   "iso2": "SY",
+   "continent": "asia",
+   "difficulty": "medium",
+   "name": {
+    "en": "Syria",
+    "he": "סוריה"
+   },
+   "capital": {
+    "en": "Damascus",
+    "he": "דמשק"
+   },
+   "fact": {
+    "en": "Damascus is considered one of the oldest continuously inhabited cities in the world.",
+    "he": "דמשק נחשבת לאחת הערים העתיקות בעולם שהיו מיושבות ברציפות."
+   }
+  },
+  {
+   "iso2": "TJ",
+   "continent": "asia",
+   "difficulty": "hard",
+   "name": {
+    "en": "Tajikistan",
+    "he": "טג׳יקיסטן"
+   },
+   "capital": {
+    "en": "Dushanbe",
+    "he": "דושנבה"
+   },
+   "fact": {
+    "en": "More than 90% of Tajikistan is mountainous.",
+    "he": "יותר מ-90% משטחה של טג׳יקיסטן הררי."
+   }
+  },
+  {
+   "iso2": "TH",
+   "continent": "asia",
+   "difficulty": "medium",
+   "name": {
+    "en": "Thailand",
+    "he": "תאילנד"
+   },
+   "capital": {
+    "en": "Bangkok",
+    "he": "בנגקוק"
+   },
+   "fact": {
+    "en": "Thailand is the only Southeast Asian country never colonised by a European power.",
+    "he": "תאילנד היא המדינה היחידה בדרום־מזרח אסיה שמעולם לא נשלטה בידי מעצמה אירופית."
+   }
+  },
+  {
+   "iso2": "TL",
+   "continent": "asia",
+   "difficulty": "hard",
+   "name": {
+    "en": "Timor-Leste",
+    "he": "טימור־לסטה"
+   },
+   "capital": {
+    "en": "Dili",
+    "he": "דילי"
+   },
+   "fact": {
+    "en": "Timor-Leste became independent in 2002, the first new sovereign state of the 21st century.",
+    "he": "טימור־לסטה קיבלה עצמאות ב-2002 — המדינה הריבונית החדשה הראשונה במאה ה-21."
+   }
+  },
+  {
+   "iso2": "TR",
+   "continent": "asia",
+   "difficulty": "easy",
+   "name": {
+    "en": "Türkiye",
+    "he": "טורקיה"
+   },
+   "capital": {
+    "en": "Ankara",
+    "he": "אנקרה"
+   },
+   "fact": {
+    "en": "Istanbul, Türkiye's largest city, spans two continents: Europe and Asia.",
+    "he": "איסטנבול, העיר הגדולה בטורקיה, משתרעת על פני שתי יבשות — אירופה ואסיה."
+   }
+  },
+  {
+   "iso2": "TM",
+   "continent": "asia",
+   "difficulty": "hard",
+   "name": {
+    "en": "Turkmenistan",
+    "he": "טורקמניסטן"
+   },
+   "capital": {
+    "en": "Ashgabat",
+    "he": "אשגבט"
+   },
+   "fact": {
+    "en": "The flag includes a vertical strip of five intricate carpet patterns.",
+    "he": "בדגל פס אנכי ובו חמישה דגמי שטיחים מורכבים."
+   }
+  },
+  {
+   "iso2": "AE",
+   "continent": "asia",
+   "difficulty": "medium",
+   "name": {
+    "en": "United Arab Emirates",
+    "he": "איחוד האמירויות הערביות"
+   },
+   "capital": {
+    "en": "Abu Dhabi",
+    "he": "אבו דאבי"
+   },
+   "fact": {
+    "en": "The UAE is a federation of seven emirates.",
+    "he": "איחוד האמירויות הוא פדרציה של שבע אמירויות."
+   }
+  },
+  {
+   "iso2": "UZ",
+   "continent": "asia",
+   "difficulty": "hard",
+   "name": {
+    "en": "Uzbekistan",
+    "he": "אוזבקיסטן"
+   },
+   "capital": {
+    "en": "Tashkent",
+    "he": "טשקנט"
+   },
+   "fact": {
+    "en": "Uzbekistan is one of only two doubly landlocked countries — the other is Liechtenstein.",
+    "he": "אוזבקיסטן היא אחת משתי המדינות היחידות שמוקפות כולן במדינות ללא מוצא לים — השנייה היא ליכטנשטיין."
+   }
+  },
+  {
+   "iso2": "VN",
+   "continent": "asia",
+   "difficulty": "easy",
+   "name": {
+    "en": "Vietnam",
+    "he": "וייטנאם"
+   },
+   "capital": {
+    "en": "Hanoi",
+    "he": "האנוי"
+   },
+   "fact": {
+    "en": "Vietnam is one of the world's largest coffee exporters.",
+    "he": "וייטנאם היא אחת מיצואניות הקפה הגדולות בעולם."
+   }
+  },
+  {
+   "iso2": "YE",
+   "continent": "asia",
+   "difficulty": "medium",
+   "name": {
+    "en": "Yemen",
+    "he": "תימן"
+   },
+   "capital": {
+    "en": "Sana'a",
+    "he": "צנעא"
+   },
+   "fact": {
+    "en": "Yemen's red-white-black tricolour has no emblem — like Egypt's flag without the eagle.",
+    "he": "בדגל תימן, תלת־צבע אדום־לבן־שחור, אין סמל — כמו דגל מצרים בלי הנשר."
+   }
+  },
+  {
+   "iso2": "AL",
+   "continent": "europe",
+   "difficulty": "medium",
+   "name": {
+    "en": "Albania",
+    "he": "אלבניה"
+   },
+   "capital": {
+    "en": "Tirana",
+    "he": "טירנה"
+   },
+   "fact": {
+    "en": "The double-headed eagle on Albania's flag derives from the seal of the national hero Skanderbeg.",
+    "he": "הנשר הדו־ראשי בדגל אלבניה מבוסס על חותמו של הגיבור הלאומי סקנדרבג."
+   }
+  },
+  {
+   "iso2": "AD",
+   "continent": "europe",
+   "difficulty": "hard",
+   "name": {
+    "en": "Andorra",
+    "he": "אנדורה"
+   },
+   "capital": {
+    "en": "Andorra la Vella",
+    "he": "אנדורה לה ויה"
+   },
+   "fact": {
+    "en": "Andorra has two co-princes: the President of France and the Bishop of Urgell.",
+    "he": "לאנדורה שני נסיכים משותפים: נשיא צרפת והבישוף של אורחל."
+   }
+  },
+  {
+   "iso2": "AT",
+   "continent": "europe",
+   "difficulty": "easy",
+   "name": {
+    "en": "Austria",
+    "he": "אוסטריה"
+   },
+   "capital": {
+    "en": "Vienna",
+    "he": "וינה"
+   },
+   "fact": {
+    "en": "Austria's red-white-red flag is one of the oldest national flags in the world.",
+    "he": "דגל אוסטריה, אדום־לבן־אדום, הוא מהדגלים הלאומיים העתיקים בעולם."
+   }
+  },
+  {
+   "iso2": "BY",
+   "continent": "europe",
+   "difficulty": "medium",
+   "name": {
+    "en": "Belarus",
+    "he": "בלארוס"
+   },
+   "capital": {
+    "en": "Minsk",
+    "he": "מינסק"
+   },
+   "fact": {
+    "en": "A red-and-white ornamental pattern runs along the hoist of the flag.",
+    "he": "לאורך צד התורן בדגל עובר דגם קישוטי אדום־לבן."
+   }
+  },
+  {
+   "iso2": "BE",
+   "continent": "europe",
+   "difficulty": "easy",
+   "name": {
+    "en": "Belgium",
+    "he": "בלגיה"
+   },
+   "capital": {
+    "en": "Brussels",
+    "he": "בריסל"
+   },
+   "fact": {
+    "en": "Belgium's black-yellow-red flag uses the colours of the Duchy of Brabant.",
+    "he": "דגל בלגיה, שחור־צהוב־אדום, משתמש בצבעי דוכסות בראבאנט."
+   }
+  },
+  {
+   "iso2": "BA",
+   "continent": "europe",
+   "difficulty": "medium",
+   "name": {
+    "en": "Bosnia and Herzegovina",
+    "he": "בוסניה והרצגובינה"
+   },
+   "capital": {
+    "en": "Sarajevo",
+    "he": "סרייבו"
+   },
+   "fact": {
+    "en": "The yellow triangle on the flag echoes the shape of the country.",
+    "he": "המשולש הצהוב בדגל מזכיר את צורת המדינה."
+   }
+  },
+  {
+   "iso2": "BG",
+   "continent": "europe",
+   "difficulty": "medium",
+   "name": {
+    "en": "Bulgaria",
+    "he": "בולגריה"
+   },
+   "capital": {
+    "en": "Sofia",
+    "he": "סופיה"
+   },
+   "fact": {
+    "en": "The Cyrillic script was developed in the First Bulgarian Empire.",
+    "he": "האלפבית הקירילי פותח באימפריה הבולגרית הראשונה."
+   }
+  },
+  {
+   "iso2": "HR",
+   "continent": "europe",
+   "difficulty": "medium",
+   "name": {
+    "en": "Croatia",
+    "he": "קרואטיה"
+   },
+   "capital": {
+    "en": "Zagreb",
+    "he": "זאגרב"
+   },
+   "fact": {
+    "en": "The red-and-white checkerboard on Croatia's coat of arms is called the šahovnica.",
+    "he": "לוח השחמט האדום־לבן בסמל קרואטיה נקרא 'שחובניצה'."
+   }
+  },
+  {
+   "iso2": "CY",
+   "continent": "europe",
+   "difficulty": "easy",
+   "name": {
+    "en": "Cyprus",
+    "he": "קפריסין"
+   },
+   "capital": {
+    "en": "Nicosia",
+    "he": "ניקוסיה"
+   },
+   "fact": {
+    "en": "Cyprus's flag is one of only two national flags showing a map of the country.",
+    "he": "דגל קפריסין הוא אחד משני הדגלים הלאומיים היחידים שמופיעה בהם מפת המדינה."
+   }
+  },
+  {
+   "iso2": "CZ",
+   "continent": "europe",
+   "difficulty": "medium",
+   "name": {
+    "en": "Czechia",
+    "he": "צ׳כיה"
+   },
+   "capital": {
+    "en": "Prague",
+    "he": "פראג"
+   },
+   "fact": {
+    "en": "Czechia kept the former Czechoslovak flag after the 1993 split.",
+    "he": "צ׳כיה שמרה לעצמה את דגל צ׳כוסלובקיה לאחר הפיצול ב-1993."
+   }
+  },
+  {
+   "iso2": "DK",
+   "continent": "europe",
+   "difficulty": "easy",
+   "name": {
+    "en": "Denmark",
+    "he": "דנמרק"
+   },
+   "capital": {
+    "en": "Copenhagen",
+    "he": "קופנהגן"
+   },
+   "fact": {
+    "en": "Denmark's Dannebrog is often cited as the oldest continuously used national flag.",
+    "he": "הדגל הדני, 'דנברוג', נחשב לעתים קרובות לדגל הלאומי הוותיק ביותר שבשימוש רציף."
+   }
+  },
+  {
+   "iso2": "EE",
+   "continent": "europe",
+   "difficulty": "medium",
+   "name": {
+    "en": "Estonia",
+    "he": "אסטוניה"
+   },
+   "capital": {
+    "en": "Tallinn",
+    "he": "טאלין"
+   },
+   "fact": {
+    "en": "Estonia was one of the first countries to offer online voting in national elections.",
+    "he": "אסטוניה הייתה מהמדינות הראשונות שאפשרו הצבעה מקוונת בבחירות ארציות."
+   }
+  },
+  {
+   "iso2": "FI",
+   "continent": "europe",
+   "difficulty": "easy",
+   "name": {
+    "en": "Finland",
+    "he": "פינלנד"
+   },
+   "capital": {
+    "en": "Helsinki",
+    "he": "הלסינקי"
+   },
+   "fact": {
+    "en": "The blue cross is traditionally said to represent Finland's lakes, and the white its snow.",
+    "he": "על פי המסורת, הצלב הכחול מייצג את אגמי פינלנד, והלבן — את השלג."
+   }
+  },
+  {
+   "iso2": "FR",
+   "continent": "europe",
+   "difficulty": "easy",
+   "name": {
+    "en": "France",
+    "he": "צרפת"
+   },
+   "capital": {
+    "en": "Paris",
+    "he": "פריז"
+   },
+   "fact": {
+    "en": "The French tricolour has inspired dozens of other national flags.",
+    "he": "הדגל הצרפתי בשלושת צבעיו שימש השראה לעשרות דגלים לאומיים אחרים."
+   }
+  },
+  {
+   "iso2": "DE",
+   "continent": "europe",
+   "difficulty": "easy",
+   "name": {
+    "en": "Germany",
+    "he": "גרמניה"
+   },
+   "capital": {
+    "en": "Berlin",
+    "he": "ברלין"
+   },
+   "fact": {
+    "en": "Germany's black-red-gold colours date back to the 19th-century movement for German unity.",
+    "he": "צבעי גרמניה — שחור, אדום וזהב — מקורם בתנועה לאיחוד גרמניה במאה ה-19."
+   }
+  },
+  {
+   "iso2": "GR",
+   "continent": "europe",
+   "difficulty": "easy",
+   "name": {
+    "en": "Greece",
+    "he": "יוון"
+   },
+   "capital": {
+    "en": "Athens",
+    "he": "אתונה"
+   },
+   "fact": {
+    "en": "The nine stripes are often linked to the nine syllables of the phrase 'Freedom or Death'.",
+    "he": "תשעת הפסים מקושרים לעתים קרובות לתשע ההברות של הסיסמה 'חירות או מוות'."
+   }
+  },
+  {
+   "iso2": "HU",
+   "continent": "europe",
+   "difficulty": "medium",
+   "name": {
+    "en": "Hungary",
+    "he": "הונגריה"
+   },
+   "capital": {
+    "en": "Budapest",
+    "he": "בודפשט"
+   },
+   "fact": {
+    "en": "Budapest was formed in 1873 by merging Buda, Óbuda and Pest.",
+    "he": "בודפשט נוסדה ב-1873 מאיחוד הערים בודה, אובודה ופשט."
+   }
+  },
+  {
+   "iso2": "IS",
+   "continent": "europe",
+   "difficulty": "medium",
+   "name": {
+    "en": "Iceland",
+    "he": "איסלנד"
+   },
+   "capital": {
+    "en": "Reykjavík",
+    "he": "רייקיאוויק"
+   },
+   "fact": {
+    "en": "Reykjavík is the northernmost capital of a sovereign state.",
+    "he": "רייקיאוויק היא הבירה הצפונית ביותר של מדינה ריבונית."
+   }
+  },
+  {
+   "iso2": "IE",
+   "continent": "europe",
+   "difficulty": "easy",
+   "name": {
+    "en": "Ireland",
+    "he": "אירלנד"
+   },
+   "capital": {
+    "en": "Dublin",
+    "he": "דבלין"
+   },
+   "fact": {
+    "en": "The white between green and orange expresses hope for peace between Catholics and Protestants.",
+    "he": "הלבן שבין הירוק לכתום מבטא את התקווה לשלום בין קתולים לפרוטסטנטים."
+   }
+  },
+  {
+   "iso2": "IT",
+   "continent": "europe",
+   "difficulty": "easy",
+   "name": {
+    "en": "Italy",
+    "he": "איטליה"
+   },
+   "capital": {
+    "en": "Rome",
+    "he": "רומא"
+   },
+   "fact": {
+    "en": "Italy surrounds two independent states: San Marino and Vatican City.",
+    "he": "איטליה מקיפה שתי מדינות עצמאיות: סן מרינו והוותיקן."
+   }
+  },
+  {
+   "iso2": "LV",
+   "continent": "europe",
+   "difficulty": "medium",
+   "name": {
+    "en": "Latvia",
+    "he": "לטביה"
+   },
+   "capital": {
+    "en": "Riga",
+    "he": "ריגה"
+   },
+   "fact": {
+    "en": "Latvia's flag uses a distinctive dark carmine red.",
+    "he": "בדגל לטביה גוון מיוחד של אדום כהה (קרמין)."
+   }
+  },
+  {
+   "iso2": "LI",
+   "continent": "europe",
+   "difficulty": "hard",
+   "name": {
+    "en": "Liechtenstein",
+    "he": "ליכטנשטיין"
+   },
+   "capital": {
+    "en": "Vaduz",
+    "he": "ואדוץ"
+   },
+   "fact": {
+    "en": "Liechtenstein added a crown to its flag after discovering at the 1936 Olympics that it was identical to Haiti's.",
+    "he": "ליכטנשטיין הוסיפה כתר לדגלה לאחר שגילתה באולימפיאדת 1936 שהוא זהה לדגל האיטי."
+   }
+  },
+  {
+   "iso2": "LT",
+   "continent": "europe",
+   "difficulty": "medium",
+   "name": {
+    "en": "Lithuania",
+    "he": "ליטא"
+   },
+   "capital": {
+    "en": "Vilnius",
+    "he": "וילנה"
+   },
+   "fact": {
+    "en": "Lithuania was the first Soviet republic to declare independence, in March 1990.",
+    "he": "ליטא הייתה הרפובליקה הסובייטית הראשונה שהכריזה על עצמאות, במרץ 1990."
+   }
+  },
+  {
+   "iso2": "LU",
+   "continent": "europe",
+   "difficulty": "medium",
+   "name": {
+    "en": "Luxembourg",
+    "he": "לוקסמבורג"
+   },
+   "capital": {
+    "en": "Luxembourg",
+    "he": "לוקסמבורג"
+   },
+   "fact": {
+    "en": "Luxembourg's flag differs from the Netherlands' only in its lighter blue and longer proportions.",
+    "he": "דגל לוקסמבורג שונה מדגל הולנד רק בגוון כחול בהיר יותר וביחס ארוך יותר."
+   }
+  },
+  {
+   "iso2": "MT",
+   "continent": "europe",
+   "difficulty": "medium",
+   "name": {
+    "en": "Malta",
+    "he": "מלטה"
+   },
+   "capital": {
+    "en": "Valletta",
+    "he": "ולטה"
+   },
+   "fact": {
+    "en": "The George Cross on the flag was awarded to the island by King George VI in 1942.",
+    "he": "צלב ג׳ורג׳ שבדגל הוענק לאי על ידי המלך ג׳ורג׳ השישי ב-1942."
+   }
+  },
+  {
+   "iso2": "MD",
+   "continent": "europe",
+   "difficulty": "hard",
+   "name": {
+    "en": "Moldova",
+    "he": "מולדובה"
+   },
+   "capital": {
+    "en": "Chișinău",
+    "he": "קישינב"
+   },
+   "fact": {
+    "en": "Moldova's flag resembles Romania's, but has a coat of arms in the centre.",
+    "he": "דגל מולדובה דומה לדגל רומניה, אך במרכזו סמל המדינה."
+   }
+  },
+  {
+   "iso2": "MC",
+   "continent": "europe",
+   "difficulty": "medium",
+   "name": {
+    "en": "Monaco",
+    "he": "מונקו"
+   },
+   "capital": {
+    "en": "Monaco",
+    "he": "מונקו"
+   },
+   "fact": {
+    "en": "Monaco is the second-smallest country in the world, after Vatican City.",
+    "he": "מונקו היא המדינה השנייה הקטנה ביותר בעולם, אחרי הוותיקן."
+   }
+  },
+  {
+   "iso2": "ME",
+   "continent": "europe",
+   "difficulty": "hard",
+   "name": {
+    "en": "Montenegro",
+    "he": "מונטנגרו"
+   },
+   "capital": {
+    "en": "Podgorica",
+    "he": "פודגוריצה"
+   },
+   "fact": {
+    "en": "Montenegro uses the euro even though it is not a member of the EU.",
+    "he": "מונטנגרו משתמשת באירו אף שאינה חברה באיחוד האירופי."
+   }
+  },
+  {
+   "iso2": "NL",
+   "continent": "europe",
+   "difficulty": "easy",
+   "name": {
+    "en": "Netherlands",
+    "he": "הולנד"
+   },
+   "capital": {
+    "en": "Amsterdam",
+    "he": "אמסטרדם"
+   },
+   "fact": {
+    "en": "Amsterdam is the capital of the Netherlands, but the government sits in The Hague.",
+    "he": "אמסטרדם היא בירת הולנד, אך מושב הממשלה נמצא בהאג."
+   }
+  },
+  {
+   "iso2": "MK",
+   "continent": "europe",
+   "difficulty": "medium",
+   "name": {
+    "en": "North Macedonia",
+    "he": "מקדוניה הצפונית"
+   },
+   "capital": {
+    "en": "Skopje",
+    "he": "סקופיה"
+   },
+   "fact": {
+    "en": "The sun on North Macedonia's flag has eight rays.",
+    "he": "לשמש שבדגל מקדוניה הצפונית שמונה קרניים."
+   }
+  },
+  {
+   "iso2": "NO",
+   "continent": "europe",
+   "difficulty": "easy",
+   "name": {
+    "en": "Norway",
+    "he": "נורווגיה"
+   },
+   "capital": {
+    "en": "Oslo",
+    "he": "אוסלו"
+   },
+   "fact": {
+    "en": "Norway's coastline, fjords included, is one of the longest in the world.",
+    "he": "קו החוף של נורווגיה, כולל הפיורדים, הוא מהארוכים בעולם."
+   }
+  },
+  {
+   "iso2": "PL",
+   "continent": "europe",
+   "difficulty": "medium",
+   "name": {
+    "en": "Poland",
+    "he": "פולין"
+   },
+   "capital": {
+    "en": "Warsaw",
+    "he": "ורשה"
+   },
+   "fact": {
+    "en": "Poland's white-over-red flag is the inverse of Indonesia's and Monaco's.",
+    "he": "דגל פולין, לבן מעל אדום, הוא היפוך של דגלי אינדונזיה ומונקו."
+   }
+  },
+  {
+   "iso2": "PT",
+   "continent": "europe",
+   "difficulty": "easy",
+   "name": {
+    "en": "Portugal",
+    "he": "פורטוגל"
+   },
+   "capital": {
+    "en": "Lisbon",
+    "he": "ליסבון"
+   },
+   "fact": {
+    "en": "The armillary sphere on the flag recalls Portugal's age of maritime exploration.",
+    "he": "הכדור הארמילרי שבדגל מזכיר את עידן המסעות הימיים של פורטוגל."
+   }
+  },
+  {
+   "iso2": "RO",
+   "continent": "europe",
+   "difficulty": "medium",
+   "name": {
+    "en": "Romania",
+    "he": "רומניה"
+   },
+   "capital": {
+    "en": "Bucharest",
+    "he": "בוקרשט"
+   },
+   "fact": {
+    "en": "Romania's flag is nearly identical to Chad's.",
+    "he": "דגל רומניה כמעט זהה לדגל צ׳אד."
+   }
+  },
+  {
+   "iso2": "RU",
+   "continent": "europe",
+   "difficulty": "easy",
+   "name": {
+    "en": "Russia",
+    "he": "רוסיה"
+   },
+   "capital": {
+    "en": "Moscow",
+    "he": "מוסקבה"
+   },
+   "fact": {
+    "en": "Russia is the largest country in the world and spans 11 time zones.",
+    "he": "רוסיה היא המדינה הגדולה בעולם ומשתרעת על פני 11 אזורי זמן."
+   }
+  },
+  {
+   "iso2": "SM",
+   "continent": "europe",
+   "difficulty": "hard",
+   "name": {
+    "en": "San Marino",
+    "he": "סן מרינו"
+   },
+   "capital": {
+    "en": "San Marino",
+    "he": "סן מרינו"
+   },
+   "fact": {
+    "en": "San Marino claims to be the oldest surviving republic, founded in 301 CE.",
+    "he": "סן מרינו טוענת שהיא הרפובליקה הוותיקה ביותר שעדיין קיימת, ושנוסדה בשנת 301 לספירה."
+   }
+  },
+  {
+   "iso2": "RS",
+   "continent": "europe",
+   "difficulty": "medium",
+   "name": {
+    "en": "Serbia",
+    "he": "סרביה"
+   },
+   "capital": {
+    "en": "Belgrade",
+    "he": "בלגרד"
+   },
+   "fact": {
+    "en": "Belgrade sits where the Sava river flows into the Danube.",
+    "he": "בלגרד שוכנת במקום שבו נהר הסאווה נשפך לדנובה."
+   }
+  },
+  {
+   "iso2": "SK",
+   "continent": "europe",
+   "difficulty": "medium",
+   "name": {
+    "en": "Slovakia",
+    "he": "סלובקיה"
+   },
+   "capital": {
+    "en": "Bratislava",
+    "he": "ברטיסלאבה"
+   },
+   "fact": {
+    "en": "Bratislava borders two countries: Austria and Hungary.",
+    "he": "ברטיסלאבה גובלת בשתי מדינות: אוסטריה והונגריה."
+   }
+  },
+  {
+   "iso2": "SI",
+   "continent": "europe",
+   "difficulty": "hard",
+   "name": {
+    "en": "Slovenia",
+    "he": "סלובניה"
+   },
+   "capital": {
+    "en": "Ljubljana",
+    "he": "ליובליאנה"
+   },
+   "fact": {
+    "en": "The coat of arms on the flag shows Mount Triglav, Slovenia's highest peak.",
+    "he": "הסמל שבדגל מציג את הר טריגלב, הפסגה הגבוהה ביותר בסלובניה."
+   }
+  },
+  {
+   "iso2": "ES",
+   "continent": "europe",
+   "difficulty": "easy",
+   "name": {
+    "en": "Spain",
+    "he": "ספרד"
+   },
+   "capital": {
+    "en": "Madrid",
+    "he": "מדריד"
+   },
+   "fact": {
+    "en": "The yellow band on Spain's flag is twice as tall as each red band.",
+    "he": "הפס הצהוב בדגל ספרד גבוה פי שניים מכל אחד מהפסים האדומים."
+   }
+  },
+  {
+   "iso2": "SE",
+   "continent": "europe",
+   "difficulty": "easy",
+   "name": {
+    "en": "Sweden",
+    "he": "שוודיה"
+   },
+   "capital": {
+    "en": "Stockholm",
+    "he": "שטוקהולם"
+   },
+   "fact": {
+    "en": "Stockholm is built on 14 islands.",
+    "he": "שטוקהולם בנויה על 14 איים."
+   }
+  },
+  {
+   "iso2": "CH",
+   "continent": "europe",
+   "difficulty": "easy",
+   "name": {
+    "en": "Switzerland",
+    "he": "שווייץ"
+   },
+   "capital": {
+    "en": "Bern",
+    "he": "ברן"
+   },
+   "fact": {
+    "en": "Switzerland's flag is square — one of only two square national flags, with Vatican City's.",
+    "he": "דגל שווייץ ריבועי — אחד משני הדגלים הלאומיים הריבועיים היחידים, לצד דגל הוותיקן."
+   }
+  },
+  {
+   "iso2": "UA",
+   "continent": "europe",
+   "difficulty": "easy",
+   "name": {
+    "en": "Ukraine",
+    "he": "אוקראינה"
+   },
+   "capital": {
+    "en": "Kyiv",
+    "he": "קייב"
+   },
+   "fact": {
+    "en": "Ukraine's blue and yellow are often described as a blue sky above golden wheat fields.",
+    "he": "הכחול והצהוב של אוקראינה מתוארים לעתים קרובות כשמיים כחולים מעל שדות חיטה זהובים."
+   }
+  },
+  {
+   "iso2": "GB",
+   "continent": "europe",
+   "difficulty": "easy",
+   "name": {
+    "en": "United Kingdom",
+    "he": "הממלכה המאוחדת"
+   },
+   "capital": {
+    "en": "London",
+    "he": "לונדון"
+   },
+   "fact": {
+    "en": "The Union Jack combines the crosses of St George, St Andrew and St Patrick.",
+    "he": "דגל האיחוד משלב את הצלבים של סנט ג׳ורג׳, סנט אנדרו וסנט פטריק."
+   }
+  },
+  {
+   "iso2": "AG",
+   "continent": "north-america",
+   "difficulty": "hard",
+   "name": {
+    "en": "Antigua and Barbuda",
+    "he": "אנטיגואה וברבודה"
+   },
+   "capital": {
+    "en": "St. John's",
+    "he": "סנט ג׳ונס"
+   },
+   "fact": {
+    "en": "The rising sun on the flag symbolises the dawn of a new era.",
+    "he": "השמש העולה בדגל מסמלת את שחרו של עידן חדש."
+   }
+  },
+  {
+   "iso2": "BS",
+   "continent": "north-america",
+   "difficulty": "hard",
+   "name": {
+    "en": "Bahamas",
+    "he": "איי בהאמה"
+   },
+   "capital": {
+    "en": "Nassau",
+    "he": "נסאו"
+   },
+   "fact": {
+    "en": "The Bahamas consists of around 700 islands and cays.",
+    "he": "איי בהאמה כוללים כ-700 איים ושוניות."
+   }
+  },
+  {
+   "iso2": "BB",
+   "continent": "north-america",
+   "difficulty": "hard",
+   "name": {
+    "en": "Barbados",
+    "he": "ברבדוס"
+   },
+   "capital": {
+    "en": "Bridgetown",
+    "he": "ברידג׳טאון"
+   },
+   "fact": {
+    "en": "The trident head on the flag is broken, symbolising the break from colonial rule.",
+    "he": "ראש הקלשון בדגל שבור — סמל לניתוק מהשלטון הקולוניאלי."
+   }
+  },
+  {
+   "iso2": "BZ",
+   "continent": "north-america",
+   "difficulty": "hard",
+   "name": {
+    "en": "Belize",
+    "he": "בליז"
+   },
+   "capital": {
+    "en": "Belmopan",
+    "he": "בלמופן"
+   },
+   "fact": {
+    "en": "Two human figures appear in the coat of arms on Belize's flag — rare for a national flag.",
+    "he": "בסמל שבדגל בליז מופיעות שתי דמויות אדם — דבר נדיר בדגל לאומי."
+   }
+  },
+  {
+   "iso2": "CA",
+   "continent": "north-america",
+   "difficulty": "easy",
+   "name": {
+    "en": "Canada",
+    "he": "קנדה"
+   },
+   "capital": {
+    "en": "Ottawa",
+    "he": "אוטווה"
+   },
+   "fact": {
+    "en": "The maple leaf flag was adopted in 1965.",
+    "he": "דגל עלה האדר אומץ ב-1965."
+   }
+  },
+  {
+   "iso2": "CR",
+   "continent": "north-america",
+   "difficulty": "medium",
+   "name": {
+    "en": "Costa Rica",
+    "he": "קוסטה ריקה"
+   },
+   "capital": {
+    "en": "San José",
+    "he": "סן חוסה"
+   },
+   "fact": {
+    "en": "Costa Rica abolished its army in 1948.",
+    "he": "קוסטה ריקה ביטלה את צבאה ב-1948."
+   }
+  },
+  {
+   "iso2": "CU",
+   "continent": "north-america",
+   "difficulty": "easy",
+   "name": {
+    "en": "Cuba",
+    "he": "קובה"
+   },
+   "capital": {
+    "en": "Havana",
+    "he": "הוואנה"
+   },
+   "fact": {
+    "en": "Cuba's flag closely resembles Puerto Rico's, with the colours swapped.",
+    "he": "דגל קובה דומה מאוד לדגל פוארטו ריקו, כשהצבעים מוחלפים."
+   }
+  },
+  {
+   "iso2": "DM",
+   "continent": "north-america",
+   "difficulty": "hard",
+   "name": {
+    "en": "Dominica",
+    "he": "דומיניקה"
+   },
+   "capital": {
+    "en": "Roseau",
+    "he": "רוזו"
+   },
+   "fact": {
+    "en": "Dominica's flag features a Sisserou parrot and is one of only two national flags with purple.",
+    "he": "בדגל דומיניקה מופיע תוכי סיסרו, והוא אחד משני הדגלים הלאומיים היחידים שיש בהם סגול."
+   }
+  },
+  {
+   "iso2": "DO",
+   "continent": "north-america",
+   "difficulty": "medium",
+   "name": {
+    "en": "Dominican Republic",
+    "he": "הרפובליקה הדומיניקנית"
+   },
+   "capital": {
+    "en": "Santo Domingo",
+    "he": "סנטו דומינגו"
+   },
+   "fact": {
+    "en": "The coat of arms at the centre of the flag includes an open Bible.",
+    "he": "בסמל שבמרכז הדגל מופיעה ביבליה פתוחה."
+   }
+  },
+  {
+   "iso2": "SV",
+   "continent": "north-america",
+   "difficulty": "hard",
+   "name": {
+    "en": "El Salvador",
+    "he": "אל סלוודור"
+   },
+   "capital": {
+    "en": "San Salvador",
+    "he": "סן סלוודור"
+   },
+   "fact": {
+    "en": "El Salvador is the smallest country in Central America.",
+    "he": "אל סלוודור היא המדינה הקטנה ביותר במרכז אמריקה."
+   }
+  },
+  {
+   "iso2": "GD",
+   "continent": "north-america",
+   "difficulty": "hard",
+   "name": {
+    "en": "Grenada",
+    "he": "גרנדה"
+   },
+   "capital": {
+    "en": "St. George's",
+    "he": "סנט ג׳ורג׳ס"
+   },
+   "fact": {
+    "en": "The symbol at the hoist of Grenada's flag is a nutmeg, a major export.",
+    "he": "הסמל בצד התורן בדגל גרנדה הוא אגוז מוסקט — מוצר יצוא מרכזי."
+   }
+  },
+  {
+   "iso2": "GT",
+   "continent": "north-america",
+   "difficulty": "medium",
+   "name": {
+    "en": "Guatemala",
+    "he": "גואטמלה"
+   },
+   "capital": {
+    "en": "Guatemala City",
+    "he": "גואטמלה סיטי"
+   },
+   "fact": {
+    "en": "The bird on the flag is the resplendent quetzal, which also gives its name to the currency.",
+    "he": "הציפור בדגל היא הקצל, ועל שמה נקרא גם המטבע."
+   }
+  },
+  {
+   "iso2": "HT",
+   "continent": "north-america",
+   "difficulty": "hard",
+   "name": {
+    "en": "Haiti",
+    "he": "האיטי"
+   },
+   "capital": {
+    "en": "Port-au-Prince",
+    "he": "פורט־או־פרנס"
+   },
+   "fact": {
+    "en": "In 1804 Haiti became the first independent nation in Latin America and the Caribbean.",
+    "he": "ב-1804 הייתה האיטי למדינה העצמאית הראשונה באמריקה הלטינית ובקריביים."
+   }
+  },
+  {
+   "iso2": "HN",
+   "continent": "north-america",
+   "difficulty": "hard",
+   "name": {
+    "en": "Honduras",
+    "he": "הונדורס"
+   },
+   "capital": {
+    "en": "Tegucigalpa",
+    "he": "טגוסיגלפה"
+   },
+   "fact": {
+    "en": "The five stars represent the five nations of the former Federal Republic of Central America.",
+    "he": "חמשת הכוכבים מייצגים את חמש המדינות של הרפובליקה הפדרלית של מרכז אמריקה לשעבר."
+   }
+  },
+  {
+   "iso2": "JM",
+   "continent": "north-america",
+   "difficulty": "easy",
+   "name": {
+    "en": "Jamaica",
+    "he": "ג׳מייקה"
+   },
+   "capital": {
+    "en": "Kingston",
+    "he": "קינגסטון"
+   },
+   "fact": {
+    "en": "Jamaica's flag is the only current national flag with no red, white or blue.",
+    "he": "דגל ג׳מייקה הוא הדגל הלאומי היחיד כיום שאין בו אדום, לבן או כחול."
+   }
+  },
+  {
+   "iso2": "MX",
+   "continent": "north-america",
+   "difficulty": "easy",
+   "name": {
+    "en": "Mexico",
+    "he": "מקסיקו"
+   },
+   "capital": {
+    "en": "Mexico City",
+    "he": "מקסיקו סיטי"
+   },
+   "fact": {
+    "en": "The eagle eating a snake on a cactus recalls the Aztec legend of the founding of Tenochtitlan.",
+    "he": "העיט האוכל נחש על קקטוס מזכיר את האגדה האצטקית על ייסוד טנוצ׳טיטלאן."
+   }
+  },
+  {
+   "iso2": "NI",
+   "continent": "north-america",
+   "difficulty": "hard",
+   "name": {
+    "en": "Nicaragua",
+    "he": "ניקרגואה"
+   },
+   "capital": {
+    "en": "Managua",
+    "he": "מנגואה"
+   },
+   "fact": {
+    "en": "Nicaragua's flag is one of only two national flags with purple — in the rainbow of its emblem.",
+    "he": "דגל ניקרגואה הוא אחד משני הדגלים הלאומיים היחידים שיש בהם סגול — בקשת שבסמל."
+   }
+  },
+  {
+   "iso2": "PA",
+   "continent": "north-america",
+   "difficulty": "medium",
+   "name": {
+    "en": "Panama",
+    "he": "פנמה"
+   },
+   "capital": {
+    "en": "Panama City",
+    "he": "פנמה סיטי"
+   },
+   "fact": {
+    "en": "The Panama Canal connects the Atlantic and Pacific oceans.",
+    "he": "תעלת פנמה מחברת בין האוקיינוס האטלנטי לאוקיינוס השקט."
+   }
+  },
+  {
+   "iso2": "KN",
+   "continent": "north-america",
+   "difficulty": "hard",
+   "name": {
+    "en": "Saint Kitts and Nevis",
+    "he": "סנט קיטס ונוויס"
+   },
+   "capital": {
+    "en": "Basseterre",
+    "he": "בסטר"
+   },
+   "fact": {
+    "en": "It is the smallest sovereign state in the Western Hemisphere.",
+    "he": "זו המדינה הריבונית הקטנה ביותר בחצי הכדור המערבי."
+   }
+  },
+  {
+   "iso2": "LC",
+   "continent": "north-america",
+   "difficulty": "hard",
+   "name": {
+    "en": "Saint Lucia",
+    "he": "סנט לוסיה"
+   },
+   "capital": {
+    "en": "Castries",
+    "he": "קסטריס"
+   },
+   "fact": {
+    "en": "The triangles on the flag represent the Pitons, twin volcanic peaks.",
+    "he": "המשולשים בדגל מייצגים את הפיטונים — פסגות געש תאומות."
+   }
+  },
+  {
+   "iso2": "VC",
+   "continent": "north-america",
+   "difficulty": "hard",
+   "name": {
+    "en": "Saint Vincent and the Grenadines",
+    "he": "סנט וינסנט והגרנדינים"
+   },
+   "capital": {
+    "en": "Kingstown",
+    "he": "קינגסטאון"
+   },
+   "fact": {
+    "en": "The three green diamonds on the flag form a V for Vincent.",
+    "he": "שלושת המעוינים הירוקים בדגל יוצרים את האות V, על שם וינסנט."
+   }
+  },
+  {
+   "iso2": "TT",
+   "continent": "north-america",
+   "difficulty": "hard",
+   "name": {
+    "en": "Trinidad and Tobago",
+    "he": "טרינידד וטובגו"
+   },
+   "capital": {
+    "en": "Port of Spain",
+    "he": "פורט אוף ספיין"
+   },
+   "fact": {
+    "en": "The steelpan, a percussion instrument made from oil drums, was invented in Trinidad and Tobago.",
+    "he": "תוף הפלדה (סטילפאן), כלי הקשה העשוי מחביות נפט, הומצא בטרינידד וטובגו."
+   }
+  },
+  {
+   "iso2": "US",
+   "continent": "north-america",
+   "difficulty": "easy",
+   "name": {
+    "en": "United States",
+    "he": "ארצות הברית"
+   },
+   "capital": {
+    "en": "Washington, D.C.",
+    "he": "וושינגטון די. סי."
+   },
+   "fact": {
+    "en": "The 50 stars represent the states and the 13 stripes the original colonies.",
+    "he": "50 הכוכבים מייצגים את המדינות, ו-13 הפסים — את המושבות המקוריות."
+   }
+  },
+  {
+   "iso2": "AR",
+   "continent": "south-america",
+   "difficulty": "easy",
+   "name": {
+    "en": "Argentina",
+    "he": "ארגנטינה"
+   },
+   "capital": {
+    "en": "Buenos Aires",
+    "he": "בואנוס איירס"
+   },
+   "fact": {
+    "en": "The face on the flag's Sun of May represents Inti, the Inca sun god.",
+    "he": "הפנים ב'שמש מאי' שבדגל מייצגות את אינטי, אל השמש האינקאי."
+   }
+  },
+  {
+   "iso2": "BO",
+   "continent": "south-america",
+   "difficulty": "medium",
+   "name": {
+    "en": "Bolivia",
+    "he": "בוליביה"
+   },
+   "capital": {
+    "en": "Sucre",
+    "he": "סוקרה"
+   },
+   "fact": {
+    "en": "Bolivia's constitutional capital is Sucre, while the government sits in La Paz.",
+    "he": "הבירה החוקתית של בוליביה היא סוקרה, ומושב הממשלה נמצא בלה פס."
+   }
+  },
+  {
+   "iso2": "BR",
+   "continent": "south-america",
+   "difficulty": "easy",
+   "name": {
+    "en": "Brazil",
+    "he": "ברזיל"
+   },
+   "capital": {
+    "en": "Brasília",
+    "he": "ברזיליה"
+   },
+   "fact": {
+    "en": "The stars on the flag show the sky over Rio de Janeiro on the morning of 15 November 1889.",
+    "he": "הכוכבים בדגל מציגים את השמיים מעל ריו דה ז׳ניירו בבוקר 15 בנובמבר 1889."
+   }
+  },
+  {
+   "iso2": "CL",
+   "continent": "south-america",
+   "difficulty": "medium",
+   "name": {
+    "en": "Chile",
+    "he": "צ׳ילה"
+   },
+   "capital": {
+    "en": "Santiago",
+    "he": "סנטיאגו"
+   },
+   "fact": {
+    "en": "Chile stretches about 4,300 km from north to south but averages under 200 km wide.",
+    "he": "צ׳ילה משתרעת לאורך כ-4,300 ק״מ מצפון לדרום, אך רוחבה הממוצע קטן מ-200 ק״מ."
+   }
+  },
+  {
+   "iso2": "CO",
+   "continent": "south-america",
+   "difficulty": "medium",
+   "name": {
+    "en": "Colombia",
+    "he": "קולומביה"
+   },
+   "capital": {
+    "en": "Bogotá",
+    "he": "בוגוטה"
+   },
+   "fact": {
+    "en": "The yellow band on Colombia's flag takes up half of the flag.",
+    "he": "הפס הצהוב בדגל קולומביה תופס מחצית מהדגל."
+   }
+  },
+  {
+   "iso2": "EC",
+   "continent": "south-america",
+   "difficulty": "medium",
+   "name": {
+    "en": "Ecuador",
+    "he": "אקוודור"
+   },
+   "capital": {
+    "en": "Quito",
+    "he": "קיטו"
+   },
+   "fact": {
+    "en": "Ecuador takes its name from the equator, which crosses the country.",
+    "he": "אקוודור נקראת על שם קו המשווה (Ecuador בספרדית), שחוצה אותה."
+   }
+  },
+  {
+   "iso2": "GY",
+   "continent": "south-america",
+   "difficulty": "hard",
+   "name": {
+    "en": "Guyana",
+    "he": "גיאנה"
+   },
+   "capital": {
+    "en": "Georgetown",
+    "he": "ג׳ורג׳טאון"
+   },
+   "fact": {
+    "en": "Guyana's flag is known as the Golden Arrowhead.",
+    "he": "דגל גיאנה מכונה 'ראש החץ הזהוב'."
+   }
+  },
+  {
+   "iso2": "PY",
+   "continent": "south-america",
+   "difficulty": "hard",
+   "name": {
+    "en": "Paraguay",
+    "he": "פרגוואי"
+   },
+   "capital": {
+    "en": "Asunción",
+    "he": "אסונסיון"
+   },
+   "fact": {
+    "en": "Paraguay's flag has a different emblem on each side.",
+    "he": "לדגל פרגוואי יש סמל שונה בכל אחד מצדדיו."
+   }
+  },
+  {
+   "iso2": "PE",
+   "continent": "south-america",
+   "difficulty": "medium",
+   "name": {
+    "en": "Peru",
+    "he": "פרו"
+   },
+   "capital": {
+    "en": "Lima",
+    "he": "לימה"
+   },
+   "fact": {
+    "en": "Machu Picchu, the 15th-century Inca citadel, is in Peru.",
+    "he": "מאצ׳ו פיצ׳ו, מצודת האינקה מהמאה ה-15, נמצאת בפרו."
+   }
+  },
+  {
+   "iso2": "SR",
+   "continent": "south-america",
+   "difficulty": "hard",
+   "name": {
+    "en": "Suriname",
+    "he": "סורינאם"
+   },
+   "capital": {
+    "en": "Paramaribo",
+    "he": "פרמריבו"
+   },
+   "fact": {
+    "en": "Suriname is the smallest country in South America by area.",
+    "he": "סורינאם היא המדינה הקטנה ביותר בדרום אמריקה בשטחה."
+   }
+  },
+  {
+   "iso2": "UY",
+   "continent": "south-america",
+   "difficulty": "medium",
+   "name": {
+    "en": "Uruguay",
+    "he": "אורוגוואי"
+   },
+   "capital": {
+    "en": "Montevideo",
+    "he": "מונטווידאו"
+   },
+   "fact": {
+    "en": "Uruguay hosted and won the first FIFA World Cup in 1930.",
+    "he": "אורוגוואי אירחה וזכתה במונדיאל הראשון, ב-1930."
+   }
+  },
+  {
+   "iso2": "VE",
+   "continent": "south-america",
+   "difficulty": "medium",
+   "name": {
+    "en": "Venezuela",
+    "he": "ונצואלה"
+   },
+   "capital": {
+    "en": "Caracas",
+    "he": "קראקס"
+   },
+   "fact": {
+    "en": "Angel Falls in Venezuela is the world's highest uninterrupted waterfall.",
+    "he": "מפלי אנחל בוונצואלה הם המפל הגבוה בעולם בנפילה רציפה."
+   }
+  },
+  {
+   "iso2": "AU",
+   "continent": "oceania",
+   "difficulty": "easy",
+   "name": {
+    "en": "Australia",
+    "he": "אוסטרליה"
+   },
+   "capital": {
+    "en": "Canberra",
+    "he": "קנברה"
+   },
+   "fact": {
+    "en": "The large seven-pointed star on the flag is the Commonwealth Star.",
+    "he": "הכוכב הגדול בעל שבעת הקצוות בדגל נקרא 'כוכב חבר העמים'."
+   }
+  },
+  {
+   "iso2": "FJ",
+   "continent": "oceania",
+   "difficulty": "hard",
+   "name": {
+    "en": "Fiji",
+    "he": "פיג׳י"
+   },
+   "capital": {
+    "en": "Suva",
+    "he": "סובה"
+   },
+   "fact": {
+    "en": "Fiji is made up of more than 300 islands.",
+    "he": "פיג׳י מורכבת מיותר מ-300 איים."
+   }
+  },
+  {
+   "iso2": "KI",
+   "continent": "oceania",
+   "difficulty": "hard",
+   "name": {
+    "en": "Kiribati",
+    "he": "קיריבטי"
+   },
+   "capital": {
+    "en": "South Tarawa",
+    "he": "דרום טאראווה"
+   },
+   "fact": {
+    "en": "Kiribati is the only country that lies in all four hemispheres.",
+    "he": "קיריבטי היא המדינה היחידה שנמצאת בכל ארבעת חצאי הכדור."
+   }
+  },
+  {
+   "iso2": "MH",
+   "continent": "oceania",
+   "difficulty": "hard",
+   "name": {
+    "en": "Marshall Islands",
+    "he": "איי מרשל"
+   },
+   "capital": {
+    "en": "Majuro",
+    "he": "מג׳ורו"
+   },
+   "fact": {
+    "en": "The two diagonal bands represent the island chains Ratak ('sunrise') and Ralik ('sunset').",
+    "he": "שני הפסים האלכסוניים מייצגים את שרשראות האיים רטאק ('זריחה') ורליק ('שקיעה')."
+   }
+  },
+  {
+   "iso2": "FM",
+   "continent": "oceania",
+   "difficulty": "hard",
+   "name": {
+    "en": "Micronesia",
+    "he": "מיקרונזיה"
+   },
+   "capital": {
+    "en": "Palikir",
+    "he": "פליקיר"
+   },
+   "fact": {
+    "en": "The four stars on the flag represent Micronesia's four states.",
+    "he": "ארבעת הכוכבים בדגל מייצגים את ארבע מדינותיה של מיקרונזיה."
+   }
+  },
+  {
+   "iso2": "NR",
+   "continent": "oceania",
+   "difficulty": "hard",
+   "name": {
+    "en": "Nauru",
+    "he": "נאורו"
+   },
+   "capital": {
+    "en": "Yaren",
+    "he": "יארן"
+   },
+   "fact": {
+    "en": "Nauru has no official capital; government offices are in Yaren.",
+    "he": "לנאורו אין בירה רשמית; משרדי הממשלה נמצאים ביארן."
+   }
+  },
+  {
+   "iso2": "NZ",
+   "continent": "oceania",
+   "difficulty": "medium",
+   "name": {
+    "en": "New Zealand",
+    "he": "ניו זילנד"
+   },
+   "capital": {
+    "en": "Wellington",
+    "he": "ולינגטון"
+   },
+   "fact": {
+    "en": "New Zealand's flag shows four red stars of the Southern Cross; Australia's shows five white ones.",
+    "he": "בדגל ניו זילנד ארבעה כוכבים אדומים של הצלב הדרומי; בדגל אוסטרליה — חמישה כוכבים לבנים."
+   }
+  },
+  {
+   "iso2": "PW",
+   "continent": "oceania",
+   "difficulty": "hard",
+   "name": {
+    "en": "Palau",
+    "he": "פלאו"
+   },
+   "capital": {
+    "en": "Ngerulmud",
+    "he": "נגרולמוד"
+   },
+   "fact": {
+    "en": "The yellow disc represents the full moon and is set slightly off-centre.",
+    "he": "העיגול הצהוב מייצג את הירח המלא, ומוזז מעט מהמרכז."
+   }
+  },
+  {
+   "iso2": "PG",
+   "continent": "oceania",
+   "difficulty": "hard",
+   "name": {
+    "en": "Papua New Guinea",
+    "he": "פפואה גינאה החדשה"
+   },
+   "capital": {
+    "en": "Port Moresby",
+    "he": "פורט מורסבי"
+   },
+   "fact": {
+    "en": "More than 800 languages are spoken in Papua New Guinea.",
+    "he": "בפפואה גינאה החדשה מדברים ביותר מ-800 שפות."
+   }
+  },
+  {
+   "iso2": "WS",
+   "continent": "oceania",
+   "difficulty": "hard",
+   "name": {
+    "en": "Samoa",
+    "he": "סמואה"
+   },
+   "capital": {
+    "en": "Apia",
+    "he": "אפיה"
+   },
+   "fact": {
+    "en": "In 2011 Samoa moved west of the International Date Line, skipping 30 December entirely.",
+    "he": "ב-2011 עברה סמואה אל מערב לקו התאריך הבינלאומי ודילגה כליל על 30 בדצמבר."
+   }
+  },
+  {
+   "iso2": "SB",
+   "continent": "oceania",
+   "difficulty": "hard",
+   "name": {
+    "en": "Solomon Islands",
+    "he": "איי שלמה"
+   },
+   "capital": {
+    "en": "Honiara",
+    "he": "הוניארה"
+   },
+   "fact": {
+    "en": "The five stars on the flag originally represented the country's five districts.",
+    "he": "חמשת הכוכבים בדגל ייצגו במקור את חמשת המחוזות של המדינה."
+   }
+  },
+  {
+   "iso2": "TO",
+   "continent": "oceania",
+   "difficulty": "hard",
+   "name": {
+    "en": "Tonga",
+    "he": "טונגה"
+   },
+   "capital": {
+    "en": "Nukuʻalofa",
+    "he": "נוקואלופה"
+   },
+   "fact": {
+    "en": "Tonga is the only Pacific island nation never formally colonised.",
+    "he": "טונגה היא מדינת האיים היחידה באוקיינוס השקט שמעולם לא הייתה מושבה רשמית."
+   }
+  },
+  {
+   "iso2": "TV",
+   "continent": "oceania",
+   "difficulty": "hard",
+   "name": {
+    "en": "Tuvalu",
+    "he": "טובאלו"
+   },
+   "capital": {
+    "en": "Funafuti",
+    "he": "פונפוטי"
+   },
+   "fact": {
+    "en": "Tuvalu earns significant income from its internet domain, .tv.",
+    "he": "טובאלו מרוויחה הכנסה משמעותית מסיומת האינטרנט שלה, ‎.tv."
+   }
+  },
+  {
+   "iso2": "VU",
+   "continent": "oceania",
+   "difficulty": "hard",
+   "name": {
+    "en": "Vanuatu",
+    "he": "ונואטו"
+   },
+   "capital": {
+    "en": "Port Vila",
+    "he": "פורט וילה"
+   },
+   "fact": {
+    "en": "The emblem on Vanuatu's flag is a curled boar's tusk, a symbol of prosperity.",
+    "he": "הסמל בדגל ונואטו הוא ניב חזיר מסולסל — סמל לשגשוג."
+   }
+  }
+ ],
+ "lookalikeGroups": [
+  [
+   "TD",
+   "RO",
+   "MD",
+   "AD"
+  ],
+  [
+   "ID",
+   "MC",
+   "PL",
+   "SG"
+  ],
+  [
+   "IE",
+   "CI",
+   "IT",
+   "NE",
+   "IN"
+  ],
+  [
+   "NL",
+   "LU",
+   "RU",
+   "SI",
+   "SK",
+   "RS",
+   "HR",
+   "PY"
+  ],
+  [
+   "AU",
+   "NZ",
+   "FJ",
+   "TV"
+  ],
+  [
+   "SN",
+   "ML",
+   "GN",
+   "CM",
+   "GH",
+   "BO",
+   "LT",
+   "ET"
+  ],
+  [
+   "NO",
+   "IS",
+   "DK",
+   "FI",
+   "SE"
+  ],
+  [
+   "EG",
+   "YE",
+   "IQ",
+   "SY",
+   "SD"
+  ],
+  [
+   "VE",
+   "EC",
+   "CO"
+  ],
+  [
+   "JP",
+   "BD",
+   "PW",
+   "LA"
+  ],
+  [
+   "HN",
+   "NI",
+   "SV",
+   "GT"
+  ],
+  [
+   "QA",
+   "BH"
+  ],
+  [
+   "JO",
+   "SD",
+   "KW",
+   "AE"
+  ],
+  [
+   "AT",
+   "LV",
+   "LB"
+  ],
+  [
+   "BE",
+   "DE"
+  ],
+  [
+   "US",
+   "LR",
+   "MY"
+  ],
+  [
+   "CU",
+   "GR",
+   "UY"
+  ],
+  [
+   "KP",
+   "KR"
+  ],
+  [
+   "MA",
+   "VN",
+   "TR",
+   "TN"
+  ],
+  [
+   "CZ",
+   "PH",
+   "TL"
+  ],
+  [
+   "BS",
+   "JM",
+   "TT"
+  ],
+  [
+   "SO",
+   "FM"
+  ]
+ ],
+ "indistinguishablePairs": [
+  [
+   "TD",
+   "RO"
+  ],
+  [
+   "ID",
+   "MC"
+  ]
+ ]
+}

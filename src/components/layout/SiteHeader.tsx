@@ -44,10 +44,10 @@ export async function SiteHeader() {
         </div>
       </div>
 
-      <div className="mx-auto flex max-w-7xl items-center gap-6 px-4 py-3 md:px-6 md:py-4 lg:px-10">
+      <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 md:gap-6 md:px-6 md:py-4 lg:px-10">
         <Link href="/" className="flex items-center gap-2.5 text-ink" aria-label={brand.name}>
           <BrandMark className="h-6 w-9 shrink-0" />
-          <span className="display text-[1.375rem] font-semibold tracking-[0.06em] md:text-2xl" dir="ltr">
+          <span className="display text-[1.375rem] font-semibold tracking-[0.06em] max-[359px]:text-lg max-[359px]:tracking-[0.03em] md:text-2xl" dir="ltr">
             {brand.name}
           </span>
         </Link>

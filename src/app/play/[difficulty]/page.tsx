@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ConstructionNotice } from "@/components/ui/ConstructionNotice";
+import { GameClient } from "@/components/game/GameClient";
 import { Container } from "@/components/ui/Container";
-import { PageHeader } from "@/components/ui/PageHeader";
-import { gameConfig, isDifficulty } from "@/config/game";
+import { isDifficulty } from "@/config/game";
 import { getI18n } from "@/lib/i18n/server";
 
 interface Props {
@@ -22,13 +22,20 @@ export default async function GamePage({ params }: Props) {
   const { t } = await getI18n();
   return (
     <Container>
-      <PageHeader
-        plate="I"
-        eyebrow={`${t("play.eyebrow")} · ${t("common.questions", { count: gameConfig.standardGameLength })}`}
-        title={t(`difficulty.${difficulty}`)}
-        lede={t(`difficulty.${difficulty}Blurb`)}
-      />
-      <ConstructionNotice phase={2} />
+      <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-ink pb-2 pt-3 md:pb-4 md:pt-8">
+        <h1 className="flex items-baseline gap-3">
+          <span className="eyebrow">
+            <span className="text-rust-ink">I</span>
+            <span className="mx-2 text-rule-strong" aria-hidden="true">—</span>
+            {t("play.eyebrow")}
+          </span>
+          <span className="display text-xl md:text-3xl">{t(`difficulty.${difficulty}`)}</span>
+        </h1>
+        <Link href="/play" className="text-sm link-underline">
+          {t("game.changeDifficulty")}
+        </Link>
+      </div>
+      <GameClient difficulty={difficulty} />
     </Container>
   );
 }

@@ -3,7 +3,7 @@
 A competitive, bilingual (English/Hebrew) flag-identification game: standard games, a server-validated
 daily five-flag challenge, leaderboards, achievements and a personal world atlas.
 
-> Status: **Phase 1 of 7** complete — see [`PROGRESS.md`](./PROGRESS.md). The full setup and deployment
+> Status: **Phase 2 of 7** complete — see [`PROGRESS.md`](./PROGRESS.md). The full setup and deployment
 > guide (Supabase, migrations, email, Vercel) is written as those phases land.
 
 ## Stack
@@ -20,6 +20,7 @@ git clone <your-repo-url> flagforge
 cd flagforge
 npm ci
 Copy-Item .env.example .env.local    # PowerShell (bash: cp .env.example .env.local)
+# put a random value in GAME_SESSION_SECRET (command is in .env.example)
 npm run dev                          # http://localhost:3000
 ```
 
@@ -34,16 +35,23 @@ npm run dev                          # http://localhost:3000
 | `npm test` | Vitest unit tests |
 | `npm run test:e2e` | Playwright (builds must exist: run `npm run build` first; first time: `npx playwright install chromium`) |
 | `npm run check` | typecheck + lint + unit tests |
+| `npm run data:import` | Validate `data/countries` and regenerate `src/server/data/*.json` |
+| `npm run data:check` | Validate only (CI) |
 
 ## Project layout (so far)
 
 ```
+data/countries/        canonical dataset: 193 UN members, en/he names, capitals, facts, difficulty
+scripts/               import-countries.ts (+ lib: validator, SVG sanitizer, UN reference list)
+docs/                  DATASET.md, API.md, THIRD_PARTY.md
 src/
-  app/                 routes (server components by default)
+  app/                 routes (server components by default); app/api/game/* route handlers
   components/          layout/, ui/, game/, daily/, auth/
   config/              brand.ts (rename the product here), game.ts (rules: lengths, composition, timezone)
   lib/i18n/            locale negotiation, typed translator, server/client access, switcher action
-  lib/time/            DST-safe Asia/Jerusalem calendar helpers
+  lib/time/            DST-safe Asia/Jerusalem calendar helpers, duration formatting
+  lib/game/            pure game rules: selection, distractors, scoring (unit-tested)
+  server/              server-only: country repository, AES-GCM tokens, rate limit, game service, generated data
   messages/            en.ts (canonical shape), he.ts (type-checked against en)
 tests/unit, tests/e2e
 ```

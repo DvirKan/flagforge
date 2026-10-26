@@ -1,6 +1,6 @@
 # FLAGFORGE — Progress
 
-_Last updated: 2026-10-26 (end of Phase 1)_
+_Last updated: 2026-10-26 (end of Phase 2)_
 
 ## Environment notes (build session)
 
@@ -8,55 +8,66 @@ _Last updated: 2026-10-26 (end of Phase 1)_
   Plan for Phases 3–6: run migrations/RLS/anti-cheat integration tests against native PostgreSQL 16 with a
   minimal `auth` schema shim (`auth.users`, `auth.uid()`, `anon`/`authenticated` roles). Full Supabase Auth
   flows (email verification, recovery) must be verified against a real Supabase project.
-- Google Fonts and Wikimedia are blocked from the sandbox; fonts are self-hosted via `@fontsource` (OFL-1.1),
-  which also removes the build-time network dependency on Vercel.
+- Google Fonts and Wikimedia are blocked from the sandbox; fonts are self-hosted via `@fontsource` (OFL-1.1).
+- The project is synced to the user's linked folder at the end of each phase (no remote shell on that machine).
 
 ## Phase checklist
 
 | Phase | Status |
 |---|---|
-| 1 — Foundation & design system | ✅ complete (verified, see below) |
-| 2 — Country dataset & standard game | ⏳ next |
-| 3 — Supabase & authentication | ⏳ |
+| 1 — Foundation & design system | ✅ complete |
+| 2 — Country dataset & standard game | ✅ complete (verified, see below) |
+| 3 — Supabase & authentication | ⏳ next — needs a Supabase project from the user |
 | 4 — Daily challenge | ⏳ |
 | 5 — Profiles, achievements, rankings | ⏳ |
 | 6 — Administration & operational readiness | ⏳ |
 | 7 — Production readiness & deployment | ⏳ |
 
-## Phase 1 — verified
+## Decisions (from the product owner)
 
-- [x] Next.js 15.5.28 (App Router) + React 19.2 + TypeScript 5.9 strict (`noUncheckedIndexedAccess`)
-- [x] Tailwind CSS 4 with "Modern Atlas" tokens; text contrast ≥ 4.5:1 (computed; see `globals.css` header)
-- [x] Fonts: Frank Ruhl Libre (display), IBM Plex Sans + Plex Sans Hebrew (body), Plex Mono (data) — self-hosted
-- [x] i18n: typed en/he dictionaries (missing key = type error), cookie + Accept-Language negotiation,
-      server-rendered `lang`/`dir` (no RTL flash), switcher preserves client state (`router.refresh()`)
-- [x] Logical CSS properties (`ms-`, `ps-`, `border-s`, `start-`) throughout
-- [x] DST-safe Asia/Jerusalem calendar utilities + live countdown to next local midnight (skew-corrected, monotonic)
-- [x] Desktop masthead nav, tablet secondary nav, mobile dialog menu + bottom tab bar
-- [x] All required routes render; unbuilt features show an explicit "phase N" notice — no sample data
-- [x] Security headers (nosniff, DENY framing, HSTS, referrer, permissions policy); `poweredByHeader` off
-- [x] `npm audit`: 0 vulnerabilities (postcss pinned via `overrides` to 8.5.31; vitest 5)
+- Dataset scope: the 193 UN member states only.
+- Flag artwork: 4:3 canvas (flag-icons, MIT) is acceptable; real-world proportions not preserved.
+- Daily challenge: authenticated users only. Guests play standard games only.
+
+## Phase 2 — verified
+
+- [x] Dataset: 193 UN members (40 easy / 70 medium / 83 hard), en/he names, capitals, continent, one fact each in
+      both languages — `data/countries/*.ts`; validated against an independent UN reference list
+- [x] Import script validates codes, uniqueness (codes, en names, he names), Hebrew text, difficulty, continent,
+      flag presence, lookalike references; `--check` mode for CI
+- [x] Flags: sanitized so ids/classes no longer contain the ISO code; **all 193 pixel-identical** to the originals
+- [x] Engine: 10 distinct questions per difficulty; 4 distinct options, exactly one correct; plausible distractors
+      (lookalikes → continent → difficulty); indistinguishable pairs (TD/RO, ID/MC) never together
+- [x] Server-authoritative: AES-256-GCM encrypted game token (HKDF-derived key, purpose-bound AAD); opaque,
+      expiring flag URLs; correctness, timing and score computed on the server; no ISO code in any client payload
+- [x] Route handlers with strict Zod schemas, 8 KiB body cap, per-IP rate limits, typed error codes, no stack traces
+- [x] UI: atlas-plate flag, 4 large options, progress ticks, monotonic display timer, reveal with capital,
+      continent and fact, results with review of all 10 flags; keyboard 1–4 + Enter; focus management; aria-live
+- [x] Mobile: options fit on screen without scrolling on iPhone SE (568px), iPhone 13, Pixel 7 (tab bar hidden
+      during a game); 16px gutters at 320px
+- [x] Language switch mid-game keeps the current question (verified e2e)
 
 ### Check results
 
 | Command | Result |
 |---|---|
 | `npm run typecheck` | pass |
-| `npm run lint` | pass (0 warnings) |
-| `npm test` | 17/17 pass (DST transitions 27 Mar / 25 Oct 2026, i18n key/placeholder parity) |
-| `npm run build` | pass (16 routes) |
-| `npm run test:e2e` | 42 pass, 4 skipped (viewport-specific), desktop + Pixel 7 |
+| `npm run lint` | pass |
+| `npm test` | 46/46 pass |
+| `npm run data:check` | pass |
+| `npm run build` | pass |
+| `npm run test:e2e` | 49 pass, 5 skipped (viewport-specific), desktop + Pixel 7 |
 
-## Known issues / deferred
+## Known limitations
 
-- CSP header deferred to Phase 3 (needs the Supabase origin in `connect-src`).
-- Language preference is cookie-only until Phase 3 (then mirrored to `profiles.preferred_language`).
-- GitHub push pending: the sandbox's GitHub token was invalid; repository is committed locally.
+- Guest game tokens can be replayed (stateless by design; guest results are not stored). See `docs/API.md`.
+- Rate limiting is in-memory per server instance.
+- CSP header for pages deferred to Phase 3 (needs the Supabase origin).
 
-## Next steps (Phase 2)
+## Next steps (Phase 3)
 
-1. Choose flag source with **true aspect ratios** (candidate: public-domain Wikimedia-derived SVG set via npm/GitHub).
-2. Country dataset: 193 UN members (+ decision on observers Vatican/Palestine — documented), en/he names,
-   continent, capital, curated difficulty, facts; import + validation script.
-3. Server-side standard game engine: session token, question selection, plausible distractors, answer check
-   without exposing correct answer up front.
+1. User creates a Supabase project and provides URL + anon key (service-role key goes only into `.env.local` / Vercel).
+2. Migrations: profiles, countries (seeded from `data/countries`), game_sessions, game_session_questions, roles; RLS.
+3. Auth flows (register with username, verify email, login/logout, forgot/reset), protected routes, locale sync.
+4. Authenticated standard games persisted in the database (single-use answers per question).
+5. Native-Postgres test harness with an `auth` shim for RLS/constraint integration tests.
