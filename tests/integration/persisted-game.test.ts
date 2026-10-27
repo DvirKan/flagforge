@@ -4,31 +4,10 @@ import { seededRng } from "@/lib/game/rng";
 import type { QuestionView } from "@/lib/game/types";
 import { resolveFlagHandle } from "@/server/game/flag-handle";
 import { answerPersistedGame, isPersistedToken, startPersistedGame } from "@/server/game/persisted";
-import { RpcError, type GameRpc } from "@/server/game/rpc";
-import { createUser, resetDatabase, TEST_DATABASE_URL } from "./db";
+import type { GameRpc } from "@/server/game/rpc";
+import { createUser, pgRpc, resetDatabase, TEST_DATABASE_URL, dropTestDatabase } from "./db";
 
 const suite = TEST_DATABASE_URL ? describe : describe.skip;
-
-/** pg-backed RPC adapter: calls the same SQL functions PostgREST would, as service_role. */
-function pgRpc(db: Client): GameRpc {
-  return {
-    async call<T>(fn: string, args: Record<string, unknown>): Promise<T> {
-      const keys = Object.keys(args);
-      const params = keys.map((k, i) => `${k} => $${i + 1}${k === "p_questions" ? "::jsonb" : ""}`).join(", ");
-      const values = keys.map((k) => (k === "p_questions" ? JSON.stringify(args[k]) : args[k]));
-      await db.query("begin");
-      try {
-        await db.query("set local role service_role");
-        const { rows } = await db.query(`select public.${fn}(${params}) as r`, values);
-        await db.query("commit");
-        return rows[0].r as T;
-      } catch (err) {
-        await db.query("rollback");
-        throw new RpcError((err as Error).message);
-      }
-    },
-  };
-}
 
 suite("persisted standard game (server service ↔ database)", () => {
   let db: Client;
@@ -47,6 +26,7 @@ suite("persisted standard game (server service ↔ database)", () => {
 
   afterAll(async () => {
     await db?.end();
+    await dropTestDatabase();
   });
 
   const isoOf = (v: QuestionView) => resolveFlagHandle(v.flagUrl.split("/").pop() ?? "");

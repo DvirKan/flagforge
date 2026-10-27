@@ -7,11 +7,13 @@ import { getViewer } from "@/lib/auth/session";
 import { INTL_LOCALE } from "@/lib/i18n/config";
 import { getI18n } from "@/lib/i18n/server";
 import { nextDayBoundary } from "@/lib/time/zoned";
+import { DailyLeaderboard } from "@/components/daily/DailyLeaderboard";
+import { getDailyLeaderboard, getPublishedChallenge, todayChallengeDate } from "@/server/daily/queries";
 
 export default async function HomePage({ searchParams }: { searchParams: Promise<{ account?: string }> }) {
   const { account } = await searchParams;
   const { locale, t } = await getI18n();
-  const viewer = await getViewer();
+  const [viewer, challenge, board] = await Promise.all([getViewer(), getPublishedChallenge(todayChallengeDate()), getDailyLeaderboard(todayChallengeDate(), 5)]);
   const now = new Date();
   const tz = gameConfig.daily.timezone;
   const boundary = nextDayBoundary(now, tz);
@@ -58,7 +60,13 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
                 {t("home.dailyTitle")}
               </h2>
               <p className="mt-3 text-ink-soft">{t("home.dailyRules")}</p>
-              <p className="mt-5 border-s-2 border-rust ps-3 text-sm">{t("home.dailyNone")}</p>
+              {challenge ? (
+                <Link href="/daily" className="btn btn-accent mt-5">
+                  {t("daily.start")}
+                </Link>
+              ) : (
+                <p className="mt-5 border-s-2 border-rust ps-3 text-sm">{t("home.dailyNone")}</p>
+              )}
               <div className="rule-tick mt-6 pt-5">
                 <Countdown targetIso={boundary.toISOString()} serverNowIso={now.toISOString()} />
               </div>
@@ -108,7 +116,9 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
         <Container className="grid md:grid-cols-2">
           <div className="py-10 md:pe-10">
             <h2 className="display text-3xl">{t("home.leaderboardTitle")}</h2>
-            <p className="mt-6 border-t border-rule pt-6 text-ink-soft">{t("home.leaderboardEmpty")}</p>
+            <div className="mt-6">
+              <DailyLeaderboard rows={board} highlight={viewer?.username} emptyText={t("home.leaderboardEmpty")} />
+            </div>
             <Link href="/leaderboards" className="mt-4 inline-block text-sm link-underline">
               {t("nav.leaderboards")}
             </Link>

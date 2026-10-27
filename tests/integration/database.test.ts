@@ -2,18 +2,19 @@ import { Client } from "pg";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { answerPoints } from "@/lib/game/scoring";
 import generated from "@/server/data/countries.json";
-import { as, createUser, failure, resetDatabase, TEST_DATABASE_URL } from "./db";
+import { as, createUser, failure, resetDatabase, TEST_DATABASE_URL, dropTestDatabase } from "./db";
 
 const suite = TEST_DATABASE_URL ? describe : describe.skip;
 
 suite("database (migrations + RLS + functions)", () => {
   let db: Client;
+  let dbUrl: string;
   let alice: string;
   let bob: string;
 
   beforeAll(async () => {
-    const url = await resetDatabase();
-    db = new Client({ connectionString: url });
+    dbUrl = await resetDatabase();
+    db = new Client({ connectionString: dbUrl });
     await db.connect();
     alice = await createUser(db, "alice@example.test", "alice", "he");
     bob = await createUser(db, "bob@example.test", "bob");
@@ -21,6 +22,7 @@ suite("database (migrations + RLS + functions)", () => {
 
   afterAll(async () => {
     await db?.end();
+    await dropTestDatabase();
   });
 
   const questions = (codes: string[][]) => JSON.stringify(codes.map(([country, ...options]) => ({ country, options })));
@@ -167,10 +169,8 @@ suite("database (migrations + RLS + functions)", () => {
 
     it("concurrent submissions for the same question: exactly one succeeds", async () => {
       const sid = await start(alice);
-      const url = new URL(TEST_DATABASE_URL ?? "");
-      url.pathname = "/flagforge_test";
       const clients = await Promise.all([0, 1, 2, 3].map(async () => {
-        const c = new Client({ connectionString: url.toString() });
+        const c = new Client({ connectionString: dbUrl });
         await c.connect();
         return c;
       }));
@@ -234,7 +234,7 @@ suite("database (migrations + RLS + functions)", () => {
         select p.proname from pg_proc p join pg_namespace n on n.oid = p.pronamespace
         where n.nspname = 'public' and p.prosecdef and has_function_privilege('anon', p.oid, 'execute')
         order by 1`);
-      expect(rows.map((r) => r.proname)).toEqual(["username_available"]);
+      expect(rows.map((r) => r.proname)).toEqual(["daily_leaderboard", "username_available"]);
     });
   });
 });

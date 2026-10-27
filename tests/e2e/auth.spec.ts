@@ -138,3 +138,67 @@ test("account deletion removes the user and their data", async ({ page }) => {
   const { data: rows } = await admin.from("profiles").select("id").eq("id", user.id);
   expect(rows).toHaveLength(0);
 });
+
+async function ensureTodayChallenge() {
+  const { data: today } = await admin.rpc("challenge_today");
+  const { data: overview } = await admin.rpc("daily_challenge_overview", { p_from: today, p_to: today });
+  if (overview?.[0]?.status === "published") return;
+  // Same shape the prepare script produces; the database validates before publishing.
+  const questions = [
+    { country: "JP", difficulty: "easy", options: ["JP", "KR", "CN", "VN"] },
+    { country: "FR", difficulty: "easy", options: ["IT", "FR", "BE", "IE"] },
+    { country: "KZ", difficulty: "medium", options: ["UZ", "KG", "KZ", "MN"] },
+    { country: "UY", difficulty: "medium", options: ["AR", "PY", "CL", "UY"] },
+    { country: "KM", difficulty: "hard", options: ["KM", "MU", "SC", "MG"] },
+  ];
+  const { data: id, error } = await admin.rpc("upsert_daily_challenge_draft", { p_date: today, p_questions: questions });
+  if (error) throw new Error(error.message);
+  const { error: pubError } = await admin.rpc("publish_daily_challenge", { p_challenge_id: id });
+  if (pubError) throw new Error(pubError.message);
+}
+
+test("daily challenge: one attempt, refresh resumes, result is ranked", async ({ page }) => {
+  await ensureTodayChallenge();
+  const user = await createConfirmedUser("daily");
+  await login(page, user.email ?? "");
+  await page.goto("/daily");
+  await page.getByRole("link", { name: "Start today's challenge" }).click();
+  await expect(page).toHaveURL(/\/daily\/play/);
+  const options = () => page.getByRole("group", { name: "Which country does this flag belong to?" }).getByRole("button");
+
+  await expect(page.getByText("Question 1 of 5")).toBeVisible();
+  await options().first().click();
+  await expect(page.getByText("Question 2 of 5")).toBeVisible();
+
+  // Refresh mid-attempt: same attempt, next question, clock not reset.
+  await page.reload();
+  await expect(page.getByText("Question 2 of 5")).toBeVisible();
+
+  for (let i = 2; i <= 5; i++) {
+    await expect(page.getByText(`Question ${i} of 5`)).toBeVisible();
+    await options().first().click();
+  }
+  await expect(page.locator("#daily-result")).toBeVisible();
+
+  const { data: attempts } = await admin.from("daily_attempts").select("status, correct_count, elapsed_ms").eq("user_id", user.id);
+  expect(attempts).toHaveLength(1);
+  expect(attempts?.[0]?.status).toBe("completed");
+
+  // Second visit: no new attempt, result shown; the player appears in today's standings.
+  await page.goto("/daily/play");
+  await expect(page.locator("#daily-result")).toBeVisible();
+  const { data: again } = await admin.from("daily_attempts").select("id").eq("user_id", user.id);
+  expect(again).toHaveLength(1);
+  await page.goto("/daily");
+  await expect(page.locator("main table")).toContainText(`@e2e_daily_${run}`.slice(0, 21));
+});
+
+test("guests cannot start a ranked daily attempt", async ({ page, request }) => {
+  await ensureTodayChallenge();
+  await page.goto("/daily");
+  await expect(page.getByRole("link", { name: "Sign in to start a ranked attempt" })).toBeVisible();
+  const res = await request.post("/api/daily/start");
+  expect(res.status()).toBe(401);
+  await page.goto("/daily/play");
+  await expect(page).toHaveURL(/\/login\?next=%2Fdaily%2Fplay/);
+});

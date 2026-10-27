@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { Client } from "pg";
+import { RpcError, type GameRpc } from "@/server/game/rpc";
 
 /**
  * Integration-test database helper. Recreates a throwaway database, applies the test-only Supabase shim and
@@ -10,7 +11,8 @@ import { Client } from "pg";
  * e.g. postgres://postgres@127.0.0.1:54322/postgres . Tests are skipped when it is not set.
  */
 export const TEST_DATABASE_URL = process.env.TEST_DATABASE_URL;
-const DB_NAME = "flagforge_test";
+// Unique per test file/worker so files can run in parallel without dropping each other's database.
+const DB_NAME = `flagforge_test_${process.pid}_${Math.random().toString(36).slice(2, 8)}`;
 const root = process.cwd();
 
 export async function resetDatabase(): Promise<string> {
@@ -72,4 +74,35 @@ export async function createUser(client: Client, email: string, username?: strin
     [email, JSON.stringify({ username, preferred_language: lang })],
   );
   return rows[0].id as string;
+}
+
+/** pg-backed RPC adapter: calls the same SQL functions PostgREST would, as service_role. */
+export function pgRpc(db: Client): GameRpc {
+  return {
+    async call<T>(fn: string, args: Record<string, unknown>): Promise<T> {
+      const keys = Object.keys(args);
+      const params = keys.map((k, i) => `${k} => $${i + 1}${k === "p_questions" ? "::jsonb" : ""}`).join(", ");
+      const values = keys.map((k) => (k === "p_questions" ? JSON.stringify(args[k]) : args[k]));
+      await db.query("begin");
+      try {
+        await db.query("set local role service_role");
+        const { rows } = await db.query(`select public.${fn}(${params}) as r`, values);
+        await db.query("commit");
+        return rows[0].r as T;
+      } catch (err) {
+        await db.query("rollback");
+        throw new RpcError((err as Error).message);
+      }
+    },
+  };
+}
+
+
+/** Drops this file's throwaway database (call in afterAll, after closing clients). */
+export async function dropTestDatabase(): Promise<void> {
+  if (!TEST_DATABASE_URL) return;
+  const admin = new Client({ connectionString: TEST_DATABASE_URL });
+  await admin.connect();
+  await admin.query(`drop database if exists ${DB_NAME} with (force)`);
+  await admin.end();
 }

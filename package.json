@@ -21,7 +21,9 @@
     "test:e2e:auth": "playwright test -c playwright.auth.config.ts",
     "db:link": "supabase link",
     "db:push": "supabase db push",
-    "db:types": "supabase gen types typescript --linked --schema public > src/types/database.ts"
+    "db:types": "supabase gen types typescript --linked --schema public > src/types/database.ts",
+    "daily:prepare": "tsx scripts/prepare-daily.ts",
+    "daily:validate": "tsx scripts/validate-challenges.ts"
   },
   "dependencies": {
     "@fontsource-variable/rubik": "5.3.0",

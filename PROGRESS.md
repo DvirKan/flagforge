@@ -1,6 +1,6 @@
 # FLAGFORGE — Progress
 
-_Last updated: 2026-10-27 (end of Phase 3)_
+_Last updated: 2026-10-27 (end of Phase 4)_
 
 ## Environment notes (build session)
 
@@ -19,8 +19,8 @@ _Last updated: 2026-10-27 (end of Phase 3)_
 | 1 — Foundation & design system | ✅ complete |
 | 2 — Country dataset & standard game | ✅ complete |
 | 3 — Supabase & authentication | ✅ complete (verified against the real project) |
-| 4 — Daily challenge | ⏳ next |
-| 5 — Profiles, achievements, rankings | ⏳ |
+| 4 — Daily challenge | ✅ code complete · ⏳ `db push` + `daily:prepare` + `test:e2e:auth` on the dev machine |
+| 5 — Profiles, achievements, rankings | ⏳ next |
 | 6 — Administration & operational readiness | ⏳ |
 | 7 — Production readiness & deployment | ⏳ |
 
@@ -76,7 +76,24 @@ file name through the bridge did not replace its contents.
 - Built-in Supabase email sender is dev-only; production needs SMTP (docs/SUPABASE.md §4).
 - `script-src 'unsafe-inline'` in CSP (Next.js inline bootstrap); nonce-based CSP is a possible Phase 7 hardening.
 
-## Next steps (Phase 4 — daily challenge)
+## Phase 4 — verified (sandbox)
 
-Daily challenge tables (challenge, questions, options, attempts, answers), publication validation, one attempt
-per user, server-timed attempts, daily leaderboard function, seeding future challenges.
+- [x] Migration `20261027100400_daily_challenges.sql` — see docs/DAILY.md
+- [x] DB tests: publish valid / refuse 5 kinds of invalid challenge, one per date, immutability after publish,
+      unpublish rules, client cannot read questions/options or write attempts, idempotent start (4 concurrent
+      starts → 1 attempt), ordered single answers (4 concurrent → 1), completion + server elapsed time, ranking
+      (perfect first, time, completion tie-break, incomplete excluded, only public fields)
+- [x] Service ↔ DB test: full attempt, refresh resumes with the same start time, replayed token rejected,
+      token bound to user, result on the board
+- [x] Generator: composition and order, distinct countries, 4 valid options, avoids recent flags
+- [x] UI: /daily (rules, state-aware action, countdown, standings), /daily/play (focused, auto-start/resume,
+      server-anchored clock, 0.9 s feedback, result + review), real daily tab on /leaderboards with day
+      navigation, home page shows live status and today's top 5
+- [x] `daily:prepare` / `daily:validate` scripts
+- [ ] Real-project e2e (2 new scenarios in `test:e2e:auth`) — to run on the dev machine
+
+Check results: typecheck/lint pass · unit 61 · DB 41/41 · e2e (guest) 49 pass / 5 skipped.
+
+## Next steps (Phase 5)
+
+Weekly/monthly rankings (Monday weeks, Asia/Jerusalem), profile statistics and streaks, achievements, world map.

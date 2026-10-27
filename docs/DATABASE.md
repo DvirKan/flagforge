@@ -8,6 +8,7 @@ PostgreSQL on Supabase. Every change is a versioned migration in `supabase/migra
 | `20261027100100_countries.sql` | `countries` table, constraints, public read policy |
 | `20261027100200_countries_data.sql` | **generated** — 193 countries (idempotent upsert) |
 | `20261027100300_standard_games.sql` | `game_sessions`, `game_session_questions`, scoring, start/answer/review functions |
+| `20261027100400_daily_challenges.sql` | daily challenges, questions, options, attempts, answers; validation, publication, immutability, ranked attempts, `daily_leaderboard()` — see docs/DAILY.md |
 
 ## Security model
 
