@@ -58,5 +58,8 @@
   },
   "overrides": {
     "postcss": "8.5.31"
+  },
+  "allowScripts": {
+    "supabase@2.122.0": true
   }
 }
