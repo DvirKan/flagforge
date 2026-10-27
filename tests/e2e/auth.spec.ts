@@ -35,7 +35,7 @@ async function login(page: Page, address: string, password = PASSWORD) {
   await page.goto("/login");
   await page.fill("#email", address);
   await page.fill("#password", password);
-  await page.click("form button[type=submit]");
+  await page.click("main form button[type=submit]");
   await page.waitForURL(/\/profile/);
 }
 
@@ -57,13 +57,13 @@ test("profile is created on signup and the email verification link signs the use
   await page.goto("/login");
   await page.fill("#email", address);
   await page.fill("#password", PASSWORD);
-  await page.click("form button[type=submit]");
-  await expect(page.locator("form [role=alert]")).toContainText("Confirm your email");
+  await page.click("main form button[type=submit]");
+  await expect(page.locator("main form [role=alert]")).toContainText("Confirm your email");
   // The link our email template points to.
   await page.goto(`/auth/confirm?token_hash=${data.properties?.hashed_token}&type=signup&next=${encodeURIComponent("/profile?welcome=1")}`);
   await expect(page).toHaveURL(/\/profile\?welcome=1/);
   await expect(page.getByText("Your email is confirmed")).toBeVisible();
-  await expect(page.getByText(`@e2e_v_${run}`.slice(0, 21))).toBeVisible();
+  await expect(page.locator("main").getByText(`@e2e_v_${run}`.slice(0, 21))).toBeVisible();
 });
 
 test("a signed-in player's game is saved and appears on the profile", async ({ page }) => {
@@ -98,7 +98,7 @@ test("password recovery link lets the user set a new password", async ({ page })
   await expect(page).toHaveURL(/\/reset-password/);
   const newPassword = `${PASSWORD}-new`;
   await page.fill("#password", newPassword);
-  await page.click("form button[type=submit]");
+  await page.click("main form button[type=submit]");
   await expect(page).toHaveURL(/\/profile\?password=updated/);
   await page.context().clearCookies();
   await login(page, user.email ?? "", newPassword);
