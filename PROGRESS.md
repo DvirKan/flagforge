@@ -19,7 +19,7 @@ _Last updated: 2026-10-27 (end of Phase 4)_
 | 1 — Foundation & design system | ✅ complete |
 | 2 — Country dataset & standard game | ✅ complete |
 | 3 — Supabase & authentication | ✅ complete (verified against the real project) |
-| 4 — Daily challenge | ✅ code complete · ⏳ `db push` + `daily:prepare` + `test:e2e:auth` on the dev machine |
+| 4 — Daily challenge | ✅ complete (verified against the real project) |
 | 5 — Profiles, achievements, rankings | ⏳ next |
 | 6 — Administration & operational readiness | ⏳ |
 | 7 — Production readiness & deployment | ⏳ |
@@ -90,7 +90,8 @@ file name through the bridge did not replace its contents.
       server-anchored clock, 0.9 s feedback, result + review), real daily tab on /leaderboards with day
       navigation, home page shows live status and today's top 5
 - [x] `daily:prepare` / `daily:validate` scripts
-- [ ] Real-project e2e (2 new scenarios in `test:e2e:auth`) — to run on the dev machine
+- [x] Real project: migration applied, 14 challenges published (2026-10-27 → 11-09), `daily:validate` clean,
+      `test:e2e:auth` 8/8 pass (incl. daily attempt + refresh resume + guest block)
 
 Check results: typecheck/lint pass · unit 61 · DB 41/41 · e2e (guest) 49 pass / 5 skipped.
 
