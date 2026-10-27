@@ -103,6 +103,18 @@ suite("database (migrations + RLS + functions)", () => {
       expect(Object.keys(pub[0]).sort()).toEqual(["avatar_url", "created_at", "display_name", "username"]);
     });
 
+    it("accept Hebrew and mixed-case usernames; uniqueness ignores case", async () => {
+      const heb = await createUser(db, "heb@example.test", "דביר_כ");
+      const mixed = await createUser(db, "mixed@example.test", "Dvir_K");
+      const dup = await createUser(db, "dup@example.test", "dvir_k");
+      const { rows } = await db.query("select id, username from public.profiles where id = any($1)", [[heb, mixed, dup]]);
+      const byId = Object.fromEntries(rows.map((r) => [r.id, r.username]));
+      expect(byId[heb]).toBe("דביר_כ");
+      expect(byId[mixed]).toBe("Dvir_K");
+      expect(byId[dup]).toMatch(/^player_/); // "dvir_k" is taken case-insensitively
+      expect(await failure(() => db.query("update public.profiles set username = 'DVIR_K' where id = $1", [heb]))).toMatch(/duplicate key/);
+    });
+
     it("username availability check", async () => {
       const r = await as(db, "anon", null, async () =>
         (await db.query("select public.username_available('alice') a, public.username_available('ALICE') b, public.username_available('fresh_name') c, public.username_available('x') d")).rows[0],

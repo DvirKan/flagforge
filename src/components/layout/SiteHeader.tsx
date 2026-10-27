@@ -43,7 +43,7 @@ export async function SiteHeader() {
           <LanguageSwitcher className="inline-flex size-11 items-center justify-center rounded-full border border-ink/20 text-ink hover:bg-paper disabled:opacity-50" />
           {viewer ? (
             <>
-              <Link href="/profile" className="hidden items-center gap-2 px-3 py-2 text-[0.9375rem] md:inline-flex" dir="ltr">
+              <Link href="/profile" className="hidden items-center gap-2 px-3 py-2 text-[0.9375rem] md:inline-flex" dir="auto">
                 <span aria-hidden="true" className="size-2 rounded-full bg-success" />
                 <span className="link-underline">{viewer.username}</span>
               </Link>

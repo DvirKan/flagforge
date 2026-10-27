@@ -42,7 +42,7 @@ export async function DailyLeaderboard({ rows, highlight, emptyText }: { rows: L
                         {name}
                         {mine ? <span className="ms-2 rounded-full bg-rust-ink px-2 py-0.5 text-[0.6875rem] font-medium text-paper">{t("daily.you")}</span> : null}
                       </span>
-                      <span className="block truncate text-xs text-muted" dir="ltr">@{r.username}</span>
+                      {r.displayName ? <span className="block truncate text-xs text-muted" dir="auto">@{r.username}</span> : null}
                     </span>
                   </span>
                 </td>

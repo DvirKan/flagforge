@@ -25,7 +25,7 @@ export function Field({
   state: FormState;
   defaultValue?: string;
   required?: boolean;
-  dir?: "ltr" | "rtl";
+  dir?: "ltr" | "rtl" | "auto";
   maxLength?: number;
 }) {
   const { t } = useI18n();

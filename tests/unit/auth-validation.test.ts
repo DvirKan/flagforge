@@ -20,7 +20,10 @@ describe("safeNextPath (open-redirect protection)", () => {
 describe("registration validation", () => {
   it("normalizes and accepts valid input", () => {
     const r = registerSchema.parse({ username: "  Dvir_K ", email: " Dvir@Example.COM ", password: "longenough" });
-    expect(r).toEqual({ username: "dvir_k", email: "dvir@example.com", password: "longenough" });
+    expect(r).toEqual({ username: "Dvir_K", email: "dvir@example.com", password: "longenough" });
+    expect(registerSchema.safeParse({ username: "דביר_2026", email: "a@b.co", password: "longenough" }).success).toBe(true);
+    expect(registerSchema.safeParse({ username: "שלום עולם", email: "a@b.co", password: "longenough" }).success).toBe(false);
+    expect(registerSchema.safeParse({ username: "ADMIN", email: "a@b.co", password: "longenough" }).success).toBe(false);
   });
   it("rejects bad usernames, emails and passwords with i18n keys", () => {
     const r = registerSchema.safeParse({ username: "a b", email: "nope", password: "short" });

@@ -75,7 +75,7 @@ test.describe("mobile navigation", () => {
     await page.keyboard.press("Escape");
     await expect(dialog).toBeHidden();
     await page.getByRole("button", { name: "Open menu" }).click();
-    await dialog.getByRole("link", { name: /Leaderboards/ }).click();
+    await dialog.getByRole("link", { name: /Hall of Fame/ }).click();
     await expect(page).toHaveURL(/\/leaderboards$/);
     await expect(dialog).toBeHidden();
   });

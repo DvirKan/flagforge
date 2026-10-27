@@ -62,7 +62,6 @@ export function Countdown({ targetIso, serverNowIso }: { targetIso: string; serv
       <p className="sr-only">
         {t("countdown.label")} {hours} {t("countdown.hours")} {minutes} {t("countdown.minutes")}
       </p>
-      <p className="mt-2 text-xs text-muted">{t("countdown.boundary")}</p>
     </div>
   );
 }

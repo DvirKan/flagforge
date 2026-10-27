@@ -40,7 +40,7 @@ export default async function ProfilePage({ searchParams }: { searchParams: Prom
         title={viewer.displayName ?? viewer.username}
         lede={
           <>
-            <span dir="ltr">@{viewer.username}</span> · {t("profile.memberSince", { date: memberSince })}
+            <span dir="auto">@{viewer.username}</span> · {t("profile.memberSince", { date: memberSince })}
           </>
         }
         aside={

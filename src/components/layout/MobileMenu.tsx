@@ -81,7 +81,7 @@ export function MobileMenu({ username }: { username: string | null }) {
                   {t("auth.signOut")}
                 </button>
               </form>
-              <p className="eyebrow col-span-2" dir="ltr">
+              <p className="eyebrow col-span-2" dir="auto">
                 @{username}
               </p>
             </div>

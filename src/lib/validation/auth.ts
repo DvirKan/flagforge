@@ -6,12 +6,13 @@ import { z } from "zod";
  */
 export const emailSchema = z.string().trim().toLowerCase().max(254, "authErrors.invalidEmail").email("authErrors.invalidEmail");
 export const passwordSchema = z.string().min(8, "authErrors.passwordTooShort").max(72, "authErrors.passwordTooLong");
+// English letters (any case), Hebrew letters (א–ת incl. final forms), digits, underscore. Mirrors public.is_valid_username().
+export const USERNAME_PATTERN = /^[A-Za-z0-9_\u05D0-\u05EA]{3,20}$/;
 export const usernameSchema = z
   .string()
   .trim()
-  .toLowerCase()
-  .regex(/^[a-z0-9_]{3,20}$/, "authErrors.usernameInvalid")
-  .refine((v) => !RESERVED_USERNAMES.has(v), "authErrors.usernameTaken");
+  .regex(USERNAME_PATTERN, "authErrors.usernameInvalid")
+  .refine((v) => !RESERVED_USERNAMES.has(v.toLowerCase()), "authErrors.usernameTaken");
 
 // Mirrors public.is_valid_username() in the database.
 export const RESERVED_USERNAMES = new Set(["admin", "administrator", "root", "system", "support", "flagforge", "moderator", "null", "undefined"]);

@@ -36,7 +36,7 @@ export default async function LeaderboardsPage({ searchParams }: { searchParams:
   const date = validDate(rawDate, today);
   const [rows, viewer] = period === "daily" ? await Promise.all([getDailyLeaderboard(date, 100), getViewer()]) : [[], null];
   const { year, month, day } = parseCalendarDate(date);
-  const dateLabel = new Intl.DateTimeFormat(INTL_LOCALE[locale], { timeZone: "UTC", dateStyle: "full" }).format(new Date(Date.UTC(year, month - 1, day)));
+  const dateLabel = new Intl.DateTimeFormat(INTL_LOCALE[locale], { timeZone: "UTC", dateStyle: "long" }).format(new Date(Date.UTC(year, month - 1, day)));
 
   return (
     <Container>
@@ -59,7 +59,7 @@ export default async function LeaderboardsPage({ searchParams }: { searchParams:
           ))}
         </ul>
       </nav>
-      <p className="mt-6 text-sm text-muted">{period === "daily" ? t("leaderboards.dailyRule") : t("leaderboards.periodRule")}</p>
+      {period !== "daily" ? <p className="mt-6 text-sm text-muted">{t("leaderboards.periodRule")}</p> : null}
 
       {period === "daily" ? (
         <>
@@ -67,7 +67,7 @@ export default async function LeaderboardsPage({ searchParams }: { searchParams:
             <Link href={`/leaderboards?date=${addCalendarDays(date, -1)}`} className="text-sm link-underline">
               {t("leaderboards.prevDay")}
             </Link>
-            <p className="display text-xl">{dateLabel}</p>
+            <p className="display text-center text-lg md:text-xl">{dateLabel}</p>
             {date < today ? (
               <Link href={`/leaderboards?date=${addCalendarDays(date, 1)}`} className="text-sm link-underline">
                 {t("leaderboards.nextDay")}

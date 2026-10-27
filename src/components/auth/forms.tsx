@@ -63,7 +63,7 @@ export function RegisterForm() {
   return (
     <form action={action} className="grid gap-5" noValidate>
       <FormAlert message={state.message} />
-      <Field name="username" autoComplete="username" label={t("auth.username")} hint={t("auth.usernameHint")} state={state} dir="ltr" maxLength={20} />
+      <Field name="username" autoComplete="username" label={t("auth.username")} hint={t("auth.usernameHint")} state={state} dir="auto" maxLength={20} />
       <Field name="email" type="email" autoComplete="email" label={t("auth.email")} state={state} dir="ltr" maxLength={254} />
       <Field name="password" type="password" autoComplete="new-password" label={t("auth.password")} hint={t("auth.passwordHint")} state={state} dir="ltr" defaultValue="" maxLength={72} />
       <SubmitButton label={t("auth.submitRegister")} />

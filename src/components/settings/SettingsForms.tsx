@@ -16,7 +16,7 @@ export function ProfileForm({ username, displayName }: { username: string; displ
   return (
     <form action={action} className="grid gap-5" noValidate>
       <FormAlert message={state.message} tone={state.status === "success" ? "success" : "error"} />
-      <Field name="username" label={t("auth.username")} hint={t("auth.usernameHint")} state={state} defaultValue={state.values?.username ?? username} dir="ltr" maxLength={20} />
+      <Field name="username" label={t("auth.username")} hint={t("auth.usernameHint")} state={state} defaultValue={state.values?.username ?? username} dir="auto" maxLength={20} />
       <Field name="displayName" label={t("settings.displayName")} hint={t("settings.displayNameHint")} state={state} defaultValue={state.values?.displayName ?? displayName ?? ""} required={false} maxLength={40} />
       <SubmitButton label={t("settings.save")} />
     </form>

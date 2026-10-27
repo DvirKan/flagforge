@@ -190,7 +190,7 @@ test("daily challenge: one attempt, refresh resumes, result is ranked", async ({
   const { data: again } = await admin.from("daily_attempts").select("id").eq("user_id", user.id);
   expect(again).toHaveLength(1);
   await page.goto("/daily");
-  await expect(page.locator("main table")).toContainText(`@e2e_daily_${run}`.slice(0, 21));
+  await expect(page.locator("main table")).toContainText(`e2e_daily_${run}`.slice(0, 20));
 });
 
 test("guests cannot start a ranked daily attempt", async ({ page, request }) => {
