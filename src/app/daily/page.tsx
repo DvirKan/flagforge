@@ -82,7 +82,7 @@ export default async function DailyPage() {
             ))}
           </ol>
         </section>
-        <aside className="grid content-start gap-6 rounded-sm bg-paper p-6 shadow-[0_1px_0_var(--color-rule)] md:p-8 lg:col-span-5">
+        <aside className="grid content-start gap-6 rounded-2xl bg-paper p-6 shadow-card md:p-8 lg:col-span-5">
           {action}
           <div className="border-t border-rule pt-5">
             <Countdown targetIso={nextDayBoundary(now, tz).toISOString()} serverNowIso={now.toISOString()} />

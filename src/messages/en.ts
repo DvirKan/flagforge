@@ -59,6 +59,8 @@ const en = {
     boundary: "Rolls over at midnight, Jerusalem time.",
   },
   home: {
+    welcomeBack: "Welcome back, {name}.",
+    mysteryFlags: "Five flags are waiting. Same for everyone.",
     eyebrow: "A geography game",
     title: "Know the world by its colours.",
     lede: "Identify countries from their national flags. Play at your own pace, or take on the same five flags as everyone else today and race for the fastest perfect run.",

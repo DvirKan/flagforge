@@ -40,7 +40,7 @@ export async function SiteHeader() {
         </nav>
 
         <div className="ms-auto flex items-center gap-2 lg:ms-0">
-          <LanguageSwitcher className="inline-flex size-11 items-center justify-center border border-ink/20 text-ink hover:bg-paper disabled:opacity-50" />
+          <LanguageSwitcher className="inline-flex size-11 items-center justify-center rounded-full border border-ink/20 text-ink hover:bg-paper disabled:opacity-50" />
           {viewer ? (
             <>
               <Link href="/profile" className="hidden items-center gap-2 px-3 py-2 text-[0.9375rem] md:inline-flex" dir="ltr">

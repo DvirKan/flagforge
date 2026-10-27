@@ -9,7 +9,7 @@ import type { DailyResult } from "@/server/daily/service";
 export const DailyResultView = forwardRef<HTMLHeadingElement, { result: DailyResult }>(function DailyResultView({ result }, ref) {
   const { locale, t } = useI18n();
   return (
-    <section aria-labelledby="daily-result" className="border border-ink bg-paper p-5 md:p-8">
+    <section aria-labelledby="daily-result" className="rounded-2xl bg-paper p-5 shadow-card md:p-8">
       <p className="eyebrow text-rust-ink">{t("daily.resultTitle")}</p>
       <h2 id="daily-result" ref={ref} tabIndex={-1} className="display mt-2 text-4xl outline-none md:text-5xl">
         {result.perfect ? t("daily.perfect") : t("daily.resultLine", { correct: result.correct })}

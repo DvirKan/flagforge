@@ -33,7 +33,7 @@ export const OptionList = forwardRef<HTMLButtonElement, { options: { name: Local
                   aria-pressed={state.chosen === i}
                   onClick={() => onChoose(i)}
                   className={[
-                    "group grid min-h-12 [@media(max-height:640px)]:min-h-11 [@media(max-height:640px)]:py-2 w-full grid-cols-[1.5rem_minmax(0,1fr)_1.5rem] items-center gap-3 border px-4 py-2.5 text-start text-base transition-colors md:min-h-14 md:grid-cols-[2rem_minmax(0,1fr)_1.5rem] md:py-3 md:text-[1.0625rem]",
+                    "group grid min-h-12 [@media(max-height:640px)]:min-h-11 [@media(max-height:640px)]:py-2 w-full grid-cols-[1.5rem_minmax(0,1fr)_1.5rem] items-center gap-3 rounded-xl border px-4 py-2.5 text-start text-base transition-colors md:min-h-14 md:grid-cols-[2rem_minmax(0,1fr)_1.5rem] md:py-3 md:text-[1.0625rem]",
                     isCorrect
                       ? "border-success bg-success-wash text-ink"
                       : isWrongChoice

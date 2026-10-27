@@ -14,8 +14,8 @@ export function FlagPlate({ src, revealedName }: { src: string; revealedName?: s
 
   return (
     <figure className="relative mx-auto w-full max-w-[calc(28dvh*4/3+1rem)] [@media(max-height:640px)]:max-w-[calc(19dvh*4/3+1rem)] lg:max-w-none">
-      <div className="relative rounded-sm border border-rule bg-paper p-2 sm:p-4">
-        <div className="relative aspect-[4/3] w-full overflow-hidden bg-parchment-deep">
+      <div className="relative rounded-2xl bg-paper p-2 shadow-card sm:p-4">
+        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-parchment-deep">
           {state !== "error" ? (
             // eslint-disable-next-line @next/next/no-img-element -- dynamic, opaque same-origin SVG; next/image adds nothing here
             <img

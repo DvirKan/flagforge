@@ -27,7 +27,7 @@ export function MobileMenu({ username }: { username: string | null }) {
     <>
       <button
         type="button"
-        className="inline-flex size-11 items-center justify-center border border-ink/20 text-ink"
+        className="inline-flex size-11 items-center justify-center rounded-full border border-ink/20 text-ink"
         aria-label={t("a11y.openMenu")}
         aria-haspopup="dialog"
         aria-expanded={open}
@@ -46,7 +46,7 @@ export function MobileMenu({ username }: { username: string | null }) {
             <span className="eyebrow">{t("a11y.primaryNav")}</span>
             <button
               type="button"
-              className="inline-flex size-11 items-center justify-center border border-ink/20"
+              className="inline-flex size-11 items-center justify-center rounded-full border border-ink/20"
               aria-label={t("a11y.closeMenu")}
               onClick={close}
             >

@@ -31,8 +31,11 @@
   --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
 
 
-  --radius-xs: 2px;
-  --radius-sm: 3px;
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+
+  --shadow-card: 0 1px 2px rgb(23 44 59 / 0.06), 0 8px 24px -12px rgb(23 44 59 / 0.18);
+  --shadow-lift: 0 2px 4px rgb(23 44 59 / 0.08), 0 18px 40px -16px rgb(23 44 59 / 0.35);
 
   --ease-atlas: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
@@ -100,10 +103,10 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    min-height: 44px;
-    padding-inline: 1.25rem;
+    min-height: 46px;
+    padding-inline: 1.4rem;
     border: 1px solid var(--color-ink);
-    border-radius: var(--radius-xs);
+    border-radius: 999px;
     font-weight: 500;
     font-size: 0.9375rem;
     transition:
@@ -136,6 +139,7 @@
   }
   .btn-ghost {
     background: transparent;
+    border-color: color-mix(in srgb, var(--color-ink) 35%, transparent);
     color: var(--color-ink);
   }
   .btn-ghost:hover:not(:disabled) {
@@ -154,7 +158,7 @@
     padding-inline: 0.875rem;
     background: var(--color-paper);
     border: 1px solid var(--color-control);
-    border-radius: var(--radius-xs);
+    border-radius: var(--radius-sm);
     color: var(--color-ink);
   }
   .field-input:focus-visible {

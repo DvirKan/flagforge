@@ -6,7 +6,7 @@ import { Container } from "@/components/ui/Container";
 export function AuthShell({ title, children, footer }: { title: string; children: ReactNode; footer?: ReactNode }) {
   return (
     <Container className="py-10 md:py-16">
-      <div className="mx-auto max-w-md rounded-sm bg-paper p-6 shadow-[0_1px_0_var(--color-rule)] md:p-10">
+      <div className="mx-auto max-w-md rounded-2xl bg-paper p-6 shadow-card md:p-10">
         <h1 className="display text-3xl md:text-4xl">{title}</h1>
         <div className="mt-6">{children}</div>
         {footer ? <div className="mt-8 border-t border-rule pt-5 text-sm">{footer}</div> : null}

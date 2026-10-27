@@ -25,7 +25,7 @@ export function ProgressTicks({ total, results, current }: { total: number; resu
                 : i === current
                   ? "border-ink bg-transparent"
                   : "border-rule-strong bg-transparent";
-          return <span key={i} className={`h-2 flex-1 border ${cls}`} />;
+          return <span key={i} className={`h-2 flex-1 rounded-full border ${cls}`} />;
         })}
       </div>
     </div>
