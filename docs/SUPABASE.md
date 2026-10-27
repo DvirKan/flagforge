@@ -57,8 +57,9 @@ in filename order. (The CLI is preferred because it tracks which migrations ran.
 - Minimum password length: **8**
 - Secure email change: on
 
-**Authentication → Emails → Templates** — use links that work on any device (the default PKCE link only
-works in the browser that signed up). Replace the link in:
+**Authentication → Emails → Templates** — Supabase only allows editing templates once **custom SMTP** is set
+up (§4). Until then the default templates are used: their links work, but only in the browser where the user
+signed up / requested the reset (PKCE). After configuring SMTP, use links that work on any device:
 
 *Confirm signup*
 ```html
