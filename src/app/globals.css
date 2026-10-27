@@ -30,8 +30,6 @@
   --font-sans: "Rubik Variable", "Rubik", system-ui, "Segoe UI", Arial, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
 
-  --text-eyebrow: 0.6875rem;
-  --text-eyebrow--letter-spacing: 0.14em;
 
   --radius-xs: 2px;
   --radius-sm: 3px;
@@ -77,19 +75,12 @@
 }
 
 @layer components {
-  /* Small editorial label, e.g. "PLATE II · DAILY". Mono is kept only for numbers (timers, coordinates). */
+  /* Small secondary label (sentence case, no tracking — kept quiet on purpose). */
   .eyebrow {
     font-family: var(--font-sans);
     font-weight: 500;
-    font-size: var(--text-eyebrow);
-    letter-spacing: var(--text-eyebrow--letter-spacing);
-    text-transform: uppercase;
+    font-size: 0.8125rem;
     color: var(--color-muted);
-  }
-  /* Plex Mono has no Hebrew glyphs; Hebrew labels use the Hebrew sans instead of a fallback monospace. */
-  html[lang="he"] .eyebrow {
-    font-size: 0.75rem;
-    letter-spacing: 0.02em;
   }
 
   .display {
@@ -97,30 +88,6 @@
     font-weight: 600;
     letter-spacing: -0.01em;
     line-height: 1.02;
-  }
-
-  /* Hairline rules with a tick at the start — cartographic scale-bar feel. */
-  .rule-tick {
-    position: relative;
-    border-top: 1px solid var(--color-ink);
-  }
-  .rule-tick::before {
-    content: "";
-    position: absolute;
-    inset-inline-start: 0;
-    top: -4px;
-    width: 1px;
-    height: 7px;
-    background: var(--color-ink);
-  }
-
-  /* Faint graticule (latitude/longitude grid) used behind hero areas. */
-  .graticule {
-    background-image:
-      linear-gradient(to right, color-mix(in srgb, var(--color-ink) 7%, transparent) 1px, transparent 1px),
-      linear-gradient(to bottom, color-mix(in srgb, var(--color-ink) 7%, transparent) 1px, transparent 1px);
-    background-size: 48px 48px;
-    background-position: -1px -1px;
   }
 
   .tabular {

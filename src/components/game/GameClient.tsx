@@ -189,7 +189,6 @@ export function GameClient({ difficulty }: { difficulty: Difficulty }) {
   }
 
   const { question, reveal } = state;
-  const figure = `${String(question.index + 1).padStart(2, "0")} / ${String(question.total).padStart(2, "0")}`;
 
   return (
     <div className="pt-3 md:pt-10">
@@ -205,7 +204,7 @@ export function GameClient({ difficulty }: { difficulty: Difficulty }) {
 
       <div className="mt-3 grid gap-4 [@media(max-height:640px)]:mt-2 [@media(max-height:640px)]:gap-2 md:mt-6 md:gap-8 lg:grid-cols-12 lg:gap-12">
         <div className="lg:col-span-7">
-          <FlagPlate key={question.flagUrl} src={question.flagUrl} figure={figure} revealedName={reveal ? reveal.result.country.name[locale] : undefined} />
+          <FlagPlate key={question.flagUrl} src={question.flagUrl} revealedName={reveal ? reveal.result.country.name[locale] : undefined} />
         </div>
         <div className="lg:col-span-5">
           <OptionList

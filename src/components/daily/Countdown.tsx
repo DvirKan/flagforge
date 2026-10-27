@@ -46,9 +46,9 @@ export function Countdown({ targetIso, serverNowIso }: { targetIso: string; serv
 
   return (
     <div>
-      <p className="eyebrow">{t("countdown.label")}</p>
+      <p className="text-sm text-muted">{t("countdown.label")}</p>
       {/* Visual clock is hidden from screen readers (it changes every second); a coarse label is announced instead. */}
-      <div className="mt-2 flex items-start gap-1 font-mono text-4xl text-ink tabular md:text-5xl" dir="ltr" aria-hidden="true">
+      <div className="mt-1 flex items-start gap-1 font-mono text-3xl text-ink tabular md:text-4xl" dir="ltr" aria-hidden="true">
         {units.map((u, i) => (
           <span key={u.label} className="flex items-start">
             {i > 0 ? <span className="px-0.5 text-rule-strong">:</span> : null}
@@ -62,7 +62,7 @@ export function Countdown({ targetIso, serverNowIso }: { targetIso: string; serv
       <p className="sr-only">
         {t("countdown.label")} {hours} {t("countdown.hours")} {minutes} {t("countdown.minutes")}
       </p>
-      <p className="mt-3 text-sm text-muted">{t("countdown.boundary")}</p>
+      <p className="mt-2 text-xs text-muted">{t("countdown.boundary")}</p>
     </div>
   );
 }

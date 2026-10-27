@@ -30,7 +30,7 @@ export function LanguageSwitcher({ className }: { className?: string }) {
         })
       }
     >
-      <span aria-hidden="true" className="font-mono text-[0.6875rem] tracking-[0.12em] uppercase">
+      <span aria-hidden="true" className="text-sm font-medium">
         {target === "he" ? "עב" : "EN"}
       </span>
     </button>

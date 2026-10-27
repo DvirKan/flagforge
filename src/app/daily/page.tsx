@@ -40,7 +40,7 @@ export default async function DailyPage() {
   } else if (attempt?.status === "completed") {
     action = (
       <div>
-        <p className="eyebrow text-rust-ink">{t("daily.resultTitle")}</p>
+        <p className="text-sm text-muted">{t("daily.resultTitle")}</p>
         <p className="display mt-2 text-3xl">{attempt.correct === 5 ? t("daily.perfect") : t("daily.resultLine", { correct: attempt.correct })}</p>
         <p className="mt-1 font-mono text-2xl tabular" dir="ltr">
           {formatDuration(attempt.elapsedMs ?? 0, { tenths: true })}
@@ -72,28 +72,25 @@ export default async function DailyPage() {
 
   return (
     <Container>
-      <PageHeader plate="II" eyebrow={t("daily.eyebrow")} title={t("daily.title")} lede={dateLabel} />
-      <div className="mt-10 grid gap-10 lg:grid-cols-12">
+      <PageHeader title={t("daily.title")} lede={dateLabel} />
+      <div className="mt-6 grid gap-10 lg:grid-cols-12">
         <section aria-labelledby="rules-title" className="lg:col-span-7">
-          <h2 id="rules-title" className="eyebrow">{t("daily.rulesTitle")}</h2>
-          <ol className="mt-4 border-t border-ink">
+          <h2 id="rules-title" className="display text-2xl">{t("daily.rulesTitle")}</h2>
+          <ol className="mt-4 grid list-decimal gap-3 ps-5 text-ink-soft marker:text-muted">
             {rules.map((rule, i) => (
-              <li key={i} className="grid grid-cols-[2.5rem_minmax(0,1fr)] gap-2 border-b border-rule py-4">
-                <span className="font-mono text-sm text-rust-ink tabular">{String(i + 1).padStart(2, "0")}</span>
-                <span>{rule}</span>
-              </li>
+              <li key={i}>{rule}</li>
             ))}
           </ol>
         </section>
-        <aside className="grid content-start gap-6 border border-ink bg-paper p-6 lg:col-span-5">
+        <aside className="grid content-start gap-6 rounded-sm bg-paper p-6 shadow-[0_1px_0_var(--color-rule)] md:p-8 lg:col-span-5">
           {action}
-          <div className="rule-tick pt-5">
+          <div className="border-t border-rule pt-5">
             <Countdown targetIso={nextDayBoundary(now, tz).toISOString()} serverNowIso={now.toISOString()} />
           </div>
         </aside>
       </div>
       <section aria-labelledby="board-title" className="mt-14">
-        <h2 id="board-title" className="display text-3xl">
+        <h2 id="board-title" className="display text-2xl">
           {t("daily.leaderboardTitle")}
         </h2>
         <div className="mt-4">

@@ -37,8 +37,6 @@ export default async function ProfilePage({ searchParams }: { searchParams: Prom
   return (
     <Container>
       <PageHeader
-        plate="VI"
-        eyebrow={t("profile.eyebrow")}
         title={viewer.displayName ?? viewer.username}
         lede={
           <>
@@ -69,7 +67,7 @@ export default async function ProfilePage({ searchParams }: { searchParams: Prom
           <div className="mt-4 overflow-x-auto">
             <table className="w-full min-w-[32rem] border-collapse text-start text-sm">
               <thead>
-                <tr className="border-b border-ink text-start">
+                <tr className="border-b border-rule text-start">
                   {[t("profile.colDate"), t("profile.colDifficulty"), t("profile.colResult"), t("profile.colTime"), t("profile.colScore")].map((h) => (
                     <th key={h} scope="col" className="eyebrow py-2 text-start font-normal">
                       {h}

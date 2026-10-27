@@ -56,15 +56,14 @@ export function MobileMenu({ username }: { username: string | null }) {
           <nav className="mt-2 flex-1">
             <ol>
               {[{ href: "/", label: "nav.home" as const }, ...primaryNav, { href: "/profile", label: "nav.profile" as const }].map(
-                (item, index) => (
+                (item) => (
                   <li key={item.href} className="border-b border-rule">
                     <NavLink
                       href={item.href}
                       onNavigate={close}
-                      className="flex items-baseline gap-4 py-4"
+                      className="block py-4"
                       activeClassName="text-rust-ink"
                     >
-                      <span className="font-mono text-xs text-muted tabular">{String(index).padStart(2, "0")}</span>
                       <span className="display text-3xl">{t(item.label)}</span>
                     </NavLink>
                   </li>

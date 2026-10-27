@@ -171,7 +171,7 @@ export function DailyClient() {
       <ProgressTicks total={question.total} results={phase.results} current={question.index} />
       <div className="mt-4 grid gap-4 md:gap-8 lg:grid-cols-12">
         <div className="lg:col-span-7">
-          <FlagPlate key={question.flagUrl} src={question.flagUrl} figure={`${question.index + 1} / ${question.total}`} revealedName={reveal ? reveal.country.name[locale] : undefined} />
+          <FlagPlate key={question.flagUrl} src={question.flagUrl} revealedName={reveal ? reveal.country.name[locale] : undefined} />
         </div>
         <div className="lg:col-span-5">
           <OptionList ref={firstOption} options={question.options} state={{ chosen: phase.chosen, correct: reveal ? reveal.correctIndex : null, pending: phase.pending }} onChoose={(i) => void choose(i)} />

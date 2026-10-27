@@ -13,7 +13,7 @@ export default async function Page() {
   const { t } = await getI18n();
   return (
     <Container>
-      <PageHeader plate="V" eyebrow={t("achievements.eyebrow")} title={t("achievements.title")} lede={t("achievements.lede")} />
+      <PageHeader title={t("achievements.title")} lede={t("achievements.lede")} />
       <ConstructionNotice phase={5} />
     </Container>
   );

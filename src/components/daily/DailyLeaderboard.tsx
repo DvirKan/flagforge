@@ -13,7 +13,7 @@ export async function DailyLeaderboard({ rows, highlight, emptyText }: { rows: L
     <div className="overflow-x-auto">
       <table className="w-full min-w-[22rem] border-collapse text-sm">
         <thead>
-          <tr className="border-b border-ink">
+          <tr className="border-b border-rule">
             <th scope="col" className="eyebrow w-10 py-2 text-start font-normal">{t("daily.colRank")}</th>
             <th scope="col" className="eyebrow py-2 text-start font-normal">{t("daily.colPlayer")}</th>
             <th scope="col" className="eyebrow py-2 text-start font-normal">{t("daily.colCorrect")}</th>

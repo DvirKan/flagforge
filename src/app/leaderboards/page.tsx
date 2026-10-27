@@ -40,7 +40,7 @@ export default async function LeaderboardsPage({ searchParams }: { searchParams:
 
   return (
     <Container>
-      <PageHeader plate="III" eyebrow={t("leaderboards.eyebrow")} title={t("leaderboards.title")} />
+      <PageHeader title={t("leaderboards.title")} />
       <nav aria-label={t("leaderboards.title")} className="mt-8">
         <ul className="flex gap-1 border-b border-rule">
           {PERIODS.map((p) => (

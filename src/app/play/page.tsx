@@ -15,8 +15,6 @@ export default async function PlayPage() {
   return (
     <Container>
       <PageHeader
-        plate="I"
-        eyebrow={t("play.eyebrow")}
         title={t("play.title")}
         lede={t("play.lede", { count: gameConfig.standardGameLength })}
       />

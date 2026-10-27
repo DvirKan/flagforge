@@ -26,7 +26,7 @@ export default async function SettingsPage() {
   const { t } = await getI18n();
   return (
     <Container>
-      <PageHeader plate="VII" eyebrow={t("settings.eyebrow")} title={t("settings.title")} />
+      <PageHeader title={t("settings.title")} />
       <div className="mt-10">
         <Section title={t("settings.profileSection")}>
           <ProfileForm username={viewer.username} displayName={viewer.displayName} />

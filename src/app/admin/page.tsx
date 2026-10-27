@@ -15,7 +15,7 @@ export default async function Page() {
   const { t } = await getI18n();
   return (
     <Container>
-      <PageHeader plate="VIII" eyebrow={t("admin.eyebrow")} title={t("admin.title")} />
+      <PageHeader title={t("admin.title")} />
       <ConstructionNotice phase={6} />
     </Container>
   );

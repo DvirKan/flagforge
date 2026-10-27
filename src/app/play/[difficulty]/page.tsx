@@ -22,15 +22,8 @@ export default async function GamePage({ params }: Props) {
   const { t } = await getI18n();
   return (
     <Container>
-      <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-ink pb-2 pt-3 md:pb-4 md:pt-8">
-        <h1 className="flex items-baseline gap-3">
-          <span className="eyebrow">
-            <span className="text-rust-ink">I</span>
-            <span className="mx-2 text-rule-strong" aria-hidden="true">—</span>
-            {t("play.eyebrow")}
-          </span>
-          <span className="display text-xl md:text-3xl">{t(`difficulty.${difficulty}`)}</span>
-        </h1>
+      <div className="flex flex-wrap items-baseline justify-between gap-3 pb-1 pt-3 md:pb-2 md:pt-8">
+        <h1 className="display text-xl md:text-3xl">{t(`difficulty.${difficulty}`)}</h1>
         <Link href="/play" className="text-sm link-underline">
           {t("game.changeDifficulty")}
         </Link>
