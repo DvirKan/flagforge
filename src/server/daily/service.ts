@@ -1,9 +1,10 @@
 import "server-only";
-import type { AnswerResult, CountryReveal, Localized, QuestionView } from "@/lib/game/types";
+import type { AnswerResult, CountryReveal, EarnedAchievement, Localized, QuestionView } from "@/lib/game/types";
 import { getCountry, revealCountry } from "../countries";
 import { seal, unseal } from "../crypto";
 import { flagUrlFor } from "../game/flag-handle";
 import { RpcError, type GameRpc } from "../game/rpc";
+import { achievementsSinceStart } from "../progress/awards";
 
 /**
  * Daily challenge, server side. The database owns the attempt (one per user, server timestamps, answers written
@@ -32,6 +33,7 @@ export interface DailyResult {
   elapsedMs: number;
   perfect: boolean;
   review: DailyReviewItem[];
+  newAchievements?: EarnedAchievement[];
 }
 
 export type DailyStart =
@@ -151,5 +153,7 @@ export async function answerDaily(
     const next: DailyToken = { ...token, pos: token.pos + 1 };
     return { token: seal(next, PURPOSE), result: answer, next: await questionView(rpc, userId, token.aid, next.pos), final: null };
   }
-  return { token: null, result: answer, next: null, final: await result(rpc, userId, token.aid, row.correct_count, Number(row.elapsed_ms ?? 0)) };
+  const final = await result(rpc, userId, token.aid, row.correct_count, Number(row.elapsed_ms ?? 0));
+  final.newAchievements = await achievementsSinceStart(rpc, userId, token.aid);
+  return { token: null, result: answer, next: null, final };
 }

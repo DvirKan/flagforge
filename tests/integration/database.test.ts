@@ -246,7 +246,7 @@ suite("database (migrations + RLS + functions)", () => {
         select p.proname from pg_proc p join pg_namespace n on n.oid = p.pronamespace
         where n.nspname = 'public' and p.prosecdef and has_function_privilege('anon', p.oid, 'execute')
         order by 1`);
-      expect(rows.map((r) => r.proname)).toEqual(["daily_leaderboard", "username_available"]);
+      expect(rows.map((r) => r.proname)).toEqual(["daily_leaderboard", "period_leaderboard", "username_available"]);
     });
   });
 });

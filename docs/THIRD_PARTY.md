@@ -23,6 +23,15 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER I
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ```
 
+## Map data and libraries (build time only)
+
+- **Natural Earth** admin-0 countries — public domain (naturalearthdata.com), via
+  **world-atlas** 2.0.2 (ISC, © Mike Bostock). Used by `scripts/build-atlas.ts` to generate `src/data/atlas.json`.
+- **topojson-client** 3.1.0 (ISC), **d3-geo** 3.1.1 (ISC) — conversion and projection at build time.
+- **i18n-iso-countries** 7.14.0 (MIT) — ISO 3166 numeric → alpha-2 mapping at build time.
+
+None of these ship to the browser; the generated path data does.
+
 ## Fonts — SIL Open Font License 1.1
 
 Self-hosted via `@fontsource`: Rubik (headings and text, Hebrew + Latin), IBM Plex Mono (numbers).

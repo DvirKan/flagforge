@@ -27,3 +27,7 @@ export function revealCountry(c: Country): CountryReveal {
 export function countryCount(): number {
   return countries.length;
 }
+
+export function allCountries(): readonly Country[] {
+  return countries;
+}

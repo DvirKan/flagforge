@@ -2,6 +2,7 @@
 
 import { Check, X } from "lucide-react";
 import { forwardRef } from "react";
+import { NewAchievements } from "@/components/achievements/NewAchievements";
 import { useI18n } from "@/lib/i18n/client";
 import { formatDuration } from "@/lib/time/format";
 import type { DailyResult } from "@/server/daily/service";
@@ -18,6 +19,7 @@ export const DailyResultView = forwardRef<HTMLHeadingElement, { result: DailyRes
         {formatDuration(result.elapsedMs, { tenths: true })}
       </p>
       <p className="mt-2 text-xs text-muted">{t("daily.clockNote")}</p>
+      <NewAchievements items={result.newAchievements} />
       <h3 className="display mt-8 text-xl">{t("daily.reviewTitle")}</h3>
       <ol className="mt-3 grid grid-cols-2 gap-x-4 gap-y-5 sm:grid-cols-5">
         {result.review.map((r, i) => (

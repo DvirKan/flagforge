@@ -83,6 +83,34 @@ test("a signed-in player's game is saved and appears on the profile", async ({ p
   await expect(page.locator("table tbody tr")).toHaveCount(1);
 });
 
+test("finishing a game updates stats, achievements and the atlas", async ({ page }) => {
+  const user = await createConfirmedUser("prog");
+  await login(page, user.email ?? "");
+  await page.goto("/play/easy");
+  for (let i = 1; i <= 10; i++) {
+    await expect(page.getByText(`Question ${i} of 10`)).toBeVisible();
+    await page.getByRole("group", { name: "Which country does this flag belong to?" }).getByRole("button").first().click();
+    await page.getByRole("button", { name: i === 10 ? "See results" : "Next flag" }).click();
+  }
+  // The completion trigger awarded "First flight"; the results screen celebrates it.
+  await expect(page.getByRole("status", { name: "New achievement" })).toContainText("First flight");
+  const { data: earned } = await admin.from("user_achievements").select("achievement_id").eq("user_id", user.id);
+  expect(earned?.length).toBeGreaterThanOrEqual(1);
+
+  await page.goto("/profile");
+  await expect(page.getByText("Standard games")).toBeVisible();
+  await expect(page.getByText(/of \d+ earned/)).toBeVisible();
+
+  await page.goto("/achievements");
+  await expect(page.locator("main li").filter({ hasText: "First flight" })).toContainText("Earned");
+
+  const { data: sessions } = await admin.from("game_sessions").select("id").eq("user_id", user.id);
+  const { data: correct } = await admin.from("game_session_questions").select("country_id").eq("session_id", sessions?.[0]?.id ?? "").eq("is_correct", true);
+  const discovered = new Set((correct ?? []).map((r) => r.country_id)).size;
+  await page.goto("/map");
+  await expect(page.locator("main header, main").first()).toContainText(`${discovered} of 193 discovered`);
+});
+
 test("language preference is stored on the profile", async ({ page }) => {
   const user = await createConfirmedUser("lang");
   await login(page, user.email ?? "");

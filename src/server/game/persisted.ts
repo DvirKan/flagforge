@@ -7,6 +7,7 @@ import type { AnswerResult, Country, GameSummary, QuestionView } from "@/lib/gam
 import { getCountry, revealCountry, selectionContext } from "../countries";
 import { seal, unseal } from "../crypto";
 import { flagUrlFor } from "./flag-handle";
+import { achievementsSinceStart } from "../progress/awards";
 import { RpcError, type GameRpc } from "./rpc";
 import type { GameError } from "./standard";
 
@@ -123,6 +124,7 @@ export async function answerPersistedGame(
       country: revealCountry(must(r.country)),
       chosen: must(r.options[r.selected_index] ?? r.country).name,
     })),
+    newAchievements: await achievementsSinceStart(rpc, userId, token.sid),
   };
   return { token: null, result, next: null, summary };
 }

@@ -46,6 +46,14 @@ export interface GameSummary {
   /** true when the result was saved to the player's profile (signed-in games) */
   persisted: boolean;
   review: { flagUrl: string; correct: boolean; country: CountryReveal; chosen: Localized }[];
+  /** achievements awarded by this game (signed-in games only) */
+  newAchievements?: EarnedAchievement[];
+}
+
+export interface EarnedAchievement {
+  code: string;
+  name: Localized;
+  iconKey: string | null;
 }
 
 export interface AnswerResult {

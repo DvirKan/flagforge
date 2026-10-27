@@ -95,6 +95,26 @@ file name through the bridge did not replace its contents.
 
 Check results: typecheck/lint pass · unit 61 · DB 41/41 · e2e (guest) 49 pass / 5 skipped.
 
-## Next steps (Phase 5)
+## Phase 5 — verified (sandbox)
 
-Weekly/monthly rankings (Monday weeks, Asia/Jerusalem), profile statistics and streaks, achievements, world map.
+- [x] Migration `20261027100600_progress.sql` — see docs/PROGRESS_LAYER.md
+- [x] Weekly/monthly Hall of Fame: `period_leaderboard` (perfect count → combined time), Monday weeks,
+      period navigation, "still in play" for the current period
+- [x] Statistics split standard/daily, current + longest streak, discovered countries (`my_stats`,
+      `my_discovered_countries` via auth.uid())
+- [x] 11 achievements as data, awarded by completion triggers, never twice (PK), backfill; celebration on
+      results screens (standard + daily)
+- [x] /profile (streak, stats, atlas + achievements cards), /achievements, /map (server-rendered Natural
+      Earth map, 35 dot states, detail panel, filterable accessible list)
+- [x] Tests: periods unit (6), DB progress (14: ranking, period bounds, anon access, streaks, stats, discovery,
+      triggers, no duplicates, thresholds, since-start, RLS/privileges), service tests assert new achievements,
+      e2e atlas (guest) + auth e2e "finishing a game updates stats, achievements and the atlas"
+
+Check results: typecheck/lint pass · unit 67 · DB 56/56 · e2e (guest) 53 pass / 5 skipped.
+
+To do on the developer machine: `npx supabase db push` (migration 100600), `npm run build`,
+`npm run test:e2e:auth` (now 9 tests).
+
+## Next steps (Phase 6)
+
+Admin area: challenge calendar + validation/publish UI, dataset view, audit log.

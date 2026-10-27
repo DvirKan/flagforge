@@ -7,6 +7,7 @@ const ROUTES = [
   "/daily",
   "/leaderboards",
   "/leaderboards?period=weekly",
+  "/leaderboards?period=monthly",
   "/profile",
   "/map",
   "/achievements",
@@ -28,6 +29,23 @@ test.describe("foundation", () => {
       expect(overflow).toBeLessThanOrEqual(0);
     });
   }
+
+  test("atlas: every UN member is listed and selectable from the map and the list", async ({ page, context, baseURL }) => {
+    await context.addCookies([{ name: "ff_locale", value: "en", url: baseURL ?? "http://localhost:3100" }]);
+    await page.goto("/map");
+    const list = page.getByRole("region", { name: "All 193 countries" }).or(page.locator("section[aria-labelledby=atlas-list]"));
+    await expect(list.locator("li button")).toHaveCount(193);
+    await expect(page.locator("svg [data-iso]").first()).toBeVisible();
+    expect(await page.locator("svg path[data-iso]").count() + 0).toBeGreaterThan(150);
+    await page.locator('svg path[data-iso="BR"]').click();
+    await expect(page.locator("aside h2")).toHaveText("Brazil");
+    await list.getByRole("button", { name: /^Tuvalu/ }).click();
+    await expect(page.locator("aside h2")).toHaveText("Tuvalu");
+    await page.getByRole("button", { name: "Still to find", exact: true }).click();
+    await expect(list.locator("li button")).toHaveCount(193); // a guest has discovered nothing
+    await page.getByRole("button", { name: "Discovered", exact: true }).click();
+    await expect(list.locator("li button")).toHaveCount(0);
+  });
 
   test("unknown difficulty returns 404", async ({ page }) => {
     const res = await page.goto("/play/impossible");

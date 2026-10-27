@@ -75,6 +75,7 @@ suite("daily challenge (server service ↔ database)", () => {
     }
     expect(final).toMatchObject({ correct: 5, total: 5, perfect: true });
     expect(final?.review).toHaveLength(5);
+    expect(final?.newAchievements?.map((a) => a.code)).toEqual(expect.arrayContaining(["first_perfect_daily"]));
 
     const again = await startDaily(rpc, alice);
     expect(again).toMatchObject({ kind: "completed", result: { correct: 5, perfect: true } });

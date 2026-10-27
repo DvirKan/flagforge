@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { DailyLeaderboard } from "@/components/daily/DailyLeaderboard";
-import { ConstructionNotice } from "@/components/ui/ConstructionNotice";
+import { PeriodLeaderboard } from "@/components/leaderboards/PeriodLeaderboard";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { getViewer } from "@/lib/auth/session";
 import { INTL_LOCALE } from "@/lib/i18n/config";
 import { getI18n } from "@/lib/i18n/server";
+import { isCurrentPeriod, periodRange, shiftPeriod } from "@/lib/time/periods";
 import { addCalendarDays, parseCalendarDate } from "@/lib/time/zoned";
 import { getDailyLeaderboard, todayChallengeDate } from "@/server/daily/queries";
+import { getPeriodLeaderboard } from "@/server/progress/queries";
 
 const PERIODS = ["daily", "weekly", "monthly"] as const;
 type Period = (typeof PERIODS)[number];
@@ -34,9 +36,25 @@ export default async function LeaderboardsPage({ searchParams }: { searchParams:
   const { locale, t } = await getI18n();
   const today = todayChallengeDate();
   const date = validDate(rawDate, today);
-  const [rows, viewer] = period === "daily" ? await Promise.all([getDailyLeaderboard(date, 100), getViewer()]) : [[], null];
-  const { year, month, day } = parseCalendarDate(date);
-  const dateLabel = new Intl.DateTimeFormat(INTL_LOCALE[locale], { timeZone: "UTC", dateStyle: "long" }).format(new Date(Date.UTC(year, month - 1, day)));
+  const viewerPromise = getViewer();
+  const fmt = (d: string, opts: Intl.DateTimeFormatOptions) => {
+    const { year, month, day } = parseCalendarDate(d);
+    return new Intl.DateTimeFormat(INTL_LOCALE[locale], { timeZone: "UTC", ...opts }).format(new Date(Date.UTC(year, month - 1, day)));
+  };
+  const dateLabel = fmt(date, { dateStyle: "long" });
+  const range = period === "daily" ? null : periodRange(period, date);
+  const [dailyRows, periodRows, viewer] = await Promise.all([
+    period === "daily" ? getDailyLeaderboard(date, 100) : Promise.resolve([]),
+    range ? getPeriodLeaderboard(range.from, range.to, 100) : Promise.resolve([]),
+    viewerPromise,
+  ]);
+  const prev = range ? shiftPeriod(range, -1) : null;
+  const next = range ? shiftPeriod(range, 1) : null;
+  const rangeLabel = range
+    ? period === "monthly"
+      ? fmt(range.from, { month: "long", year: "numeric" })
+      : `${fmt(range.from, { day: "numeric", month: "short" })} – ${fmt(range.to, { day: "numeric", month: "short", year: "numeric" })}`
+    : "";
 
   return (
     <Container>
@@ -59,7 +77,6 @@ export default async function LeaderboardsPage({ searchParams }: { searchParams:
           ))}
         </ul>
       </nav>
-      {period !== "daily" ? <p className="mt-6 text-sm text-muted">{t("leaderboards.periodRule")}</p> : null}
 
       {period === "daily" ? (
         <>
@@ -77,17 +94,30 @@ export default async function LeaderboardsPage({ searchParams }: { searchParams:
             )}
           </div>
           <div className="mt-4">
-            <DailyLeaderboard rows={rows} highlight={viewer?.username} emptyText={t("leaderboards.empty")} />
+            <DailyLeaderboard rows={dailyRows} highlight={viewer?.username} emptyText={t("leaderboards.empty")} />
           </div>
         </>
-      ) : (
+      ) : range && prev && next ? (
         <>
-          <div className="mt-8 border-y border-ink py-12 text-center">
-            <p className="display text-2xl">{t("leaderboards.empty")}</p>
+          <div className="mt-6 flex items-center justify-between gap-4">
+            <Link href={`/leaderboards?period=${period}&date=${prev.from}`} className="text-sm link-underline">
+              {t(period === "weekly" ? "leaderboards.prevWeek" : "leaderboards.prevMonth")}
+            </Link>
+            <p className="display text-center text-lg md:text-xl">{rangeLabel}</p>
+            {next.from <= today ? (
+              <Link href={`/leaderboards?period=${period}&date=${next.from}`} className="text-sm link-underline">
+                {t(period === "weekly" ? "leaderboards.nextWeek" : "leaderboards.nextMonth")}
+              </Link>
+            ) : (
+              <span aria-hidden="true" className="w-16" />
+            )}
           </div>
-          <ConstructionNotice phase={5} />
+          {isCurrentPeriod(range, today) ? <p className="mt-2 text-center text-sm text-muted">{t("leaderboards.inProgress")}</p> : null}
+          <div className="mt-4">
+            <PeriodLeaderboard rows={periodRows} highlight={viewer?.username} emptyText={t("leaderboards.empty")} />
+          </div>
         </>
-      )}
+      ) : null}
     </Container>
   );
 }

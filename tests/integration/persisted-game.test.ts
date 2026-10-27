@@ -55,6 +55,7 @@ suite("persisted standard game (server service ↔ database)", () => {
     expect(summary?.persisted).toBe(true);
     expect(summary?.correct).toBe(expectedCorrect);
     expect(summary?.review).toHaveLength(10);
+    expect(summary?.newAchievements?.map((a) => a.code)).toContain("first_game");
     const { rows } = await db.query("select status, correct_count, total_questions, score from public.game_sessions where user_id = $1 order by started_at desc limit 1", [user]);
     expect(rows[0]).toMatchObject({ status: "completed", correct_count: expectedCorrect, total_questions: 10, score: summary?.score });
   });

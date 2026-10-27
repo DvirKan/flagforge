@@ -3,6 +3,7 @@
 import { Check, X } from "lucide-react";
 import Link from "next/link";
 import { forwardRef } from "react";
+import { NewAchievements } from "@/components/achievements/NewAchievements";
 import type { GameSummary, PerformanceTier } from "@/lib/game/types";
 import { useI18n } from "@/lib/i18n/client";
 import type { MessageKey } from "@/lib/i18n/translate";
@@ -45,6 +46,8 @@ export const Results = forwardRef<HTMLHeadingElement, { summary: GameSummary; on
         ))}
       </dl>
       <p className="mt-3 text-xs text-muted">{t("game.scoreNote")}</p>
+
+      <NewAchievements items={summary.newAchievements} />
 
       <div className="mt-8 flex flex-wrap gap-3">
         <button type="button" onClick={onPlayAgain} className="btn btn-primary">
