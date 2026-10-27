@@ -18,7 +18,7 @@ _Last updated: 2026-10-27 (end of Phase 3)_
 |---|---|
 | 1 — Foundation & design system | ✅ complete |
 | 2 — Country dataset & standard game | ✅ complete |
-| 3 — Supabase & authentication | ✅ code complete · ⏳ needs `db push` + `test:e2e:auth` on the dev machine |
+| 3 — Supabase & authentication | ✅ complete (verified against the real project) |
 | 4 — Daily challenge | ⏳ next |
 | 5 — Profiles, achievements, rankings | ⏳ |
 | 6 — Administration & operational readiness | ⏳ |
@@ -57,15 +57,17 @@ _Last updated: 2026-10-27 (end of Phase 3)_
 | `npm run test:db` | 23/23 pass (PostgreSQL 16) |
 | `npm run build` | pass (guest-only and Supabase-configured builds) |
 | `npm run test:e2e` | 49 pass, 5 skipped (viewport-specific) |
-| `npm run test:e2e:auth` | **not run here** (needs secret key) — 6 tests, run on the dev machine |
+| `npm run test:e2e:auth` | **6/6 pass** on the dev machine against the real Supabase project (2026-10-27) |
 
-## Pending on the developer machine
+## Done on the developer machine
 
-1. `git pull .\flagforge.bundle main`
-2. Supabase CLI: `npm install-scripts approve supabase`, `npm rebuild supabase`, `npx supabase login`,
-   `npx supabase link --project-ref ckfpkyglgemvwyhwtjhx`, `npx supabase db push`
-3. Dashboard auth settings + email templates (docs/SUPABASE.md §3)
-4. `npm run build` then `npm run test:e2e:auth` — report the output
+- Migrations applied with `supabase db push` (4 migrations); verified remotely: 193 countries, anon blocked from
+  `profiles` and `start_standard_game`.
+- `npm run test:e2e:auth`: 6/6 pass (first run exposed two test-selector bugs, fixed in 820a474).
+- Still recommended before real sign-ups: dashboard URL configuration + email templates (docs/SUPABASE.md §3).
+
+Sync note: each update is delivered as a uniquely named bundle (`flagforge-<commit>.bundle`); overwriting the same
+file name through the bridge did not replace its contents.
 
 ## Known limitations
 
