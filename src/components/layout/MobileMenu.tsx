@@ -3,12 +3,13 @@
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { signOutAction } from "@/lib/auth/actions";
 import { useI18n } from "@/lib/i18n/client";
 import { NavLink } from "./NavLink";
 import { primaryNav } from "./nav-items";
 
 /** Full-screen menu built on the native <dialog> element (focus trap, Escape, inert background). */
-export function MobileMenu() {
+export function MobileMenu({ username }: { username: string | null }) {
   const { t } = useI18n();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [open, setOpen] = useState(false);
@@ -71,14 +72,30 @@ export function MobileMenu() {
               )}
             </ol>
           </nav>
-          <div className="grid grid-cols-2 gap-3">
-            <Link href="/login" onClick={close} className="btn btn-ghost">
-              {t("nav.signIn")}
-            </Link>
-            <Link href="/register" onClick={close} className="btn btn-primary">
-              {t("nav.register")}
-            </Link>
-          </div>
+          {username ? (
+            <div className="grid grid-cols-2 items-center gap-3">
+              <Link href="/settings" onClick={close} className="btn btn-ghost">
+                {t("nav.settings")}
+              </Link>
+              <form action={signOutAction}>
+                <button type="submit" className="btn btn-primary w-full">
+                  {t("auth.signOut")}
+                </button>
+              </form>
+              <p className="eyebrow col-span-2" dir="ltr">
+                @{username}
+              </p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 gap-3">
+              <Link href="/login" onClick={close} className="btn btn-ghost">
+                {t("nav.signIn")}
+              </Link>
+              <Link href="/register" onClick={close} className="btn btn-primary">
+                {t("nav.register")}
+              </Link>
+            </div>
+          )}
         </div>
       </dialog>
     </>

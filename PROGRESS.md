@@ -1,73 +1,80 @@
 # FLAGFORGE — Progress
 
-_Last updated: 2026-10-26 (end of Phase 2)_
+_Last updated: 2026-10-27 (end of Phase 3)_
 
 ## Environment notes (build session)
 
-- Built in a cloud sandbox. **Docker Hub is blocked there**, so `supabase start` cannot run in that sandbox.
-  Plan for Phases 3–6: run migrations/RLS/anti-cheat integration tests against native PostgreSQL 16 with a
-  minimal `auth` schema shim (`auth.users`, `auth.uid()`, `anon`/`authenticated` roles). Full Supabase Auth
-  flows (email verification, recovery) must be verified against a real Supabase project.
-- Google Fonts and Wikimedia are blocked from the sandbox; fonts are self-hosted via `@fontsource` (OFL-1.1).
-- The project is synced to the user's linked folder at the end of each phase (no remote shell on that machine).
+- Built in a cloud sandbox: Docker Hub, GitHub and Go modules are blocked there, so neither `supabase start` nor a
+  local GoTrue/PostgREST can run. Database logic is tested on native PostgreSQL 16 with
+  `supabase/tests/local-shim.sql`; auth was smoke-tested against the real Supabase project (publishable key only).
+- The sandbox cannot hold the Supabase secret key (by design), so `npm run test:e2e:auth` must be run on the
+  developer's machine.
+- Syncing to the developer's machine: the file bridge cannot write `.git` or `.env*`, so each phase is delivered
+  as `flagforge.bundle` (`git pull .\flagforge.bundle main`).
 
 ## Phase checklist
 
 | Phase | Status |
 |---|---|
 | 1 — Foundation & design system | ✅ complete |
-| 2 — Country dataset & standard game | ✅ complete (verified, see below) |
-| 3 — Supabase & authentication | ⏳ next — needs a Supabase project from the user |
-| 4 — Daily challenge | ⏳ |
+| 2 — Country dataset & standard game | ✅ complete |
+| 3 — Supabase & authentication | ✅ code complete · ⏳ needs `db push` + `test:e2e:auth` on the dev machine |
+| 4 — Daily challenge | ⏳ next |
 | 5 — Profiles, achievements, rankings | ⏳ |
 | 6 — Administration & operational readiness | ⏳ |
 | 7 — Production readiness & deployment | ⏳ |
 
-## Decisions (from the product owner)
+## Decisions (product owner)
 
-- Dataset scope: the 193 UN member states only.
-- Flag artwork: 4:3 canvas (flag-icons, MIT) is acceptable; real-world proportions not preserved.
-- Daily challenge: authenticated users only. Guests play standard games only.
+- Dataset: the 193 UN member states. Flags: 4:3 canvas (flag-icons, MIT).
+- Daily challenge: signed-in users only. Guests play standard games only, nothing saved.
 
-## Phase 2 — verified
+## Phase 3 — verified
 
-- [x] Dataset: 193 UN members (40 easy / 70 medium / 83 hard), en/he names, capitals, continent, one fact each in
-      both languages — `data/countries/*.ts`; validated against an independent UN reference list
-- [x] Import script validates codes, uniqueness (codes, en names, he names), Hebrew text, difficulty, continent,
-      flag presence, lookalike references; `--check` mode for CI
-- [x] Flags: sanitized so ids/classes no longer contain the ISO code; **all 193 pixel-identical** to the originals
-- [x] Engine: 10 distinct questions per difficulty; 4 distinct options, exactly one correct; plausible distractors
-      (lookalikes → continent → difficulty); indistinguishable pairs (TD/RO, ID/MC) never together
-- [x] Server-authoritative: AES-256-GCM encrypted game token (HKDF-derived key, purpose-bound AAD); opaque,
-      expiring flag URLs; correctness, timing and score computed on the server; no ISO code in any client payload
-- [x] Route handlers with strict Zod schemas, 8 KiB body cap, per-IP rate limits, typed error codes, no stack traces
-- [x] UI: atlas-plate flag, 4 large options, progress ticks, monotonic display timer, reveal with capital,
-      continent and fact, results with review of all 10 flags; keyboard 1–4 + Enter; focus management; aria-live
-- [x] Mobile: options fit on screen without scrolling on iPhone SE (568px), iPhone 13, Pixel 7 (tab bar hidden
-      during a game); 16px gutters at 320px
-- [x] Language switch mid-game keeps the current question (verified e2e)
+- [x] Migrations (4 files): profiles + signup trigger + username rules + public view, roles, countries (+ generated
+      data), persisted standard games with service-role-only functions — see docs/DATABASE.md
+- [x] RLS on every table; Supabase default grants revoked and re-granted minimally
+- [x] 23 database integration tests: constraints, RLS isolation, column-level update limits, no client writes,
+      single-use ordered answers, **concurrent submissions → exactly one accepted**, SQL/TS score parity,
+      cascade on account deletion, privilege audit (RLS everywhere; only `username_available` callable by anon)
+- [x] Server game service ↔ database tests (full game persisted, replayed token rejected, token bound to user)
+- [x] Auth: register (username availability, no account enumeration), email verification (`/auth/confirm`
+      supports token_hash and PKCE code), login (+ resend confirmation), logout, forgot/reset password,
+      open-redirect-safe `next`, per-IP rate limits on auth actions
+- [x] Protected routes (server-side): /profile, /settings → login; /admin → DB role check, 404 for non-admins
+- [x] Settings: username/display name (RLS update), language (synced to profile), password, account deletion
+      (admin API, cascades all data)
+- [x] Signed-in games saved; results say "Saved to your profile"; profile shows real completed games
+- [x] CSP header (self + Supabase origin), plus previous security headers
+- [x] Real-project smoke test: wrong password → "Email or password is incorrect"; reset request → neutral message
 
-### Check results
+### Check results (sandbox)
 
 | Command | Result |
 |---|---|
-| `npm run typecheck` | pass |
-| `npm run lint` | pass |
-| `npm test` | 46/46 pass |
-| `npm run data:check` | pass |
-| `npm run build` | pass |
-| `npm run test:e2e` | 49 pass, 5 skipped (viewport-specific), desktop + Pixel 7 |
+| `npm run typecheck` / `lint` | pass |
+| `npm test` | 58 pass (23 DB tests skipped without TEST_DATABASE_URL) |
+| `npm run test:db` | 23/23 pass (PostgreSQL 16) |
+| `npm run build` | pass (guest-only and Supabase-configured builds) |
+| `npm run test:e2e` | 49 pass, 5 skipped (viewport-specific) |
+| `npm run test:e2e:auth` | **not run here** (needs secret key) — 6 tests, run on the dev machine |
+
+## Pending on the developer machine
+
+1. `git pull .\flagforge.bundle main`
+2. Supabase CLI: `npm install-scripts approve supabase`, `npm rebuild supabase`, `npx supabase login`,
+   `npx supabase link --project-ref ckfpkyglgemvwyhwtjhx`, `npx supabase db push`
+3. Dashboard auth settings + email templates (docs/SUPABASE.md §3)
+4. `npm run build` then `npm run test:e2e:auth` — report the output
 
 ## Known limitations
 
-- Guest game tokens can be replayed (stateless by design; guest results are not stored). See `docs/API.md`.
-- Rate limiting is in-memory per server instance.
-- CSP header for pages deferred to Phase 3 (needs the Supabase origin).
+- Guest game tokens can be replayed (stateless; guest results are never stored).
+- Rate limiting is in-memory per server instance (database also caps 60 games/hour per user).
+- Built-in Supabase email sender is dev-only; production needs SMTP (docs/SUPABASE.md §4).
+- `script-src 'unsafe-inline'` in CSP (Next.js inline bootstrap); nonce-based CSP is a possible Phase 7 hardening.
 
-## Next steps (Phase 3)
+## Next steps (Phase 4 — daily challenge)
 
-1. User creates a Supabase project and provides URL + anon key (service-role key goes only into `.env.local` / Vercel).
-2. Migrations: profiles, countries (seeded from `data/countries`), game_sessions, game_session_questions, roles; RLS.
-3. Auth flows (register with username, verify email, login/logout, forgot/reset), protected routes, locale sync.
-4. Authenticated standard games persisted in the database (single-use answers per question).
-5. Native-Postgres test harness with an `auth` shim for RLS/constraint integration tests.
+Daily challenge tables (challenge, questions, options, attempts, answers), publication validation, one attempt
+per user, server-timed attempts, daily leaderboard function, seeding future challenges.

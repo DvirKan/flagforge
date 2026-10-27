@@ -1,6 +1,10 @@
 import { z } from "zod";
-import { apiError, apiOk, limitOrError, parseJson } from "@/server/http";
+import { getVerifiedUserId } from "@/lib/auth/session";
+import { createSupabaseAdminClient, isAdminClientConfigured } from "@/lib/supabase/admin";
+import { answerPersistedGame, isPersistedToken } from "@/server/game/persisted";
+import { supabaseRpc } from "@/server/game/rpc";
 import { answerStandardGame } from "@/server/game/standard";
+import { apiError, apiOk, limitOrError, parseJson } from "@/server/http";
 
 export const runtime = "nodejs";
 
@@ -11,7 +15,7 @@ const Body = z
   })
   .strict();
 
-const STATUS = { session_invalid: 400, session_expired: 410, conflict: 409 } as const;
+const STATUS = { session_invalid: 400, session_expired: 410, conflict: 409, rate_limited: 429 } as const;
 
 /** POST /api/game/answer — the server checks the choice and returns the reveal plus the next question or summary. */
 export async function POST(req: Request) {
@@ -19,8 +23,16 @@ export async function POST(req: Request) {
   if (limited) return limited;
   const parsed = await parseJson(req, Body);
   if ("error" in parsed) return parsed.error;
+  const { token, choice } = parsed.data;
   try {
-    const out = answerStandardGame(parsed.data.token, parsed.data.choice);
+    if (isPersistedToken(token)) {
+      const userId = isAdminClientConfigured() ? await getVerifiedUserId() : null;
+      if (!userId) return apiError("session_invalid", 401);
+      const out = await answerPersistedGame(supabaseRpc(createSupabaseAdminClient()), userId, token, choice);
+      if ("error" in out) return apiError(out.error, STATUS[out.error]);
+      return apiOk(out);
+    }
+    const out = answerStandardGame(token, choice);
     if ("error" in out) return apiError(out.error, STATUS[out.error]);
     return apiOk(out);
   } catch (err) {

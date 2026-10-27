@@ -3,12 +3,15 @@ import { Countdown } from "@/components/daily/Countdown";
 import { DifficultyIndex } from "@/components/game/DifficultyIndex";
 import { Container } from "@/components/ui/Container";
 import { gameConfig } from "@/config/game";
+import { getViewer } from "@/lib/auth/session";
 import { INTL_LOCALE } from "@/lib/i18n/config";
 import { getI18n } from "@/lib/i18n/server";
 import { nextDayBoundary } from "@/lib/time/zoned";
 
-export default async function HomePage() {
+export default async function HomePage({ searchParams }: { searchParams: Promise<{ account?: string }> }) {
+  const { account } = await searchParams;
   const { locale, t } = await getI18n();
+  const viewer = await getViewer();
   const now = new Date();
   const tz = gameConfig.daily.timezone;
   const boundary = nextDayBoundary(now, tz);
@@ -22,6 +25,11 @@ export default async function HomePage() {
 
   return (
     <>
+      {account === "deleted" ? (
+        <p role="status" className="border-b border-ink bg-paper px-4 py-3 text-center text-sm">
+          {t("settings.deleted")}
+        </p>
+      ) : null}
       {/* Hero */}
       <section className="graticule border-b border-ink">
         <Container className="grid gap-10 py-12 md:py-20 lg:grid-cols-12 lg:gap-12">
@@ -107,10 +115,23 @@ export default async function HomePage() {
           </div>
           <div className="border-t border-rule py-10 md:border-s md:border-t-0 md:ps-10">
             <h2 className="display text-3xl">{t("home.progressTitle")}</h2>
-            <p className="mt-6 border-t border-rule pt-6 text-ink-soft">{t("home.progressGuest")}</p>
-            <Link href="/register" className="btn btn-accent mt-6">
-              {t("nav.register")}
-            </Link>
+            {viewer ? (
+              <>
+                <p className="mt-6 border-t border-rule pt-6 text-ink-soft" dir="ltr">
+                  @{viewer.username}
+                </p>
+                <Link href="/profile" className="btn btn-primary mt-6">
+                  {t("nav.profile")}
+                </Link>
+              </>
+            ) : (
+              <>
+                <p className="mt-6 border-t border-rule pt-6 text-ink-soft">{t("home.progressGuest")}</p>
+                <Link href="/register" className="btn btn-accent mt-6">
+                  {t("nav.register")}
+                </Link>
+              </>
+            )}
           </div>
         </Container>
       </section>

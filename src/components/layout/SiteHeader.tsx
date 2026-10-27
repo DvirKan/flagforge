@@ -2,6 +2,8 @@ import Link from "next/link";
 import { brand } from "@/config/brand";
 import { gameConfig } from "@/config/game";
 import { INTL_LOCALE } from "@/lib/i18n/config";
+import { signOutAction } from "@/lib/auth/actions";
+import { getViewer } from "@/lib/auth/session";
 import { getI18n } from "@/lib/i18n/server";
 import { dayOfYearIn } from "@/lib/time/zoned";
 import { BrandMark } from "./BrandMark";
@@ -12,6 +14,7 @@ import { primaryNav } from "./nav-items";
 
 export async function SiteHeader() {
   const { locale, t } = await getI18n();
+  const viewer = await getViewer();
   const now = new Date();
   const tz = gameConfig.daily.timezone;
   const dateLabel = new Intl.DateTimeFormat(INTL_LOCALE[locale], {
@@ -73,14 +76,30 @@ export async function SiteHeader() {
 
         <div className="ms-auto flex items-center gap-2 lg:ms-0">
           <LanguageSwitcher className="inline-flex size-11 items-center justify-center border border-ink/20 text-ink hover:bg-paper disabled:opacity-50" />
-          <Link href="/login" className="hidden px-3 py-2 text-[0.9375rem] link-underline md:inline-block">
-            {t("nav.signIn")}
-          </Link>
-          <Link href="/register" className="btn btn-primary hidden md:inline-flex">
-            {t("nav.register")}
-          </Link>
+          {viewer ? (
+            <>
+              <Link href="/profile" className="hidden items-center gap-2 px-3 py-2 text-[0.9375rem] md:inline-flex" dir="ltr">
+                <span aria-hidden="true" className="size-2 rounded-full bg-success" />
+                <span className="link-underline">{viewer.username}</span>
+              </Link>
+              <form action={signOutAction} className="hidden md:block">
+                <button type="submit" className="btn btn-ghost">
+                  {t("auth.signOut")}
+                </button>
+              </form>
+            </>
+          ) : (
+            <>
+              <Link href="/login" className="hidden px-3 py-2 text-[0.9375rem] link-underline md:inline-block">
+                {t("nav.signIn")}
+              </Link>
+              <Link href="/register" className="btn btn-primary hidden md:inline-flex">
+                {t("nav.register")}
+              </Link>
+            </>
+          )}
           <div className="lg:hidden">
-            <MobileMenu />
+            <MobileMenu username={viewer?.username ?? null} />
           </div>
         </div>
       </div>

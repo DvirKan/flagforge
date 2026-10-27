@@ -125,6 +125,7 @@ function summarize(state: GameState, now: number): GameSummary {
     elapsedMs: now - state.t0,
     score: state.a.reduce((sum, [, ok, ms]) => sum + answerPoints(ok === 1, ms), 0),
     tier: performanceTier(accuracy),
+    persisted: false,
     review: state.q.map(([iso, options], idx) => {
       const [chosenIdx = -1, ok = 0] = state.a[idx] ?? [];
       const chosenIso = options[chosenIdx] ?? iso;

@@ -43,6 +43,8 @@ export interface GameSummary {
   elapsedMs: number;
   score: number;
   tier: PerformanceTier;
+  /** true when the result was saved to the player's profile (signed-in games) */
+  persisted: boolean;
   review: { flagUrl: string; correct: boolean; country: CountryReveal; chosen: Localized }[];
 }
 

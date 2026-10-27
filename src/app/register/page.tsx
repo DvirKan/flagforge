@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 import { AuthFooterLink, AuthShell } from "@/components/auth/AuthShell";
-import { DisabledField } from "@/components/auth/DisabledField";
-import { PreviewNotice } from "@/components/auth/PreviewNotice";
+import { RegisterForm } from "@/components/auth/forms";
+import { NotConfigured } from "@/components/auth/NotConfigured";
+import { getViewer } from "@/lib/auth/session";
 import { getI18n } from "@/lib/i18n/server";
+import { isSupabaseConfigured } from "@/lib/supabase/env";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { t } = await getI18n();
@@ -10,23 +13,15 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function RegisterPage() {
+  if (await getViewer()) redirect("/profile");
   const { t } = await getI18n();
   return (
     <AuthShell
       title={t("auth.registerTitle")}
       footer={<AuthFooterLink prompt={t("auth.haveAccount")} href="/login" label={t("nav.signIn")} />}
     >
-      <PreviewNotice text={t("auth.notYetEnabled")} />
-      <form>
-        <fieldset disabled className="grid gap-5">
-        <DisabledField id="username" label={t("auth.username")} autoComplete="username" />
-        <DisabledField id="email" label={t("auth.email")} type="email" autoComplete="email" />
-        <DisabledField id="password" label={t("auth.password")} type="password" autoComplete="new-password" />
-        <button type="submit" className="btn btn-primary" disabled>
-          {t("auth.submitRegister")}
-        </button>
-        </fieldset>
-      </form>
+      <p className="mb-6 text-ink-soft">{t("auth.guestBenefits")}</p>
+      {isSupabaseConfigured() ? <RegisterForm /> : <NotConfigured />}
     </AuthShell>
   );
 }

@@ -55,10 +55,21 @@ export const Results = forwardRef<HTMLHeadingElement, { summary: GameSummary; on
         </Link>
       </div>
 
-      <div className="mt-8 border-s-2 border-rust bg-paper/60 px-4 py-3 text-sm">
-        <p>{t("game.guestResult")}</p>
-        <p className="mt-1 text-ink-soft">{t("home.progressGuest")}</p>
-      </div>
+      {summary.persisted ? (
+        <div className="mt-8 border-s-2 border-success bg-paper/60 px-4 py-3 text-sm">
+          <p>
+            {t("game.savedResult")}{" "}
+            <Link href="/profile" className="link-underline">
+              {t("nav.profile")}
+            </Link>
+          </p>
+        </div>
+      ) : (
+        <div className="mt-8 border-s-2 border-rust bg-paper/60 px-4 py-3 text-sm">
+          <p>{t("game.guestResult")}</p>
+          <p className="mt-1 text-ink-soft">{t("home.progressGuest")}</p>
+        </div>
+      )}
 
       <h2 className="display mt-12 text-2xl">{t("game.review")}</h2>
       <ol className="mt-4 grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-3 lg:grid-cols-5">

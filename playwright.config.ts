@@ -5,6 +5,8 @@ const baseURL = process.env.E2E_BASE_URL ?? `http://localhost:${PORT}`;
 
 export default defineConfig({
   testDir: "./tests/e2e",
+  // Auth tests need a real Supabase project and its secret key — run them with `npm run test:e2e:auth`.
+  testIgnore: ["**/auth.spec.ts"],
   fullyParallel: true,
   retries: process.env.CI ? 2 : 0,
   reporter: [["list"]],

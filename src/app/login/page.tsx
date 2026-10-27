@@ -1,35 +1,29 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { redirect } from "next/navigation";
 import { AuthFooterLink, AuthShell } from "@/components/auth/AuthShell";
-import { DisabledField } from "@/components/auth/DisabledField";
-import { PreviewNotice } from "@/components/auth/PreviewNotice";
+import { LoginForm } from "@/components/auth/forms";
+import { NotConfigured } from "@/components/auth/NotConfigured";
+import { getViewer } from "@/lib/auth/session";
 import { getI18n } from "@/lib/i18n/server";
+import { isSupabaseConfigured } from "@/lib/supabase/env";
+import { safeNextPath } from "@/lib/validation/auth";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { t } = await getI18n();
   return { title: t("auth.loginTitle") };
 }
 
-export default async function LoginPage() {
+export default async function LoginPage({ searchParams }: { searchParams: Promise<{ next?: string; error?: string }> }) {
+  const { next: rawNext, error } = await searchParams;
+  const next = safeNextPath(rawNext);
+  if (await getViewer()) redirect(next);
   const { t } = await getI18n();
   return (
     <AuthShell
       title={t("auth.loginTitle")}
       footer={<AuthFooterLink prompt={t("auth.noAccount")} href="/register" label={t("nav.register")} />}
     >
-      <PreviewNotice text={t("auth.notYetEnabled")} />
-      <form>
-        <fieldset disabled className="grid gap-5">
-        <DisabledField id="email" label={t("auth.email")} type="email" autoComplete="email" />
-        <DisabledField id="password" label={t("auth.password")} type="password" autoComplete="current-password" />
-        <Link href="/forgot-password" className="justify-self-start text-sm link-underline">
-          {t("auth.forgotLink")}
-        </Link>
-        <button type="submit" className="btn btn-primary" disabled>
-          {t("auth.submitLogin")}
-        </button>
-        </fieldset>
-      </form>
+      {isSupabaseConfigured() ? <LoginForm next={next} initialError={error === "link_invalid" ? "link_invalid" : undefined} /> : <NotConfigured />}
     </AuthShell>
   );
 }

@@ -3,7 +3,7 @@
 A competitive, bilingual (English/Hebrew) flag-identification game: standard games, a server-validated
 daily five-flag challenge, leaderboards, achievements and a personal world atlas.
 
-> Status: **Phase 2 of 7** complete — see [`PROGRESS.md`](./PROGRESS.md). The full setup and deployment
+> Status: **Phase 3 of 7** complete — see [`PROGRESS.md`](./PROGRESS.md). The full setup and deployment
 > guide (Supabase, migrations, email, Vercel) is written as those phases land.
 
 ## Stack
@@ -21,6 +21,7 @@ cd flagforge
 npm ci
 Copy-Item .env.example .env.local    # PowerShell (bash: cp .env.example .env.local)
 # put a random value in GAME_SESSION_SECRET (command is in .env.example)
+# add the Supabase URL + keys, then follow docs/SUPABASE.md (migrations, auth settings)
 npm run dev                          # http://localhost:3000
 ```
 
@@ -37,13 +38,17 @@ npm run dev                          # http://localhost:3000
 | `npm run check` | typecheck + lint + unit tests |
 | `npm run data:import` | Validate `data/countries` and regenerate `src/server/data/*.json` |
 | `npm run data:check` | Validate only (CI) |
+| `npm run test:db` | Migrations + RLS + SQL function tests on plain PostgreSQL (`TEST_DATABASE_URL`) |
+| `npm run test:e2e:auth` | Auth/persistence e2e against the real Supabase project in `.env.local` |
+| `npm run db:push` / `db:types` | Apply migrations / generate TS types (Supabase CLI, see docs/SUPABASE.md) |
 
 ## Project layout (so far)
 
 ```
 data/countries/        canonical dataset: 193 UN members, en/he names, capitals, facts, difficulty
 scripts/               import-countries.ts (+ lib: validator, SVG sanitizer, UN reference list)
-docs/                  DATASET.md, API.md, THIRD_PARTY.md
+docs/                  SUPABASE.md (setup), DATABASE.md (schema/security), DATASET.md, API.md, THIRD_PARTY.md
+supabase/              migrations/ (versioned SQL), config.toml, tests/local-shim.sql (test-only)
 src/
   app/                 routes (server components by default); app/api/game/* route handlers
   components/          layout/, ui/, game/, daily/, auth/
@@ -51,7 +56,8 @@ src/
   lib/i18n/            locale negotiation, typed translator, server/client access, switcher action
   lib/time/            DST-safe Asia/Jerusalem calendar helpers, duration formatting
   lib/game/            pure game rules: selection, distractors, scoring (unit-tested)
-  server/              server-only: country repository, AES-GCM tokens, rate limit, game service, generated data
+  server/              server-only: country repository, AES-GCM tokens, rate limit, game services, generated data
+  lib/supabase/        server/admin clients (+ middleware.ts session refresh); lib/auth: actions, session, errors
   messages/            en.ts (canonical shape), he.ts (type-checked against en)
 tests/unit, tests/e2e
 ```
