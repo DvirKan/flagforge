@@ -65,5 +65,5 @@ tests/unit, tests/e2e
 ## Design notes
 
 - "Modern Atlas": parchment/paper surfaces, ink navy, restrained rust accent, hairline rules, graticule texture.
-- Fonts are self-hosted from `@fontsource` (all SIL OFL 1.1): Frank Ruhl Libre, IBM Plex Sans, IBM Plex Sans Hebrew, IBM Plex Mono.
+- Fonts are self-hosted from `@fontsource` (SIL OFL 1.1): Rubik for all text (Hebrew + Latin), IBM Plex Mono for numbers.
 - Layout uses CSS logical properties so Hebrew (RTL) and English (LTR) share one set of components.

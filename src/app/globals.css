@@ -25,8 +25,9 @@
   --color-danger: #a23b2a;
   --color-danger-wash: #f3dfd7;
 
-  --font-display: "Frank Ruhl Libre Variable", "Frank Ruhl Libre", "Times New Roman", serif;
-  --font-sans: "IBM Plex Sans", "IBM Plex Sans Hebrew", system-ui, "Segoe UI", Arial, sans-serif;
+  /* Rubik (OFL-1.1): one warm, rounded family for headings and text, with full Hebrew and Latin coverage. */
+  --font-display: "Rubik Variable", "Rubik", system-ui, "Segoe UI", Arial, sans-serif;
+  --font-sans: "Rubik Variable", "Rubik", system-ui, "Segoe UI", Arial, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
 
   --text-eyebrow: 0.6875rem;
@@ -52,10 +53,6 @@
     min-height: 100dvh;
   }
 
-  /* Hebrew: Plex Sans Hebrew first so Latin digits/punctuation stay consistent within RTL text runs. */
-  html[lang="he"] body {
-    font-family: "IBM Plex Sans Hebrew", "IBM Plex Sans", system-ui, Arial, sans-serif;
-  }
 
   ::selection {
     background: color-mix(in srgb, var(--color-rust) 30%, transparent);
@@ -80,9 +77,10 @@
 }
 
 @layer components {
-  /* Small-caps editorial label, e.g. "PLATE II · DAILY" */
+  /* Small editorial label, e.g. "PLATE II · DAILY". Mono is kept only for numbers (timers, coordinates). */
   .eyebrow {
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
+    font-weight: 500;
     font-size: var(--text-eyebrow);
     letter-spacing: var(--text-eyebrow--letter-spacing);
     text-transform: uppercase;
@@ -90,15 +88,14 @@
   }
   /* Plex Mono has no Hebrew glyphs; Hebrew labels use the Hebrew sans instead of a fallback monospace. */
   html[lang="he"] .eyebrow {
-    font-family: "IBM Plex Sans Hebrew", "IBM Plex Mono", system-ui, sans-serif;
     font-size: 0.75rem;
     letter-spacing: 0.02em;
   }
 
   .display {
     font-family: var(--font-display);
-    font-weight: 500;
-    letter-spacing: -0.015em;
+    font-weight: 600;
+    letter-spacing: -0.01em;
     line-height: 1.02;
   }
 

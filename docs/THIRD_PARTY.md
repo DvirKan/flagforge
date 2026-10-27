@@ -25,7 +25,7 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 
 ## Fonts — SIL Open Font License 1.1
 
-Self-hosted via `@fontsource`: Frank Ruhl Libre, IBM Plex Sans, IBM Plex Sans Hebrew, IBM Plex Mono.
+Self-hosted via `@fontsource`: Rubik (headings and text, Hebrew + Latin), IBM Plex Mono (numbers).
 
 ## Country names, capitals and facts
 
