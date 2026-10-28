@@ -115,6 +115,27 @@ Check results: typecheck/lint pass · unit 67 · DB 56/56 · e2e (guest) 53 pass
 To do on the developer machine: `npx supabase db push` (migration 100600), `npm run build`,
 `npm run test:e2e:auth` (now 9 tests).
 
-## Next steps (Phase 6)
+## Phase 6 — verified (sandbox)
 
-Admin area: challenge calendar + validation/publish UI, dataset view, audit log.
+- [x] Migration `20261027100700_admin.sql`: append-only `admin_audit_log` (survives account deletion),
+      service-role read models (overview, calendar, challenge detail, nearby countries), `admin_delete_draft`
+- [x] `src/server/admin/calendar.ts`: generate/regenerate, replace one question (chosen or random), publish,
+      unpublish, delete draft, fill ahead — shared by the admin UI and `daily:prepare`; everything audited
+- [x] Server actions re-check the admin role, validate input, refuse past dates, log failures as JSON
+- [x] `/admin` overview + calendar + prepare ahead + activity; `/admin/daily/<date>` preview and editing;
+      two-step confirmation for irreversible actions — see docs/ADMIN.md
+- [x] Tests: DB/service 11 (generate, replace rules, publish/immutability/unpublish/delete, today is locked,
+      invalid draft refused with reasons, fill range, dry run, audit append-only, audit after account
+      deletion, client invisibility); auth e2e "administrator prepares, edits, publishes and withdraws"
+- [x] Verified visually against a local database (desktop + mobile, he/en)
+- Removed the "under construction" component — no placeholders remain.
+
+Check results: typecheck/lint pass · unit 67 · DB 67/67 · e2e (guest) 53 pass / 5 skipped.
+
+To do on the developer machine: `npx supabase db push` (100700), `npm run build`, `npm run test:e2e:auth`
+(10 tests; the admin test uses a date one year ahead and cleans up after itself).
+
+## Next steps (Phase 7)
+
+Production: GitHub repository, Vercel project + environment variables, Supabase production URL settings,
+custom SMTP + email templates, scheduled `daily:prepare`, final security review.

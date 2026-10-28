@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { expect, test, type Page } from "@playwright/test";
+import { addCalendarDays, calendarDateIn } from "../../src/lib/time/zoned";
 
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
 const publishable = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";
@@ -229,4 +230,57 @@ test("guests cannot start a ranked daily attempt", async ({ page, request }) => 
   expect(res.status()).toBe(401);
   await page.goto("/daily/play");
   await expect(page).toHaveURL(/\/login\?next=%2Fdaily%2Fplay/);
+});
+
+test("an administrator prepares, edits, publishes and withdraws a future challenge", async ({ page }) => {
+  // A date a year ahead, cleared first in case an earlier run was interrupted.
+  const date = addCalendarDays(calendarDateIn(new Date(), "Asia/Jerusalem"), 365);
+  const before = (await admin.rpc("admin_challenge_detail", { p_date: date })).data as { id?: string; status: string };
+  if (before.status === "published") await admin.rpc("unpublish_daily_challenge", { p_challenge_id: before.id });
+  if (before.status !== "missing") await admin.rpc("admin_delete_draft", { p_challenge_id: before.id });
+
+  const user = await createConfirmedUser("adm");
+  const { error: roleError } = await admin.from("user_roles").insert({ user_id: user.id, role: "admin" });
+  expect(roleError).toBeNull();
+  await login(page, user.email ?? "");
+
+  const res = await page.goto("/admin");
+  expect(res?.status()).toBe(200);
+  await expect(page.getByRole("heading", { name: "Administration" })).toBeVisible();
+
+  await page.goto(`/admin/daily/${date}`);
+  await expect(page.getByText("There is no challenge for this date yet.")).toBeVisible();
+  await page.getByRole("button", { name: "Generate challenge" }).click();
+  await expect(page.getByText("Done.")).toBeVisible();
+  await page.reload();
+  await expect(page.getByText("Passes every check")).toBeVisible();
+  await expect(page.locator("main ol > li")).toHaveCount(5);
+
+  const firstBefore = await page.locator("main ol > li").first().locator("p.text-xl").textContent();
+  await page.locator("main ol > li").first().getByRole("button", { name: "Replace" }).click();
+  await expect(page.locator("main ol > li").first().getByText("Done.")).toBeVisible();
+  await page.reload();
+  expect(await page.locator("main ol > li").first().locator("p.text-xl").textContent()).not.toBe(firstBefore);
+
+  const publish = page.getByRole("button", { name: "Publish" });
+  await publish.click();
+  await page.getByRole("button", { name: "Click again to confirm" }).click();
+  await expect(page.getByText("Done.")).toBeVisible();
+  await page.reload();
+  await expect(page.getByText("Published", { exact: true })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Replace" })).toHaveCount(0); // immutable
+
+  await page.getByRole("button", { name: "Unpublish" }).click();
+  await page.getByRole("button", { name: "Click again to confirm" }).click();
+  await expect(page.getByText("Done.")).toBeVisible();
+  await page.reload();
+  await page.getByRole("button", { name: "Delete draft" }).click();
+  await page.getByRole("button", { name: "Click again to confirm" }).click();
+  await expect(page.getByText("Done.")).toBeVisible();
+  await page.reload();
+  await expect(page.getByText("There is no challenge for this date yet.")).toBeVisible();
+
+  const { data: audit } = await admin.rpc("admin_audit_recent", { p_limit: 50 });
+  const mine = (audit as { action: string; target: string; actor: string | null }[]).filter((a) => a.target === date && a.actor === `e2e_adm_${run}`.slice(0, 20));
+  expect(mine.map((a) => a.action).sort()).toEqual(["daily.delete_draft", "daily.generate", "daily.publish", "daily.replace_question", "daily.unpublish"]);
 });

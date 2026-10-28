@@ -1,4 +1,4 @@
-import "server-only";
+// Framework-free on purpose: used by server code and by the CLI scripts (which cannot import "server-only").
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 /** Minimal RPC port so the persisted-game service runs against Supabase (prod) or plain pg (tests). */

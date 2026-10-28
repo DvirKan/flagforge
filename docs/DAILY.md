@@ -46,6 +46,9 @@ npm run daily:prepare -- --dry-run       # show what would be generated
 npm run daily:validate                   # report missing/invalid dates (non-zero exit if any)
 ```
 
-The generator avoids flags used in the 30 days before each date. Already-published dates are never changed.
+The generator avoids flags used within 30 days either side of each date. Already-published dates are never
+changed; valid drafts (e.g. curated in the admin area) are published as they are. The script and the admin
+area's "Prepare ahead" share one implementation (`src/server/admin/calendar.ts`) and both write to the audit
+log. Day-to-day management is easier from `/admin` — see docs/ADMIN.md.
 Recommended routine: run `daily:prepare -- --days=30` once a month and `daily:validate` weekly (or from a scheduled
 job). If no challenge is published for a date, the site says so and nobody can start an attempt.

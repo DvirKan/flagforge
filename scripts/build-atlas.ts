@@ -8,7 +8,7 @@
  *
  * Usage:  npm run data:atlas
  */
-import { writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { geoNaturalEarth1, geoPath, type GeoPermissibleObjects } from "d3-geo";
 import countries from "i18n-iso-countries";
@@ -17,7 +17,7 @@ import type { GeometryCollection, Topology } from "topojson-specification";
 import { UN_MEMBER_CODES } from "./lib/un-members";
 
 const root = join(__dirname, "..");
-const load = (name: string) => require(join(root, "node_modules", "world-atlas", name)) as Topology<{ countries: GeometryCollection }>;
+const load = (name: string) => JSON.parse(readFileSync(join(root, "node_modules", "world-atlas", name), "utf8")) as Topology<{ countries: GeometryCollection }>;
 
 const WIDTH = 1000;
 const HEIGHT = 520;
