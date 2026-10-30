@@ -250,34 +250,30 @@ test("an administrator prepares, edits, publishes and withdraws a future challen
 
   await page.goto(`/admin/daily/${date}`);
   await expect(page.getByText("There is no challenge for this date yet.")).toBeVisible();
+  // After each successful action the server re-renders the page into the new state (the clicked form is
+  // replaced), so the test checks that state rather than a transient "Done." message.
+  const confirmTwice = async (name: string) => {
+    await page.getByRole("button", { name }).click();
+    await page.getByRole("button", { name: "Click again to confirm" }).click();
+  };
+
   await page.getByRole("button", { name: "Generate challenge" }).click();
-  await expect(page.getByText("Done.")).toBeVisible();
-  await page.reload();
   await expect(page.getByText("Passes every check")).toBeVisible();
   await expect(page.locator("main ol > li")).toHaveCount(5);
 
-  const firstBefore = await page.locator("main ol > li").first().locator("p.text-xl").textContent();
-  await page.locator("main ol > li").first().getByRole("button", { name: "Replace" }).click();
-  await expect(page.locator("main ol > li").first().getByText("Done.")).toBeVisible();
-  await page.reload();
-  expect(await page.locator("main ol > li").first().locator("p.text-xl").textContent()).not.toBe(firstBefore);
+  const first = page.locator("main ol > li").first();
+  const firstBefore = await first.locator("p.text-xl").textContent();
+  await first.getByRole("button", { name: "Replace" }).click();
+  await expect(first.locator("p.text-xl")).not.toHaveText(firstBefore ?? "");
 
-  const publish = page.getByRole("button", { name: "Publish" });
-  await publish.click();
-  await page.getByRole("button", { name: "Click again to confirm" }).click();
-  await expect(page.getByText("Done.")).toBeVisible();
-  await page.reload();
+  await confirmTwice("Publish");
   await expect(page.getByText("Published", { exact: true })).toBeVisible();
   await expect(page.getByRole("button", { name: "Replace" })).toHaveCount(0); // immutable
 
-  await page.getByRole("button", { name: "Unpublish" }).click();
-  await page.getByRole("button", { name: "Click again to confirm" }).click();
-  await expect(page.getByText("Done.")).toBeVisible();
-  await page.reload();
-  await page.getByRole("button", { name: "Delete draft" }).click();
-  await page.getByRole("button", { name: "Click again to confirm" }).click();
-  await expect(page.getByText("Done.")).toBeVisible();
-  await page.reload();
+  await confirmTwice("Unpublish");
+  await expect(page.getByText("Draft", { exact: true })).toBeVisible();
+
+  await confirmTwice("Delete draft");
   await expect(page.getByText("There is no challenge for this date yet.")).toBeVisible();
 
   const { data: audit } = await admin.rpc("admin_audit_recent", { p_limit: 50 });
