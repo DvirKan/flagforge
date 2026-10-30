@@ -49,7 +49,7 @@ npm run dev                          # http://localhost:3000
 ```
 data/countries/        canonical dataset: 193 UN members, en/he names, capitals, facts, difficulty
 scripts/               import-countries.ts (+ lib: validator, SVG sanitizer, UN reference list)
-docs/                  SUPABASE.md (setup), DAILY.md (daily rules + operations), ADMIN.md (admin area + audit log), DATABASE.md (schema/security), PROGRESS_LAYER.md (rankings, stats, achievements, atlas), DATASET.md, API.md, THIRD_PARTY.md
+docs/                  SUPABASE.md (setup), DAILY.md (daily rules + operations), ADMIN.md (admin area + audit log), DEPLOY.md (GitHub, Vercel, email), SECURITY.md (pre-launch review), DATABASE.md (schema/security), PROGRESS_LAYER.md (rankings, stats, achievements, atlas), DATASET.md, API.md, THIRD_PARTY.md
 supabase/              migrations/ (versioned SQL), config.toml, tests/local-shim.sql (test-only)
 src/
   app/                 routes (server components by default); app/api/game/* route handlers

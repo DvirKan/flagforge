@@ -1,0 +1,43 @@
+# Keeps the daily challenge calendar filled: every Sunday it makes sure the next 30 days are published, then
+# validates the next 14. Uses the same code as the admin area; each run is recorded in the audit log as "script".
+# Repository secrets required: NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SECRET_KEY (Settings → Secrets → Actions).
+name: Prepare daily challenges
+
+on:
+  schedule:
+    - cron: "17 2 * * 0" # Sundays 02:17 UTC (04:17/05:17 in Israel)
+  workflow_dispatch:
+    inputs:
+      days:
+        description: Days ahead to publish
+        default: "30"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: daily-prepare
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Publish upcoming challenges
+        # The input goes through an environment variable (never interpolated into the shell) and the script
+        # clamps it to 1–120.
+        env:
+          DAYS: ${{ github.event.inputs.days || '30' }}
+        run: npm run daily:prepare -- "--days=${DAYS//[^0-9]/}"
+      - name: Validate the next two weeks
+        run: npm run daily:validate -- --days=14

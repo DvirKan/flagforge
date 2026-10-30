@@ -61,17 +61,8 @@ in filename order. (The CLI is preferred because it tracks which migrations ran.
 up (§4). Until then the default templates are used: their links work, but only in the browser where the user
 signed up / requested the reset (PKCE). After configuring SMTP, use links that work on any device:
 
-*Confirm signup*
-```html
-<h2>Confirm your FLAGFORGE account · אימות החשבון</h2>
-<p><a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=email&next=/profile?welcome=1">Confirm my email · אימות האימייל</a></p>
-```
-
-*Reset password*
-```html
-<h2>Reset your FLAGFORGE password · איפוס סיסמה</h2>
-<p><a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=recovery">Choose a new password · בחירת סיסמה חדשה</a></p>
-```
+Ready-made bilingual templates: `supabase/templates/confirm-signup.html` and
+`supabase/templates/reset-password.html` (subjects and steps in docs/DEPLOY.md §4).
 
 The app handles both styles at `/auth/confirm`, so the default templates also work (same browser only).
 
@@ -79,7 +70,8 @@ The app handles both styles at `/auth/confirm`, so the default templates also wo
 
 The built-in Supabase mailer is for development: it sends only to members of your Supabase organisation and
 at a very low hourly rate. For real users configure SMTP (**Authentication → Emails → SMTP Settings**) with a
-provider such as Resend, Postmark, Amazon SES or Brevo, using a domain you own.
+provider. Without a domain: a (dedicated) Gmail account with an app password; with a domain: Resend, Postmark,
+Amazon SES or Brevo. Step-by-step settings: docs/DEPLOY.md §4.
 
 **Do not sign up with made-up addresses** on a project that sends emails — bounced messages can get the
 project's email sending restricted. The automated auth tests create users through the admin API, which sends

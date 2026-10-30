@@ -135,7 +135,17 @@ Check results: typecheck/lint pass · unit 67 · DB 67/67 · e2e (guest) 53 pass
 To do on the developer machine: `npx supabase db push` (100700), `npm run build`, `npm run test:e2e:auth`
 (10 tests; the admin test uses a date one year ahead and cleans up after itself).
 
-## Next steps (Phase 7)
+Developer machine: migrations applied, `test:e2e:auth` 10/10 (the admin test was fixed to check the
+re-rendered state instead of a transient message).
 
-Production: GitHub repository, Vercel project + environment variables, Supabase production URL settings,
-custom SMTP + email templates, scheduled `daily:prepare`, final security review.
+## Phase 7 — prepared (sandbox)
+
+- [x] CI workflow (`.github/workflows/ci.yml`): typecheck, lint, dataset, unit + DB tests on a PostgreSQL
+      service, build, guest e2e; no secrets
+- [x] Weekly `Prepare daily challenges` workflow (30 days ahead + validation), manual run supported
+- [x] Bilingual email templates (`supabase/templates/`), token-hash links that work on any device
+- [x] docs/DEPLOY.md (GitHub → Vercel → Supabase URLs → Gmail SMTP → checklist → later: own domain)
+- [x] docs/SECURITY.md pre-launch review; `npm audit` clean
+
+Remaining (developer, in order): GitHub repo + push · Vercel project + env vars · Supabase URL configuration ·
+SMTP + templates · post-deploy checklist (DEPLOY.md §5).

@@ -1,0 +1,23 @@
+<!-- FLAGFORGE email template. Paste into Supabase → Authentication → Emails → Templates (needs custom SMTP).
+     Links use {{ .SiteURL }} (Supabase → Authentication → URL Configuration), so a domain change needs no edit here. -->
+<div style="background:#f1ebdd;padding:24px 12px;font-family:Arial,Helvetica,sans-serif;color:#172c3b">
+  <div style="max-width:520px;margin:0 auto;background:#faf8f2;border-radius:16px;padding:28px">
+    <p style="margin:0 0 20px;font-weight:700;letter-spacing:2px;font-size:14px">FLAGFORGE</p>
+
+    <div dir="rtl" lang="he" style="text-align:right">
+      <h1 style="margin:0 0 8px;font-size:22px">אימות כתובת האימייל</h1>
+      <p style="margin:0 0 20px;line-height:1.6;color:#2b4253">לחיצה אחת והחשבון מוכן: האתגר היומי, הרצף שלכם וסיכוי להיכנס להיכל התהילה.</p>
+      <p style="margin:0 0 12px"><a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=email&next=/profile?welcome=1" style="display:inline-block;background:#172c3b;color:#faf8f2;text-decoration:none;font-weight:600;padding:12px 24px;border-radius:999px">אימות האימייל</a></p>
+      <p style="margin:0;font-size:13px;color:#5b666d;line-height:1.5">לא נרשמתם ל־FLAGFORGE? אפשר להתעלם מהמייל — בלי אימות לא נוצר חשבון.</p>
+    </div>
+
+    <hr style="border:none;border-top:1px solid #d8d1c3;margin:28px 0">
+
+    <div dir="ltr" lang="en" style="text-align:left">
+      <h1 style="margin:0 0 8px;font-size:22px">Confirm your email</h1>
+      <p style="margin:0 0 20px;line-height:1.6;color:#2b4253">One click and your account is ready: the daily challenge, your streak and a shot at the Hall of Fame.</p>
+      <p style="margin:0 0 12px"><a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=email&next=/profile?welcome=1" style="display:inline-block;background:#172c3b;color:#faf8f2;text-decoration:none;font-weight:600;padding:12px 24px;border-radius:999px">Confirm my email</a></p>
+      <p style="margin:0;font-size:13px;color:#5b666d;line-height:1.5">Didn't sign up for FLAGFORGE? You can ignore this email — no account is created without confirmation.</p>
+    </div>
+  </div>
+</div>
