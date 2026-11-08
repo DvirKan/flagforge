@@ -6,10 +6,20 @@
 -- It deliberately reproduces Supabase's *permissive* defaults (anon/authenticated get ALL
 -- on new public tables and functions) so tests prove that our migrations revoke them.
 -- ─────────────────────────────────────────────────────────────────────────────
-do $$ begin
-  if not exists (select 1 from pg_roles where rolname = 'anon') then create role anon nologin noinherit; end if;
-  if not exists (select 1 from pg_roles where rolname = 'authenticated') then create role authenticated nologin noinherit; end if;
-  if not exists (select 1 from pg_roles where rolname = 'service_role') then create role service_role nologin noinherit bypassrls; end if;
+-- Roles are cluster-wide and test files set up their databases in parallel: on a fresh server two files can
+-- both see a role missing and race to create it, so "already exists" is tolerated.
+do $$
+declare r record;
+begin
+  for r in select * from (values ('anon', ''), ('authenticated', ''), ('service_role', ' bypassrls')) v(name, extra) loop
+    if not exists (select 1 from pg_roles where rolname = r.name) then
+      begin
+        execute format('create role %I nologin noinherit%s', r.name, r.extra);
+      exception when duplicate_object or unique_violation then
+        null; -- created concurrently by another test file
+      end;
+    end if;
+  end loop;
 end $$;
 
 create schema if not exists auth;
