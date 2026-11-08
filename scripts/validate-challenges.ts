@@ -7,7 +7,7 @@
  * Exits non-zero if any date in the range is missing, unpublished or invalid (useful in CI or a cron check).
  */
 import { addCalendarDays, calendarDateIn } from "../src/lib/time/zoned";
-import { argValue, scriptAdminClient } from "./lib/admin-client";
+import { argValue, reportFailure, scriptAdminClient } from "./lib/admin-client";
 
 async function main() {
   const days = Math.min(Math.max(Number(argValue("days", "14")) || 14, 1), 120);
@@ -26,7 +26,4 @@ async function main() {
   if (bad) process.exit(1);
 }
 
-main().catch((err) => {
-  console.error(err instanceof Error ? err.message : err);
-  process.exit(1);
-});
+main().catch(reportFailure);

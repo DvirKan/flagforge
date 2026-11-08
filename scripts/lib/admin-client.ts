@@ -20,3 +20,17 @@ export function argValue(name: string, fallback: string): string {
   const hit = process.argv.find((a) => a.startsWith(`--${name}=`));
   return hit ? hit.slice(name.length + 3) : fallback;
 }
+
+/**
+ * Prints a script failure with its underlying cause. Node's fetch reports network problems only as
+ * "fetch failed"; the real reason (DNS, refused connection, TLS…) is in `cause`.
+ */
+export function reportFailure(err: unknown): never {
+  const message = err instanceof Error ? err.message : String(err);
+  const cause = err instanceof Error ? (err.cause as { code?: string; message?: string } | undefined) : undefined;
+  console.error(cause ? `${message}: ${cause.code ?? ""} ${cause.message ?? ""}`.trim() : message);
+  if (cause?.code === "ENOTFOUND" || /fetch failed/.test(message)) {
+    console.error("Supabase could not be reached. If the free project was paused for inactivity, restore it in the dashboard.");
+  }
+  process.exit(1);
+}

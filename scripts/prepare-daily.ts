@@ -18,7 +18,7 @@ import type { Country } from "../src/lib/game/types";
 import { addCalendarDays, calendarDateIn } from "../src/lib/time/zoned";
 import { fillAhead } from "../src/server/admin/calendar";
 import { supabaseRpc } from "../src/server/game/rpc";
-import { argValue, scriptAdminClient } from "./lib/admin-client";
+import { argValue, reportFailure, scriptAdminClient } from "./lib/admin-client";
 
 const ctx: SelectionContext = {
   countries: countryRows.map(([iso2, continent, difficulty, en, he, capEn, capHe, factEn, factHe]) => ({
@@ -47,7 +47,4 @@ async function main() {
   if (report.failed.length) process.exit(1);
 }
 
-main().catch((err) => {
-  console.error(err instanceof Error ? err.message : err);
-  process.exit(1);
-});
+main().catch(reportFailure);
