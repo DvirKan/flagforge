@@ -52,7 +52,11 @@ describe("standard game", () => {
     const iso = resolveFlagHandle(question.flagUrl.split("/").pop() ?? "", T0);
     expect(iso).toMatch(/^[A-Z]{2}$/);
     expect(payload).not.toContain(`"${iso}"`);
-    expect(token).not.toContain(iso as string);
+    // The token is AES-GCM ciphertext: random-looking base64url that may contain any two letters by chance,
+    // so check the decoded bytes for the quoted code as it would appear in plaintext JSON (4 exact bytes —
+    // about a 1-in-10-million false alarm, versus ~1 in 20 for searching the base64 text for two letters).
+    const raw = Buffer.from(token, "base64url").toString("latin1");
+    expect(raw).not.toContain(`"${iso}"`);
     expect(question.options).toHaveLength(4);
     expect(question.flagUrl).toMatch(/^\/api\/game\/flag\//);
     expect((flags as Record<string, string>)[iso ?? ""]).toMatch(/^<svg/);
