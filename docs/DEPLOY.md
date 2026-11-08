@@ -17,8 +17,11 @@ Secrets are typed **only** into the dashboards named below — never into chat, 
    - `NEXT_PUBLIC_SUPABASE_URL` — `https://<project-ref>.supabase.co`
    - `SUPABASE_SECRET_KEY` — the `sb_secret_…` key (same as in `.env.local`)
 
-   Then **Actions → Prepare daily challenges → Run workflow** once to check it. It then runs every Sunday,
-   keeps the next 30 days published and validates the next 14.
+   Then **Actions → Prepare daily challenges → Run workflow** once to check it. On Sundays it keeps the next
+   30 days published; every day it validates the next 14 (read-only) and fails — GitHub emails you — if a date
+   is missing or invalid. The daily read also keeps a free Supabase project from being paused for inactivity
+   (Supabase pauses free projects after about a week without activity; a paused project can be restored from
+   the dashboard within 90 days).
 
 ## 2. Vercel
 
