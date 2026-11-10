@@ -81,6 +81,10 @@ If it ever leaked, only an empty project account would be exposed. Revoke it any
 - [ ] Forgot password → email → link → new password works
 - [ ] Play a standard game while signed in → appears on `/profile`, `/map`, `/achievements`
 - [ ] `/admin` works for your account and 404s in a private window
+- [ ] Daily challenge → **Share my result**: on a phone the share sheet opens (WhatsApp etc.); the text has
+      the 🟩/🟥 pattern, the time and the link, and no country names
+- [ ] Install: Android Chrome → menu → *Add to home screen* / *Install app*; iPhone Safari → Share →
+      *Add to Home Screen*. The FLAGFORGE icon opens the site full-screen
 - [ ] Response headers include `Content-Security-Policy` and `Strict-Transport-Security`
       (browser dev tools → Network → the document request)
 

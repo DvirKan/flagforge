@@ -39,6 +39,7 @@ npm run dev                          # http://localhost:3000
 | `npm run data:import` | Validate `data/countries` and regenerate `src/server/data/*.json` |
 | `npm run data:check` | Validate only (CI) |
 | `npm run data:atlas` | Regenerate the world map paths `src/data/atlas.json` (docs/PROGRESS_LAYER.md) |
+| `npm run data:icons` | Regenerate the app icons (`public/icons`, `src/app/icon.svg`) from the brand mark |
 | `npm run test:db` | Migrations + RLS + SQL function tests on plain PostgreSQL (`TEST_DATABASE_URL`) |
 | `npm run test:e2e:auth` | Auth/persistence e2e against the real Supabase project in `.env.local` |
 | `npm run daily:prepare` / `daily:validate` | Generate + publish upcoming daily challenges / check them (docs/DAILY.md) |

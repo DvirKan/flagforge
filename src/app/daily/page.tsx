@@ -46,7 +46,7 @@ export default async function DailyPage() {
           {formatDuration(attempt.elapsedMs ?? 0, { tenths: true })}
         </p>
         <Link href="/daily/play" className="mt-3 inline-block text-sm link-underline">
-          {t("daily.reviewTitle")}
+          {t("daily.reviewTitle")} · {t("daily.share")}
         </Link>
       </div>
     );

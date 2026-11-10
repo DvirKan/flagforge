@@ -47,6 +47,23 @@ test.describe("foundation", () => {
     await expect(list.locator("li button")).toHaveCount(0);
   });
 
+  test("is installable: manifest, icons and iOS home-screen tags", async ({ page, request }) => {
+    const res = await request.get("/manifest.webmanifest");
+    expect(res.status()).toBe(200);
+    const manifest = await res.json();
+    expect(manifest).toMatchObject({ display: "standalone", start_url: "/" });
+    expect(manifest.icons.map((i: { purpose: string }) => i.purpose)).toEqual(expect.arrayContaining(["any", "maskable"]));
+    for (const icon of manifest.icons as { src: string }[]) {
+      const img = await request.get(icon.src);
+      expect(img.status(), icon.src).toBe(200);
+      expect(img.headers()["content-type"]).toContain("image/png");
+    }
+    await page.goto("/");
+    await expect(page.locator('link[rel="manifest"]')).toHaveAttribute("href", "/manifest.webmanifest");
+    await expect(page.locator('link[rel="apple-touch-icon"]')).toHaveAttribute("href", "/icons/apple-touch-icon.png");
+    expect((await request.get("/icons/apple-touch-icon.png")).status()).toBe(200);
+  });
+
   test("unknown difficulty returns 404", async ({ page }) => {
     const res = await page.goto("/play/impossible");
     expect(res?.status()).toBe(404);

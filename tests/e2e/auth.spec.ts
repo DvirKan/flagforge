@@ -209,6 +209,14 @@ test("daily challenge: one attempt, refresh resumes, result is ranked", async ({
   }
   await expect(page.locator("#daily-result")).toBeVisible();
 
+  // Sharing (desktop: copies to the clipboard). The text shows the pattern and a link — never a country.
+  await page.context().grantPermissions(["clipboard-read", "clipboard-write"]);
+  await page.getByRole("button", { name: "Share my result" }).click();
+  await expect(page.getByRole("button", { name: /Copied/ })).toBeVisible();
+  const shared = await page.evaluate(() => navigator.clipboard.readText());
+  expect(shared).toMatch(/^FLAGFORGE · Daily \d{1,2}\.\d{1,2}\n[🟩🟥]{5}/u);
+  expect(shared).toContain("/daily");
+
   const { data: attempts } = await admin.from("daily_attempts").select("status, correct_count, elapsed_ms").eq("user_id", user.id);
   expect(attempts).toHaveLength(1);
   expect(attempts?.[0]?.status).toBe("completed");

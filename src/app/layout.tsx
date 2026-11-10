@@ -18,6 +18,9 @@ export async function generateMetadata(): Promise<Metadata> {
     title: { default: brand.name, template: `%s · ${brand.name}` },
     description: t("meta.description"),
     metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+    // Home-screen install: manifest (src/app/manifest.ts) for Android/Chrome, these for iOS Safari.
+    icons: { apple: "/icons/apple-touch-icon.png" },
+    appleWebApp: { capable: true, title: brand.name, statusBarStyle: "default" },
   };
 }
 

@@ -34,7 +34,7 @@ const FEEDBACK_MS = 900;
  * Ranked daily attempt. The clock shown here is for display only (server-anchored, monotonic); the official
  * time comes from the database. A refresh resumes the same attempt — the clock keeps running.
  */
-export function DailyClient() {
+export function DailyClient({ date }: { date: string }) {
   const { locale, t } = useI18n();
   const router = useRouter();
   const [phase, setPhase] = useState<Phase>({ kind: "loading" });
@@ -151,7 +151,7 @@ export function DailyClient() {
   if (phase.kind === "complete") {
     return (
       <div className="grid gap-6">
-        <DailyResultView ref={resultHeading} result={phase.result} />
+        <DailyResultView ref={resultHeading} result={phase.result} date={date} />
         <Link href="/daily" className="btn btn-primary justify-self-start">
           {t("daily.leaderboardTitle")}
         </Link>

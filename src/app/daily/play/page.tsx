@@ -16,7 +16,8 @@ export async function generateMetadata(): Promise<Metadata> {
 /** The ranked attempt itself. Signed-in users only; without a published challenge today, back to /daily. */
 export default async function DailyPlayPage() {
   await requireViewer("/daily/play");
-  if (!isAdminClientConfigured() || !(await getPublishedChallenge(todayChallengeDate()))) redirect("/daily");
+  const date = todayChallengeDate();
+  if (!isAdminClientConfigured() || !(await getPublishedChallenge(date))) redirect("/daily");
   const { t } = await getI18n();
   return (
     <Container>
@@ -27,7 +28,7 @@ export default async function DailyPlayPage() {
         </Link>
       </div>
       <div className="pt-3 md:pt-8">
-        <DailyClient />
+        <DailyClient date={date} />
       </div>
     </Container>
   );

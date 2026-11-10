@@ -147,5 +147,10 @@ re-rendered state instead of a transient message).
 - [x] docs/DEPLOY.md (GitHub → Vercel → Supabase URLs → Gmail SMTP → checklist → later: own domain)
 - [x] docs/SECURITY.md pre-launch review; `npm audit` clean
 
+- [x] Growth & mobile: **Share my result** on the daily result (system share sheet on phones, clipboard
+      otherwise; Wordle-style 🟩/🟥 pattern + time + link, never a country), installable PWA (manifest,
+      icons incl. maskable, iOS home-screen tags, favicon). Google Play (TWA) deferred until there is a
+      domain and regular players (12 testers × 14 days rule for new personal accounts).
+
 Remaining (developer, in order): GitHub repo + push · Vercel project + env vars · Supabase URL configuration ·
 SMTP + templates · post-deploy checklist (DEPLOY.md §5).

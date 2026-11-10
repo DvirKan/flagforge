@@ -3,11 +3,12 @@
 import { Check, X } from "lucide-react";
 import { forwardRef } from "react";
 import { NewAchievements } from "@/components/achievements/NewAchievements";
+import { ShareResult } from "./ShareResult";
 import { useI18n } from "@/lib/i18n/client";
 import { formatDuration } from "@/lib/time/format";
 import type { DailyResult } from "@/server/daily/service";
 
-export const DailyResultView = forwardRef<HTMLHeadingElement, { result: DailyResult }>(function DailyResultView({ result }, ref) {
+export const DailyResultView = forwardRef<HTMLHeadingElement, { result: DailyResult; date: string }>(function DailyResultView({ result, date }, ref) {
   const { locale, t } = useI18n();
   return (
     <section aria-labelledby="daily-result" className="rounded-2xl bg-paper p-5 shadow-card md:p-8">
@@ -19,6 +20,9 @@ export const DailyResultView = forwardRef<HTMLHeadingElement, { result: DailyRes
         {formatDuration(result.elapsedMs, { tenths: true })}
       </p>
       <p className="mt-2 text-xs text-muted">{t("daily.clockNote")}</p>
+      <div className="mt-5">
+        <ShareResult date={date} results={result.review.map((r) => r.correct)} elapsedMs={result.elapsedMs} />
+      </div>
       <NewAchievements items={result.newAchievements} />
       <h3 className="display mt-8 text-xl">{t("daily.reviewTitle")}</h3>
       <ol className="mt-3 grid grid-cols-2 gap-x-4 gap-y-5 sm:grid-cols-5">
