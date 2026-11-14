@@ -94,6 +94,7 @@ export function GameClient({ difficulty }: { difficulty: Difficulty }) {
   const firstOptionRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
   const resultsRef = useRef<HTMLHeadingElement>(null);
+  const gameTopRef = useRef<HTMLDivElement>(null);
   const [generation, bump] = useReducer((n: number) => n + 1, 0);
 
   // Start (and restart) a game. AbortController handles React Strict Mode's double effect in development.
@@ -125,11 +126,17 @@ export function GameClient({ difficulty }: { difficulty: Difficulty }) {
 
   // Focus management: options on a new question, "next" after a reveal, heading on completion.
   useEffect(() => {
-    if (state.phase === "playing" && !revealed) firstOptionRef.current?.focus({ preventScroll: true });
+    if (state.phase !== "playing" || revealed) return;
+    // Safety net: each new question starts with the question number, timer and flag in view (the page could
+    // have been scrolled, e.g. after rotating the phone or on a very short screen).
+    const top = gameTopRef.current?.getBoundingClientRect().top ?? 0;
+    if (top < 0) gameTopRef.current?.scrollIntoView({ block: "start" });
+    firstOptionRef.current?.focus({ preventScroll: true });
   }, [state.phase, questionIndex, revealed]);
   useEffect(() => {
-    // Without preventScroll, phones scroll just enough to bring the feedback's "next" button into view.
-    if (revealed) nextRef.current?.focus();
+    // The feedback is a fixed bottom sheet on phones and sits in the answer column on wider screens, so the
+    // "next" button is already visible: never scroll the page to reach it.
+    if (revealed) nextRef.current?.focus({ preventScroll: true });
   }, [revealed]);
   useEffect(() => {
     if (state.phase === "complete") {
@@ -191,7 +198,7 @@ export function GameClient({ difficulty }: { difficulty: Difficulty }) {
   const { question, reveal } = state;
 
   return (
-    <div className="pt-3 md:pt-10">
+    <div ref={gameTopRef} className="scroll-mt-20 pt-3 md:pt-10">
       <div className="mb-2 flex items-end justify-between gap-4 md:mb-5">
         <p className="eyebrow tabular">{t("game.question", { current: question.index + 1, total: question.total })}</p>
         <p className="eyebrow tabular" aria-label={`${t("game.elapsed")} ${formatDuration(elapsed)}`}>

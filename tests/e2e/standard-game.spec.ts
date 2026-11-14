@@ -60,3 +60,24 @@ test.describe("standard game (guest)", () => {
     expect(await img.getAttribute("src")).toMatch(/^\/api\/game\/flag\/[\w-]+$/);
   });
 });
+
+test.describe("standard game on a phone", () => {
+  test.skip(({ isMobile }) => !isMobile, "mobile only");
+
+  test("answering never scrolls the page: the feedback is a bottom sheet and the next question starts in view", async ({ page }) => {
+    await page.goto("/play/easy");
+    const group = page.getByRole("group", { name: "Which country does this flag belong to?" });
+    for (let i = 1; i <= 3; i++) {
+      await expect(page.getByText(`Question ${i} of 10`)).toBeInViewport();
+      await group.getByRole("button").nth(1).click();
+      const next = page.getByRole("button", { name: "Next flag" });
+      await expect(next).toBeInViewport();
+      // The question number and the flag stay on screen while the explanation is shown.
+      await expect(page.getByText(`Question ${i} of 10`)).toBeInViewport();
+      expect(await page.evaluate(() => window.scrollY)).toBe(0);
+      await next.click();
+    }
+    await expect(page.getByText("Question 4 of 10")).toBeInViewport();
+    expect(await page.evaluate(() => window.scrollY)).toBe(0);
+  });
+});

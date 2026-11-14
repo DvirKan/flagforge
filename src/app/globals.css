@@ -53,6 +53,16 @@
   }
 }
 
+/* Answer sheet on phones: slides up from the bottom edge (transform only). */
+@keyframes sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
@@ -104,6 +114,10 @@
     font-weight: 600;
     letter-spacing: -0.01em;
     line-height: 1.02;
+  }
+
+  .animate-sheet-up {
+    animation: sheet-up 220ms var(--ease-atlas);
   }
 
   .animate-verdict {
