@@ -36,29 +36,29 @@ export const OptionList = forwardRef<HTMLButtonElement, { options: { name: Local
                   aria-pressed={state.chosen === i}
                   onClick={() => onChoose(i)}
                   className={[
-                    "group grid min-h-12 [@media(max-height:640px)]:min-h-11 [@media(max-height:640px)]:py-2 w-full grid-cols-[1.5rem_minmax(0,1fr)_1.5rem] items-center gap-3 rounded-xl border px-4 py-2.5 text-start text-base transition-colors md:min-h-14 md:grid-cols-[2rem_minmax(0,1fr)_1.5rem] md:py-3 md:text-[1.0625rem]",
+                    // Web Interface Guidelines: animate only transform/opacity (never colours), raise contrast for
+                    // interactive states, touch-action: manipulation against tap delay.
+                    "group grid min-h-12 [@media(max-height:640px)]:min-h-11 [@media(max-height:640px)]:py-2 w-full grid-cols-[1.5rem_minmax(0,1fr)_1.5rem] items-center gap-3 rounded-xl border px-4 py-2.5 text-start text-base [touch-action:manipulation] [-webkit-tap-highlight-color:transparent] transition-[opacity,transform] duration-150 md:min-h-14 md:grid-cols-[2rem_minmax(0,1fr)_1.5rem] md:py-3 md:text-[1.0625rem]",
                     isCorrect
-                      ? "border-success bg-success-wash text-ink"
+                      ? "animate-verdict border-success bg-success font-medium text-paper"
                       : isWrongChoice
-                        ? "border-danger bg-danger-wash text-ink"
+                        ? "animate-verdict border-danger bg-danger font-medium text-paper"
                         : waiting
-                          ? "border-ink bg-ink text-paper"
-                          : state.chosen === i
-                            ? "border-ink bg-paper"
-                            : "border-ink/30 bg-paper/70 enabled:hover:border-ink enabled:hover:bg-paper enabled:active:scale-[0.99] enabled:active:bg-parchment-deep",
-                    dim ? "opacity-55" : "",
+                          ? "border-ink bg-paper shadow-[inset_0_0_0_1px_var(--color-ink)]"
+                          : "border-ink/30 bg-paper/70 enabled:hover:border-ink enabled:hover:bg-paper enabled:active:scale-[0.98]",
+                    dim ? "opacity-50" : "",
                     answered ? "cursor-default" : "",
                   ].join(" ")}
                 >
-                  <span className={["font-mono text-sm tabular", waiting ? "text-paper/70" : "text-muted"].join(" ")} aria-hidden="true">
+                  <span className={["font-mono text-sm tabular", isCorrect || isWrongChoice ? "text-paper/80" : "text-muted"].join(" ")} aria-hidden="true">
                     {i + 1}
                   </span>
                   <span>{opt.name[locale]}</span>
                   <span aria-hidden="true" className="justify-self-end">
                     {isCorrect ? (
-                      <Check className="size-5 text-success" />
+                      <Check className="size-5" strokeWidth={2.75} />
                     ) : isWrongChoice ? (
-                      <X className="size-5 text-danger" />
+                      <X className="size-5" strokeWidth={2.75} />
                     ) : waiting ? (
                       <LoaderCircle className="size-5 animate-spin" />
                     ) : null}

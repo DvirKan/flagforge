@@ -89,4 +89,24 @@ suite("daily challenge (server service ↔ database)", () => {
     if ("error" in s || s.kind !== "playing") throw new Error("expected playing");
     expect(await answerDaily(rpc, alice, s.token, 0)).toEqual({ error: "session_invalid" });
   });
+
+  it("makes exactly one database call per answer (including the last one)", async () => {
+    const carol = await createUser(db, "carol@example.test", "carol");
+    const s = await startDaily(rpc, carol);
+    if ("error" in s || s.kind !== "playing") throw new Error("expected playing");
+    const calls: string[] = [];
+    const counting: GameRpc = { call: (fn, args) => (calls.push(fn), rpc.call(fn, args)) };
+    let token: string | null = s.token;
+    let answers = 0;
+    while (token) {
+      calls.length = 0;
+      const out = await answerDaily(counting, carol, token, 0);
+      if ("error" in out) throw new Error(out.error);
+      expect(calls).toEqual(["answer_daily_step"]);
+      token = out.token;
+      answers++;
+      if (!token) expect(out.final?.review).toHaveLength(5);
+    }
+    expect(answers).toBe(5);
+  });
 });

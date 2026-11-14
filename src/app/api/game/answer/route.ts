@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { getVerifiedUserId } from "@/lib/auth/session";
+import { getSessionUserId } from "@/lib/auth/session";
 import { createSupabaseAdminClient, isAdminClientConfigured } from "@/lib/supabase/admin";
 import { answerPersistedGame, isPersistedToken } from "@/server/game/persisted";
 import { supabaseRpc } from "@/server/game/rpc";
@@ -26,7 +26,7 @@ export async function POST(req: Request) {
   const { token, choice } = parsed.data;
   try {
     if (isPersistedToken(token)) {
-      const userId = isAdminClientConfigured() ? await getVerifiedUserId() : null;
+      const userId = isAdminClientConfigured() ? await getSessionUserId() : null;
       if (!userId) return apiError("session_invalid", 401);
       const out = await answerPersistedGame(supabaseRpc(createSupabaseAdminClient()), userId, token, choice);
       if ("error" in out) return apiError(out.error, STATUS[out.error]);

@@ -72,4 +72,32 @@ suite("persisted standard game (server service ↔ database)", () => {
     const started = await startPersistedGame(rpc, user, "hard", { rng: seededRng(13) });
     expect(await answerPersistedGame(rpc, other, started.token, 0)).toEqual({ error: "session_invalid" });
   });
+
+  it("makes exactly one database call per answer (including the last one)", async () => {
+    const started = await startPersistedGame(rpc, user, "easy", { rng: seededRng(5) });
+    const calls: string[] = [];
+    const counting: GameRpc = { call: (fn, args) => (calls.push(fn), rpc.call(fn, args)) };
+    let token: string | null = started.token;
+    let answers = 0;
+    while (token) {
+      calls.length = 0;
+      const out = await answerPersistedGame(counting, user, token, 0);
+      if ("error" in out) throw new Error(out.error);
+      expect(calls).toEqual(["answer_standard_step"]);
+      token = out.token;
+      answers++;
+      if (!token) expect(out.summary?.review).toHaveLength(10);
+    }
+    expect(answers).toBe(10);
+  });
+
+  it("falls back to step-by-step calls when the database does not have the one-call function yet", async () => {
+    const started = await startPersistedGame(rpc, user, "easy", { rng: seededRng(6) });
+    const legacy: GameRpc = {
+      call: (fn, args) => (fn === "answer_standard_step" ? Promise.reject(new Error("function public.answer_standard_step(...) does not exist")) : rpc.call(fn, args)),
+    };
+    const out = await answerPersistedGame(legacy, user, started.token, 0);
+    if ("error" in out) throw new Error(out.error);
+    expect(out.next?.index).toBe(1);
+  });
 });

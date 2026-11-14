@@ -24,3 +24,9 @@ export function supabaseRpc(client: SupabaseClient): GameRpc {
     },
   };
 }
+
+/** True when the database does not have a function yet (a migration not applied) — callers can fall back. */
+export function isMissingFunction(err: unknown): boolean {
+  const msg = err instanceof Error ? err.message : String(err);
+  return /Could not find the function|function .* does not exist|PGRST202/i.test(msg) || (err instanceof RpcError && err.code === "PGRST202");
+}

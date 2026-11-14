@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { getVerifiedUserId } from "@/lib/auth/session";
+import { getSessionUserId } from "@/lib/auth/session";
 import { createSupabaseAdminClient, isAdminClientConfigured } from "@/lib/supabase/admin";
 import { answerDaily } from "@/server/daily/service";
 import { supabaseRpc } from "@/server/game/rpc";
@@ -16,7 +16,7 @@ export async function POST(req: Request) {
   const parsed = await parseJson(req, Body);
   if ("error" in parsed) return parsed.error;
   if (!isAdminClientConfigured()) return apiError("internal", 503);
-  const userId = await getVerifiedUserId();
+  const userId = await getSessionUserId();
   if (!userId) return apiError("session_invalid", 401);
   try {
     const out = await answerDaily(supabaseRpc(createSupabaseAdminClient()), userId, parsed.data.token, parsed.data.choice);

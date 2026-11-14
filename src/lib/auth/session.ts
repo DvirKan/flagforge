@@ -52,6 +52,20 @@ export async function getVerifiedUserId(): Promise<string | null> {
   return data.user.id;
 }
 
+/**
+ * Fast identity for the hot path (each answer in a game already started with getVerifiedUserId): verifies the
+ * JWT signature locally with the project's asymmetric signing key (getClaims; JWKS cached), so no round trip
+ * to the Auth server. A deleted account still cannot act: its games and attempts are deleted with it, and the
+ * database refuses answers for sessions that no longer exist.
+ */
+export async function getSessionUserId(): Promise<string | null> {
+  const supabase = await createSupabaseServerClient();
+  if (!supabase) return null;
+  const { data, error } = await supabase.auth.getClaims();
+  const sub = data?.claims?.sub;
+  return error || typeof sub !== "string" ? null : sub;
+}
+
 export async function requireViewer(nextPath: string): Promise<Viewer> {
   const viewer = await getViewer();
   if (!viewer) redirect(`/login?next=${encodeURIComponent(nextPath)}`);

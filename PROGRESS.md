@@ -152,5 +152,12 @@ re-rendered state instead of a transient message).
       icons incl. maskable, iOS home-screen tags, favicon). Google Play (TWA) deferred until there is a
       domain and regular players (12 testers × 14 days rule for new personal accounts).
 
+- [x] Answer latency: functions pinned to lhr1 next to Supabase (London); one database call per answer
+      (`answer_standard_step` / `answer_daily_step`, migration 20261114100000, with a step-by-step fallback);
+      answers verify the session JWT locally (getClaims, asymmetric key) instead of calling Auth.
+- [x] Answer feedback per the Web Interface Guidelines (Vercel `web-design-guidelines` skill): pending =
+      light button + border + spinner; verdict = solid green / red with a transform-only "pop", no colour
+      transitions; touch-action: manipulation.
+
 Remaining (developer, in order): GitHub repo + push · Vercel project + env vars · Supabase URL configuration ·
 SMTP + templates · post-deploy checklist (DEPLOY.md §5).

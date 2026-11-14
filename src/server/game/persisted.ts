@@ -7,8 +7,8 @@ import type { AnswerResult, Country, GameSummary, QuestionView } from "@/lib/gam
 import { getCountry, revealCountry, selectionContext } from "../countries";
 import { seal, unseal } from "../crypto";
 import { flagUrlFor } from "./flag-handle";
-import { achievementsSinceStart } from "../progress/awards";
-import { RpcError, type GameRpc } from "./rpc";
+import { achievementsSinceStart, toEarned, type AchievementRow } from "../progress/awards";
+import { isMissingFunction, RpcError, type GameRpc } from "./rpc";
 import type { GameError } from "./standard";
 
 /**
@@ -42,6 +42,10 @@ interface AnswerRow {
   correct_count: number;
   score: number;
   elapsed_ms: number | null;
+  /** answer_standard_step only: the next question, or the review + achievements once the game is complete */
+  next?: QuestionRow | null;
+  review?: ReviewRow[];
+  achievements?: AchievementRow[];
 }
 
 interface ReviewRow {
@@ -87,9 +91,17 @@ export async function answerPersistedGame(
   const token = unseal<DbToken>(rawToken, PURPOSE);
   if (!token || token.v !== 1 || token.u !== userId) return { error: "session_invalid" };
 
+  const args = { p_user_id: userId, p_session_id: token.sid, p_position: token.pos, p_choice: choice };
   let row: AnswerRow;
   try {
-    row = await rpc.call<AnswerRow>("answer_standard_question", { p_user_id: userId, p_session_id: token.sid, p_position: token.pos, p_choice: choice });
+    // One round trip: answer + next question (or review + achievements). Falls back to the step-by-step calls
+    // while the database does not have answer_standard_step yet (deploy before `supabase db push`).
+    try {
+      row = await rpc.call<AnswerRow>("answer_standard_step", args);
+    } catch (err) {
+      if (!isMissingFunction(err)) throw err;
+      row = await rpc.call<AnswerRow>("answer_standard_question", args);
+    }
   } catch (err) {
     const msg = err instanceof RpcError ? err.message : "";
     if (/conflict/.test(msg)) return { error: "conflict" };
@@ -101,12 +113,12 @@ export async function answerPersistedGame(
   const result: AnswerResult = { correct: row.correct, chosenIndex: choice, correctIndex: row.correct_index, country: revealCountry(must(row.country)) };
 
   if (!row.completed) {
-    const q = await rpc.call<QuestionRow>("standard_game_question", { p_user_id: userId, p_session_id: token.sid, p_position: token.pos + 1 });
+    const q = row.next ?? (await rpc.call<QuestionRow>("standard_game_question", { p_user_id: userId, p_session_id: token.sid, p_position: token.pos + 1 }));
     const next: DbToken = { ...token, pos: token.pos + 1 };
     return { token: seal(next, PURPOSE), result, next: view(q.position, q.total, q.country, q.options), summary: null };
   }
 
-  const review = await rpc.call<ReviewRow[]>("standard_game_review", { p_user_id: userId, p_session_id: token.sid });
+  const review = row.review ?? (await rpc.call<ReviewRow[]>("standard_game_review", { p_user_id: userId, p_session_id: token.sid }));
   const total = review.length;
   const accuracy = accuracyPct(row.correct_count, total);
   const summary: GameSummary = {
@@ -124,7 +136,7 @@ export async function answerPersistedGame(
       country: revealCountry(must(r.country)),
       chosen: must(r.options[r.selected_index] ?? r.country).name,
     })),
-    newAchievements: await achievementsSinceStart(rpc, userId, token.sid),
+    newAchievements: row.achievements ? toEarned(row.achievements) : await achievementsSinceStart(rpc, userId, token.sid),
   };
   return { token: null, result, next: null, summary };
 }

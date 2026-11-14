@@ -3,8 +3,8 @@ import type { AnswerResult, CountryReveal, EarnedAchievement, Localized, Questio
 import { getCountry, revealCountry } from "../countries";
 import { seal, unseal } from "../crypto";
 import { flagUrlFor } from "../game/flag-handle";
-import { RpcError, type GameRpc } from "../game/rpc";
-import { achievementsSinceStart } from "../progress/awards";
+import { isMissingFunction, RpcError, type GameRpc } from "../game/rpc";
+import { achievementsSinceStart, toEarned, type AchievementRow } from "../progress/awards";
 
 /**
  * Daily challenge, server side. The database owns the attempt (one per user, server timestamps, answers written
@@ -67,6 +67,10 @@ interface AnswerRow {
   completed: boolean;
   correct_count: number;
   elapsed_ms: number | null;
+  /** answer_daily_step only: the next question, or the review + achievements once the attempt is complete */
+  next?: QuestionRow | null;
+  review?: ReviewRow[];
+  achievements?: AchievementRow[];
 }
 
 interface ReviewRow {
@@ -88,13 +92,16 @@ function reveal(iso: string): CountryReveal {
   return revealCountry(c);
 }
 
-async function questionView(rpc: GameRpc, userId: string, attemptId: string, position: number): Promise<QuestionView> {
-  const q = await rpc.call<QuestionRow>("daily_question_internal", { p_user_id: userId, p_attempt_id: attemptId, p_position: position });
+function toView(q: QuestionRow): QuestionView {
   return { index: q.position - 1, total: q.total, flagUrl: flagUrlFor(q.country), options: q.options.map((iso) => ({ name: name(iso) })) };
 }
 
-async function result(rpc: GameRpc, userId: string, attemptId: string, correct: number, elapsedMs: number): Promise<DailyResult> {
-  const rows = await rpc.call<ReviewRow[]>("daily_attempt_review", { p_user_id: userId, p_attempt_id: attemptId });
+async function questionView(rpc: GameRpc, userId: string, attemptId: string, position: number): Promise<QuestionView> {
+  return toView(await rpc.call<QuestionRow>("daily_question_internal", { p_user_id: userId, p_attempt_id: attemptId, p_position: position }));
+}
+
+async function result(rpc: GameRpc, userId: string, attemptId: string, correct: number, elapsedMs: number, known?: ReviewRow[]): Promise<DailyResult> {
+  const rows = known ?? (await rpc.call<ReviewRow[]>("daily_attempt_review", { p_user_id: userId, p_attempt_id: attemptId }));
   return {
     correct,
     total: 5,
@@ -139,9 +146,16 @@ export async function answerDaily(
 ): Promise<{ error: DailyError } | { token: string | null; result: AnswerResult; next: QuestionView | null; final: DailyResult | null }> {
   const token = unseal<DailyToken>(rawToken, PURPOSE);
   if (!token || token.v !== 1 || token.u !== userId) return { error: "session_invalid" };
+  const args = { p_user_id: userId, p_attempt_id: token.aid, p_position: token.pos, p_choice: choice };
   let row: AnswerRow;
   try {
-    row = await rpc.call<AnswerRow>("answer_daily_question", { p_user_id: userId, p_attempt_id: token.aid, p_position: token.pos, p_choice: choice });
+    // One round trip (see answer_daily_step); step-by-step fallback while the migration is not applied.
+    try {
+      row = await rpc.call<AnswerRow>("answer_daily_step", args);
+    } catch (err) {
+      if (!isMissingFunction(err)) throw err;
+      row = await rpc.call<AnswerRow>("answer_daily_question", args);
+    }
   } catch (err) {
     const msg = err instanceof RpcError ? err.message : "";
     if (/conflict/.test(msg)) return { error: "conflict" };
@@ -151,9 +165,9 @@ export async function answerDaily(
   const answer: AnswerResult = { correct: row.correct, chosenIndex: choice, correctIndex: row.correct_index, country: reveal(row.country) };
   if (!row.completed) {
     const next: DailyToken = { ...token, pos: token.pos + 1 };
-    return { token: seal(next, PURPOSE), result: answer, next: await questionView(rpc, userId, token.aid, next.pos), final: null };
+    return { token: seal(next, PURPOSE), result: answer, next: row.next ? toView(row.next) : await questionView(rpc, userId, token.aid, next.pos), final: null };
   }
-  const final = await result(rpc, userId, token.aid, row.correct_count, Number(row.elapsed_ms ?? 0));
-  final.newAchievements = await achievementsSinceStart(rpc, userId, token.aid);
+  const final = await result(rpc, userId, token.aid, row.correct_count, Number(row.elapsed_ms ?? 0), row.review);
+  final.newAchievements = row.achievements ? toEarned(row.achievements) : await achievementsSinceStart(rpc, userId, token.aid);
   return { token: null, result: answer, next: null, final };
 }
