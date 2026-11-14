@@ -213,7 +213,8 @@ test("daily challenge: one attempt, refresh resumes, result is ranked", async ({
   await page.context().grantPermissions(["clipboard-read", "clipboard-write"]);
   await page.getByRole("button", { name: "Share my result" }).click();
   await expect(page.getByRole("button", { name: /Copied/ })).toBeVisible();
-  const shared = await page.evaluate(() => navigator.clipboard.readText());
+  // Windows' clipboard stores line breaks as \r\n; normalise before checking the format.
+  const shared = (await page.evaluate(() => navigator.clipboard.readText())).replace(/\r\n/g, "\n");
   expect(shared).toMatch(/^FLAGFORGE · Daily \d{1,2}\.\d{1,2}\n[🟩🟥]{5}/u);
   expect(shared).toContain("/daily");
 
