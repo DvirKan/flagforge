@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, X } from "lucide-react";
+import { Check, LoaderCircle, X } from "lucide-react";
 import { forwardRef } from "react";
 import type { Localized } from "@/lib/game/types";
 import { useI18n } from "@/lib/i18n/client";
@@ -23,7 +23,10 @@ export const OptionList = forwardRef<HTMLButtonElement, { options: { name: Local
           {options.map((opt, i) => {
             const isCorrect = state.correct === i;
             const isWrongChoice = state.correct !== null && state.chosen === i && !isCorrect;
-            const dim = state.correct !== null && !isCorrect && !isWrongChoice;
+            // While the server checks: the chosen button turns solid at once (with a spinner) and the others
+            // fade, so the tap registers instantly even though the verdict needs a round trip.
+            const waiting = state.pending && state.correct === null && state.chosen === i;
+            const dim = (state.correct !== null && !isCorrect && !isWrongChoice) || (state.pending && state.correct === null && state.chosen !== i);
             return (
               <li key={i}>
                 <button
@@ -38,19 +41,27 @@ export const OptionList = forwardRef<HTMLButtonElement, { options: { name: Local
                       ? "border-success bg-success-wash text-ink"
                       : isWrongChoice
                         ? "border-danger bg-danger-wash text-ink"
-                        : state.chosen === i
-                          ? "border-ink bg-paper"
-                          : "border-ink/30 bg-paper/70 enabled:hover:border-ink enabled:hover:bg-paper",
+                        : waiting
+                          ? "border-ink bg-ink text-paper"
+                          : state.chosen === i
+                            ? "border-ink bg-paper"
+                            : "border-ink/30 bg-paper/70 enabled:hover:border-ink enabled:hover:bg-paper enabled:active:scale-[0.99] enabled:active:bg-parchment-deep",
                     dim ? "opacity-55" : "",
                     answered ? "cursor-default" : "",
                   ].join(" ")}
                 >
-                  <span className="font-mono text-sm text-muted tabular" aria-hidden="true">
+                  <span className={["font-mono text-sm tabular", waiting ? "text-paper/70" : "text-muted"].join(" ")} aria-hidden="true">
                     {i + 1}
                   </span>
                   <span>{opt.name[locale]}</span>
                   <span aria-hidden="true" className="justify-self-end">
-                    {isCorrect ? <Check className="size-5 text-success" /> : isWrongChoice ? <X className="size-5 text-danger" /> : null}
+                    {isCorrect ? (
+                      <Check className="size-5 text-success" />
+                    ) : isWrongChoice ? (
+                      <X className="size-5 text-danger" />
+                    ) : waiting ? (
+                      <LoaderCircle className="size-5 animate-spin" />
+                    ) : null}
                   </span>
                   {isCorrect ? <span className="sr-only">{t("game.correct")}</span> : null}
                   {isWrongChoice ? <span className="sr-only">{t("game.incorrect")}</span> : null}

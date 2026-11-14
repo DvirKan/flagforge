@@ -40,8 +40,10 @@ Secrets are typed **only** into the dashboards named below — never into chat, 
    production data.
 3. **Deploy**. Note the production URL (`https://<project>.vercel.app`), set `NEXT_PUBLIC_SITE_URL` to it and
    **Redeploy** — `NEXT_PUBLIC_*` values are baked in at build time.
-4. Optional: **Settings → Functions → Region** — choose the region closest to your Supabase project
-   (Supabase → Project Settings → General shows it).
+4. Function region: `vercel.json` pins server functions to **lhr1 (London)**, next to the Supabase project
+   (West Europe / London). Every answer makes several server→database calls in a row, so keeping the two in
+   the same region matters far more than closeness to the player. If the Supabase project ever moves, change
+   the region there.
 
 ## 3. Supabase (production URLs)
 
