@@ -23,7 +23,13 @@ export const forgotSchema = z.object({ email: emailSchema });
 export const resetSchema = z.object({ password: passwordSchema });
 export const profileSettingsSchema = z.object({
   username: usernameSchema,
-  displayName: z.string().trim().max(40, "authErrors.generic").transform((v) => (v === "" ? null : v)),
+  // Invisible direction/zero-width characters are stripped: they can make a name in the Hall of Fame display
+  // misleadingly (e.g. reversed text). React already escapes everything, so this is about spoofing, not XSS.
+  displayName: z
+    .string()
+    .transform((v) => v.replace(/[\u200B-\u200F\u202A-\u202E\u2066-\u2069\uFEFF]/g, "").trim())
+    .pipe(z.string().max(40, "authErrors.generic"))
+    .transform((v) => (v === "" ? null : v)),
 });
 
 /** Field → first error key, for rendering next to inputs. */
@@ -37,8 +43,21 @@ export function fieldErrors(error: z.ZodError): Record<string, string> {
 }
 
 /** Only same-origin relative paths are allowed as post-login redirects (prevents open redirects). */
+/**
+ * Same-site path to continue to after sign-in / an email link, or the fallback. Blocks open redirects:
+ * protocol-relative and backslash forms, and any control character or whitespace — browsers silently drop
+ * tabs/newlines while parsing URLs, so "/\t/evil.com" would otherwise become "//evil.com". As a final check the
+ * path is resolved against a dummy origin and must stay on it.
+ */
 export function safeNextPath(next: unknown, fallback = "/profile"): string {
-  if (typeof next !== "string") return fallback;
-  if (!next.startsWith("/") || next.startsWith("//") || next.includes("\\") || /[\r\n]/.test(next)) return fallback;
-  return next;
+  if (typeof next !== "string" || next.length > 512) return fallback;
+  if (!next.startsWith("/") || next.startsWith("//") || next.includes("\\") || /[\u0000-\u0020\u007f]/.test(next)) return fallback;
+  try {
+    const base = "https://same-origin.invalid";
+    const url = new URL(next, base);
+    if (url.origin !== base) return fallback;
+    return url.pathname + url.search + url.hash;
+  } catch {
+    return fallback;
+  }
 }

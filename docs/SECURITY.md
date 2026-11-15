@@ -46,3 +46,33 @@ Reviewed before the first production deploy. ✅ = verified (test or inspection)
 - ✅ Email confirmation required; minimum password length 8 (Supabase setting + server validation).
 - ✅ Account deletion removes profile, games, attempts and achievements (cascade); audit history keeps the
   entry with the actor set to null.
+
+## Review 2026-11-15 (live site + database)
+
+Checked against the production deployment, not only the code.
+
+| Area | Result |
+| --- | --- |
+| Secrets in git history | none (`sb_secret_`, JWTs, connection strings, private keys, session secret values) |
+| Secrets in the JavaScript sent to browsers | none (14 bundles from the live site scanned); source maps not served (403) |
+| Tables as an anonymous visitor (publishable key) | readable: `countries`, `achievements` (catalogue) — everything else 401 |
+| Functions as an anonymous visitor | only `daily_leaderboard`, `period_leaderboard`, `username_available`; all admin/game/stats functions 401 |
+| HTML injection points (`dangerouslySetInnerHTML`, `innerHTML`, `eval`…) | none; all user text rendered by React (escaped) |
+| Headers | CSP, HSTS, `X-Frame-Options: DENY`, `nosniff` present on the live site |
+| Supabase Auth | email confirmation on, anonymous sign-ins off, manual linking off |
+| Supabase security advisor | 1 error fixed (below); remaining warnings are intentional (public leaderboards, own-data `my_*` functions, RLS-without-policy = deny-all tables) |
+
+Fixed in this review:
+- **Open redirect** in `safeNextPath`: `next=/%09/evil.com` passed the check because browsers drop tabs while
+  parsing URLs (→ `//evil.com`). Now rejects any control character/whitespace and verifies the resolved URL
+  stays on the site. Regression tests added.
+- **Removed `public_profiles`** (anyone could list every username and sign-up date; unused by the app) and the
+  unused `my_answered_questions` function (migration `20261115100000_security_hardening.sql`).
+- **Display names**: invisible bidi/zero-width characters stripped (prevents misleading names on boards).
+
+Accepted / not available on the free plan:
+- Leaked-password protection (HaveIBeenPwned check) is a Supabase Pro feature.
+- CAPTCHA on sign-up: off; enable (Attack Protection) if bot sign-ups appear.
+
+Account security (owner, outside the code): enable 2-factor authentication on GitHub, Vercel, Supabase and the
+project Gmail — whoever controls these controls the site and its data.

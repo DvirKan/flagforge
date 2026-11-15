@@ -96,11 +96,11 @@ suite("database (migrations + RLS + functions)", () => {
       expect(await failure(() => as(db, "authenticated", alice, () => db.query("update public.profiles set preferred_language = 'fr' where id = $1", [alice])))).toMatch(/profiles_language_valid/);
     });
 
-    it("are invisible to anon; the public projection exposes no ids or private fields", async () => {
+    it("are invisible to anon, and there is no public listing of all players (removed in the security review)", async () => {
       const rows = await as(db, "anon", null, async () => (await db.query("select * from public.profiles")).rows).catch((e: Error) => e.message);
       expect(rows).toMatch(/permission denied/);
-      const pub = await as(db, "anon", null, async () => (await db.query("select * from public.public_profiles where username = 'alice'")).rows);
-      expect(Object.keys(pub[0]).sort()).toEqual(["avatar_url", "created_at", "display_name", "username"]);
+      const view = await db.query("select to_regclass('public.public_profiles') as v");
+      expect(view.rows[0].v).toBeNull();
     });
 
     it("accept Hebrew and mixed-case usernames; uniqueness ignores case", async () => {
@@ -203,17 +203,13 @@ suite("database (migrations + RLS + functions)", () => {
       expect(Object.fromEntries(rows.map((r) => [r.id, r.status]))).toEqual({ [a]: "abandoned", [b]: "active" });
     });
 
-    it("are visible only to their owner, and answered history hides unanswered answers", async () => {
+    it("are visible only to their owner", async () => {
       const sid = await start(alice);
       await answer(alice, sid, 1, 0);
       const mine = await as(db, "authenticated", alice, async () => (await db.query("select count(*)::int n from public.game_sessions")).rows[0].n);
       const theirs = await as(db, "authenticated", bob, async () => (await db.query("select count(*)::int n from public.game_sessions where user_id = $1", [alice])).rows[0].n);
       expect(mine).toBeGreaterThan(0);
       expect(theirs).toBe(0);
-      const history = await as(db, "authenticated", alice, async () => (await db.query("select * from public.my_answered_questions($1)", [sid])).rows);
-      expect(history).toHaveLength(1);
-      const spy = await as(db, "authenticated", bob, async () => (await db.query("select * from public.my_answered_questions($1)", [sid])).rows);
-      expect(spy).toHaveLength(0);
       const anon = await as(db, "anon", null, async () => (await db.query("select * from public.game_sessions")).rows).catch((e: Error) => e.message);
       expect(anon).toMatch(/permission denied/);
     });

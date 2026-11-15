@@ -12,6 +12,13 @@ describe("safeNextPath (open-redirect protection)", () => {
     ["javascript:alert(1)", "/profile"],
     ["/ok\r\nSet-Cookie: x", "/profile"],
     [undefined, "/profile"],
+    // Browsers drop tabs/newlines inside URLs, so these would become "//evil.com" (found in the security review).
+    ["/\t/evil.com", "/profile"],
+    ["/\n/evil.com", "/profile"],
+    ["/ /evil.com", "/profile"],
+    ["/\u0000/evil.com", "/profile"],
+    ["/profile?welcome=1#top", "/profile?welcome=1#top"],
+    ["/" + "a".repeat(600), "/profile"],
   ])("%s → %s", (input, expected) => {
     expect(safeNextPath(input)).toBe(expected);
   });
@@ -44,5 +51,15 @@ describe("auth error mapping", () => {
     expect(authErrorKey({ code: "over_email_send_rate_limit" })).toBe("authErrors.rateLimited");
     expect(authErrorKey({ status: 429 })).toBe("authErrors.rateLimited");
     expect(authErrorKey({ code: "weird_internal" })).toBe("authErrors.generic");
+  });
+});
+
+describe("display name", () => {
+  it("strips invisible direction and zero-width characters", async () => {
+    const { profileSettingsSchema } = await import("@/lib/validation/auth");
+    const out = profileSettingsSchema.safeParse({ username: "dvir", displayName: "‮dvir​  " });
+    expect(out.success && out.data.displayName).toBe("dvir");
+    const empty = profileSettingsSchema.safeParse({ username: "dvir", displayName: "‮‏" });
+    expect(empty.success && empty.data.displayName).toBeNull();
   });
 });
