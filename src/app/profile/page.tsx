@@ -135,12 +135,12 @@ export default async function ProfilePage({ searchParams }: { searchParams: Prom
           {t("profile.recentGames")}
         </h2>
         {recent && recent.length > 0 ? (
-          <div className="mt-4 overflow-x-auto">
+          <div className="mt-4 overflow-x-auto rounded-xl bg-paper shadow-card">
             <table className="w-full min-w-[32rem] border-collapse text-start text-sm">
               <thead>
                 <tr className="border-b border-rule text-start">
                   {[t("profile.colDate"), t("profile.colDifficulty"), t("profile.colResult"), t("profile.colTime"), t("profile.colScore")].map((h) => (
-                    <th key={h} scope="col" className="eyebrow py-2 text-start font-normal">
+                    <th key={h} scope="col" className="px-4 py-3 text-start font-medium text-muted">
                       {h}
                     </th>
                   ))}
@@ -148,16 +148,22 @@ export default async function ProfilePage({ searchParams }: { searchParams: Prom
               </thead>
               <tbody>
                 {recent.map((g) => (
-                  <tr key={g.id} className="border-b border-rule">
-                    <td className="py-3">{g.completed_at ? dateFmt.format(new Date(g.completed_at)) : "—"}</td>
-                    <td className="py-3">{t(`difficulty.${g.difficulty as "easy" | "medium" | "hard"}`)}</td>
-                    <td className="py-3 font-mono tabular" dir="ltr">
-                      {g.correct_count}/{g.total_questions}
+                  <tr key={g.id} className="border-b border-rule last:border-b-0">
+                    <td className="px-4 py-3">{g.completed_at ? dateFmt.format(new Date(g.completed_at)) : "—"}</td>
+                    <td className="px-4 py-3">{t(`difficulty.${g.difficulty as "easy" | "medium" | "hard"}`)}</td>
+                    {/* dir="ltr" goes on an inner span, never on the cell: on a <td> it left-aligns the
+                        content in RTL pages, gluing it to the neighbouring column. */}
+                    <td className="px-4 py-3 font-mono tabular">
+                      <span dir="ltr">
+                        {g.correct_count}/{g.total_questions}
+                      </span>
                     </td>
-                    <td className="py-3 font-mono tabular" dir="ltr">
-                      {formatDuration(Number(g.elapsed_ms ?? 0))}
+                    <td className="px-4 py-3 font-mono tabular">
+                      <span dir="ltr">{formatDuration(Number(g.elapsed_ms ?? 0))}</span>
                     </td>
-                    <td className="py-3 font-mono tabular">{g.score}</td>
+                    <td className="px-4 py-3 font-mono tabular">
+                      <span dir="ltr">{g.score}</span>
+                    </td>
                   </tr>
                 ))}
               </tbody>
