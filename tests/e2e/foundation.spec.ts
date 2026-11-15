@@ -17,6 +17,7 @@ const ROUTES = [
   "/reset-password",
   "/settings",
   "/admin",
+  "/privacy",
 ];
 
 test.describe("foundation", () => {
@@ -62,6 +63,44 @@ test.describe("foundation", () => {
     await expect(page.locator('link[rel="manifest"]')).toHaveAttribute("href", "/manifest.webmanifest");
     await expect(page.locator('link[rel="apple-touch-icon"]')).toHaveAttribute("href", "/icons/apple-touch-icon.png");
     expect((await request.get("/icons/apple-touch-icon.png")).status()).toBe(200);
+  });
+
+  test("shared links have a rich preview (Open Graph image, title, description)", async ({ page, request }) => {
+    await page.goto("/daily");
+    const og = (p: string) => page.locator(`meta[property="og:${p}"]`).getAttribute("content");
+    expect(await og("image")).toMatch(/\/og\.png$/);
+    expect(await og("title")).toBeTruthy();
+    expect(await og("description")).toBeTruthy();
+    await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute("content", "summary_large_image");
+    const img = await request.get("/og.png");
+    expect(img.status()).toBe(200);
+    expect(img.headers()["content-type"]).toContain("image/png");
+  });
+
+  test("a shared link's language applies to first-time visitors only", async ({ browser, baseURL }) => {
+    // First visit (like WhatsApp's preview bot or a friend clicking the link): Hebrew, and remembered.
+    const fresh = await browser.newContext({ extraHTTPHeaders: { "Accept-Language": "en-US,en;q=0.9" } });
+    const p1 = await fresh.newPage();
+    await p1.goto(`${baseURL}/daily?lang=he`);
+    await expect(p1.locator("html")).toHaveAttribute("lang", "he");
+    await p1.goto(`${baseURL}/`);
+    await expect(p1.locator("html")).toHaveAttribute("lang", "he");
+    await fresh.close();
+    // A visitor who already chose English keeps it.
+    const chosen = await browser.newContext();
+    await chosen.addCookies([{ name: "ff_locale", value: "en", url: baseURL ?? "http://localhost:3100" }]);
+    const p2 = await chosen.newPage();
+    await p2.goto(`${baseURL}/daily?lang=he`);
+    await expect(p2.locator("html")).toHaveAttribute("lang", "en");
+    await chosen.close();
+  });
+
+  test("the privacy policy is linked from the footer and the sign-up page", async ({ page }) => {
+    await page.goto("/register");
+    await page.locator("main").getByRole("link", { name: /privacy policy/i }).click();
+    await expect(page).toHaveURL(/\/privacy$/);
+    await expect(page.locator("h1")).toHaveText(/Privacy policy|מדיניות פרטיות/);
+    await expect(page.getByRole("link", { name: "flagforge.game@gmail.com" })).toBeVisible();
   });
 
   test("unknown difficulty returns 404", async ({ page }) => {

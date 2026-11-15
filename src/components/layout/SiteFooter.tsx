@@ -13,6 +13,7 @@ export async function SiteFooter() {
         <nav aria-label={t("settings.eyebrow")} className="flex gap-5">
           <Link className="link-underline" href="/profile">{t("nav.profile")}</Link>
           <Link className="link-underline" href="/settings">{t("nav.settings")}</Link>
+          <Link className="link-underline" href="/privacy">{t("footer.privacy")}</Link>
         </nav>
       </div>
     </footer>

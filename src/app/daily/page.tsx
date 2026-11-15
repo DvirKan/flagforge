@@ -8,13 +8,18 @@ import { gameConfig } from "@/config/game";
 import { getViewer } from "@/lib/auth/session";
 import { INTL_LOCALE } from "@/lib/i18n/config";
 import { getI18n } from "@/lib/i18n/server";
+import { socialPreview } from "@/lib/seo";
 import { formatDuration } from "@/lib/time/format";
 import { nextDayBoundary } from "@/lib/time/zoned";
 import { getDailyLeaderboard, getMyAttempt, getPublishedChallenge, todayChallengeDate } from "@/server/daily/queries";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { t } = await getI18n();
-  return { title: t("daily.title") };
+  const { locale, t } = await getI18n();
+  // This is the page shared results link to: its preview carries the dare.
+  return {
+    title: t("daily.title"),
+    ...socialPreview({ title: t("meta.dailyShareTitle"), description: t("meta.dailyShareDescription"), imageAlt: t("meta.imageAlt"), locale, path: "/daily" }),
+  };
 }
 
 export default async function DailyPage() {

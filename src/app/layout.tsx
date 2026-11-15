@@ -11,11 +11,13 @@ import { brand } from "@/config/brand";
 import { I18nProvider } from "@/lib/i18n/client";
 import { directionOf } from "@/lib/i18n/config";
 import { getI18n } from "@/lib/i18n/server";
+import { socialPreview } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { t } = await getI18n();
+  const { locale, t } = await getI18n();
   return {
     title: { default: brand.name, template: `%s · ${brand.name}` },
+    ...socialPreview({ title: `${brand.name} — ${t("meta.shareTitle")}`, description: t("meta.description"), imageAlt: t("meta.imageAlt"), locale }),
     description: t("meta.description"),
     metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
     // Home-screen install: manifest (src/app/manifest.ts) for Android/Chrome, these for iOS Safari.

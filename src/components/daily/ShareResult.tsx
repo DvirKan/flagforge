@@ -12,12 +12,12 @@ type State = "idle" | "copied" | "manual";
  * otherwise copies the text; if the clipboard is unavailable too, shows the text to copy by hand.
  */
 export function ShareResult({ date, results, elapsedMs }: { date: string; results: boolean[]; elapsedMs: number }) {
-  const { t } = useI18n();
+  const { locale, t } = useI18n();
   const [state, setState] = useState<State>("idle");
   const [text, setText] = useState("");
 
   async function share() {
-    const value = dailyShareText({ date, results, elapsedMs, url: `${window.location.origin}/daily`, label: t("daily.shareLabel") });
+    const value = dailyShareText({ date, results, elapsedMs, url: `${window.location.origin}/daily?lang=${locale}`, copy: { label: t("daily.shareLabel"), dareFaster: t("daily.shareDareFaster"), dareBetter: t("daily.shareDareBetter") } });
     setText(value);
     if (typeof navigator.share === "function" && window.matchMedia("(pointer: coarse)").matches) {
       try {

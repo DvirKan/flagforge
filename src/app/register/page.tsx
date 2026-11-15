@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { AuthFooterLink, AuthShell } from "@/components/auth/AuthShell";
 import { RegisterForm } from "@/components/auth/forms";
@@ -22,6 +23,11 @@ export default async function RegisterPage() {
     >
       <p className="mb-6 text-ink-soft">{t("auth.guestBenefits")}</p>
       {isSupabaseConfigured() ? <RegisterForm /> : <NotConfigured />}
+      <p className="mt-6 text-sm text-muted">
+        <Link href="/privacy" className="link-underline">
+          {t("auth.privacyNote")}
+        </Link>
+      </p>
     </AuthShell>
   );
 }

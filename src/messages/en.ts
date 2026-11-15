@@ -6,6 +6,10 @@
 const en = {
   meta: {
     description: "How many flags do you really know? Five flags a day, the same for everyone — and a Hall of Fame for the fastest.",
+    shareTitle: "How many flags do you really know?",
+    dailyShareTitle: "Today's flag challenge — can you beat my score?",
+    dailyShareDescription: "Five flags, one attempt, the same for everyone. Get them all right, fastest, and you top today's Hall of Fame.",
+    imageAlt: "Flags of Brazil, Japan, Kenya and Sweden with the FLAGFORGE title",
   },
   a11y: {
     skipToContent: "Skip to content",
@@ -151,6 +155,8 @@ const en = {
     shareCopied: "Copied — paste it anywhere",
     shareManual: "Copy this text to share it:",
     shareLabel: "Daily",
+    shareDareFaster: "Think you can do it faster?",
+    shareDareBetter: "Think you can beat that?",
     reviewTitle: "Today's five flags",
     leaderboardTitle: "Today's Hall of Fame",
     champion: "Today's champion",
@@ -289,6 +295,7 @@ const en = {
     linkInvalid: "That link is invalid or has expired. Request a new one.",
     notConfigured: "Accounts are not available on this server yet (Supabase is not configured).",
     guestBenefits: "With an account you can take the daily challenge, keep a streak going and compete for a place in the Hall of Fame.",
+    privacyNote: "How we handle your data: privacy policy",
   },
   authErrors: {
     invalidEmail: "Enter a valid email address.",
@@ -406,6 +413,7 @@ const en = {
     body: "The address may be mistyped, or the page may have moved.",
   },
   footer: {
+    privacy: "Privacy",
     colophon: "A geography game. Country data and flag artwork sources are listed in the project documentation.",
   },
 };
